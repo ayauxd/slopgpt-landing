@@ -165,8 +165,8 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/80 backdrop-blur-md border-b border-[#e5e5e5]" role="navigation">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center min-h-[44px] py-2">
-            <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-            <span className="text-xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+            <span className="text-3xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+            <span className="text-2xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
           </a>
           <div className="flex items-center gap-6">
             <a href="#features" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
@@ -272,7 +272,7 @@ function App() {
                 href="#chat"
                 className="px-8 py-4 bg-white text-[#1a1a1a] rounded-xl text-lg font-medium hover:bg-white/90 transition-colors min-w-[200px] shadow-lg"
               >
-                Let's Get Weird
+                Start Creating
               </a>
               <a
                 href="#examples"
@@ -434,8 +434,8 @@ function App() {
               {/* Chat header */}
               <div className="px-6 py-4 border-b border-[#e5e5e5] flex items-center gap-3">
                 <div className="flex items-center">
-                  <span className="text-lg" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-                  <span className="text-base font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+                  <span className="text-xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+                  <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
                 </div>
                 <div>
                   <p className="font-medium text-sm">Agent</p>
@@ -659,7 +659,7 @@ function App() {
               Just bring your weird ideas.
             </p>
             <a
-              href="mailto:agents@softworkstrading.com"
+              href="mailto:slop@slopgpt.com"
               className="inline-flex items-center gap-3 px-10 py-5 bg-[#cc2936] text-white rounded-xl text-lg font-medium hover:bg-[#b02430] transition-colors shadow-xl shadow-[#cc2936]/30"
             >
               <span>Let's Get Started</span>
@@ -668,7 +668,7 @@ function App() {
               </svg>
             </a>
             <p className="mt-8 text-sm text-[#999]">
-              Questions? Hit us up at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">agents@softworkstrading.com</a>
+              Questions? Hit us up at <a href="mailto:slop@slopgpt.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">slop@slopgpt.com</a>
             </p>
           </motion.div>
         </motion.section>
@@ -686,8 +686,8 @@ function App() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center">
-              <span className="text-xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-              <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+              <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+              <span className="text-xl font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
             </div>
             <div className="flex items-center gap-4 text-sm text-[#666]">
               <a href="#features" className="hover:text-[#1a1a1a] transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Features</a>
