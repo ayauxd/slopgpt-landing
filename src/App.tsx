@@ -46,7 +46,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'AI-generated prehistoric party scenes with T-Rex cake toppers and meteor piñatas',
     category: 'Events',
     bgGradient: 'from-emerald-400 to-teal-600',
-    image: '/showcases/dinosaur-party.svg'
+    image: '/showcases/dinosaur-party.jpg'
   },
   {
     id: '2',
@@ -54,7 +54,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Tamagotchis, slap bracelets, and that carpet pattern from everywhere',
     category: 'Creative',
     bgGradient: 'from-purple-400 to-pink-600',
-    image: '/showcases/90s-nostalgia.svg'
+    image: '/showcases/90s-nostalgia.jpg'
   },
   {
     id: '3',
@@ -62,7 +62,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Mystery box cooking challenges and competitive Mario Kart tournaments',
     category: 'Party Ideas',
     bgGradient: 'from-orange-400 to-red-600',
-    image: '/showcases/chaos-goblin.svg'
+    image: '/showcases/chaos-goblin.jpg'
   },
   {
     id: '4',
@@ -70,7 +70,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'DnD campaigns in the furniture maze. Billy bookshelf fortresses included.',
     category: 'Gaming',
     bgGradient: 'from-blue-400 to-indigo-600',
-    image: '/showcases/ikea-apocalypse.svg'
+    image: '/showcases/ikea-apocalypse.jpg'
   },
   {
     id: '5',
@@ -78,7 +78,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Explaining quantum computing to peasants, one ox-drawn analogy at a time',
     category: 'Learning',
     bgGradient: 'from-amber-400 to-yellow-600',
-    image: '/showcases/medieval-tech.svg'
+    image: '/showcases/medieval-tech.jpg'
   }
 ]
 
