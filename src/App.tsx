@@ -2,59 +2,63 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useState } from 'react'
 import './index.css'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
+// Tesla/Apple-inspired dark theme
+// Minimal color palette: black, white, single accent
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
 }
 
 const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+  animate: { transition: { staggerChildren: 0.1 } }
 }
+
+// Sample generated images (placeholders - replace with real examples)
+const showcaseItems = [
+  { id: 1, title: 'Jurassic Adventure', category: 'Birthday', emoji: '🦖' },
+  { id: 2, title: 'Space Explorer', category: 'Corporate', emoji: '🚀' },
+  { id: 3, title: 'Medieval Quest', category: 'Wedding', emoji: '🏰' },
+  { id: 4, title: 'Safari Journey', category: 'Product Launch', emoji: '🦁' },
+  { id: 5, title: 'Ocean Discovery', category: 'Birthday', emoji: '🐋' },
+  { id: 6, title: 'Future City', category: 'Corporate', emoji: '🌆' },
+]
 
 function App() {
   const [showContactForm, setShowContactForm] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const shouldReduceMotion = useReducedMotion()
 
-  const animationProps = shouldReduceMotion
-    ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
-    : fadeUp
-
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#1d1d1f]">
-      {/* Skip to content link for accessibility */}
+    <div className="min-h-screen bg-black text-white">
+      {/* Skip to content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#1d1d1f] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus-ring"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-sm"
       >
         Skip to main content
       </a>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fafafa]/80 backdrop-blur-xl border-b border-black/5" role="navigation" aria-label="Main navigation">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="/" className="text-xl font-semibold tracking-tight focus-ring rounded-md" aria-label="SlopGPT Home">
+      {/* Navigation - Tesla style: minimal, transparent */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md" role="navigation">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="/" className="text-xl font-medium tracking-tight">
             SlopGPT
           </a>
           <div className="flex items-center gap-8">
-            <a href="#how-it-works" className="text-sm text-muted hover:text-[#1d1d1f] transition-colors focus-ring rounded-md hidden sm:block">
-              How it works
+            <a href="#showcase" className="text-sm text-white/60 hover:text-white transition-colors hidden md:block">
+              Showcase
             </a>
-            <a href="#use-cases" className="text-sm text-muted hover:text-[#1d1d1f] transition-colors focus-ring rounded-md hidden sm:block">
-              Use cases
+            <a href="#how-it-works" className="text-sm text-white/60 hover:text-white transition-colors hidden md:block">
+              How It Works
             </a>
-            <a href="#contact" className="text-sm text-muted hover:text-[#1d1d1f] transition-colors focus-ring rounded-md hidden sm:block">
+            <a href="#contact" className="text-sm text-white/60 hover:text-white transition-colors hidden md:block">
               Contact
             </a>
             <a
               href="#"
-              className="text-sm bg-[#1d1d1f] text-white px-4 py-2 rounded-full hover:bg-black transition-colors focus-ring min-h-[44px] flex items-center"
-              aria-label="Sign in to your account"
+              className="text-sm px-4 py-2 bg-white text-black rounded-sm font-medium hover:bg-white/90 transition-colors"
             >
               Sign In
             </a>
@@ -62,145 +66,194 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <main id="main-content">
-        <section className="pt-32 pb-24 px-6" aria-labelledby="hero-title">
+        {/* Hero - Tesla style: large, cinematic, minimal text */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-16">
           <motion.div
             className="max-w-4xl mx-auto text-center"
             initial="initial"
             animate="animate"
             variants={shouldReduceMotion ? {} : stagger}
           >
-            <motion.p
-              className="text-sm font-medium text-[#6366f1] mb-4 tracking-wide uppercase"
-              variants={animationProps}
-            >
-              Bespoke AI Photo Experiences
-            </motion.p>
             <motion.h1
-              id="hero-title"
-              className="text-5xl md:text-7xl font-semibold tracking-tight leading-snug mb-6"
-              variants={animationProps}
+              className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] mb-8"
+              variants={shouldReduceMotion ? {} : fadeIn}
             >
-              Transform your events
-              <br />
-              <span className="text-gradient">with AI magic.</span>
+              AI Photo Experiences
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
-              variants={animationProps}
+              className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed"
+              variants={shouldReduceMotion ? {} : fadeIn}
             >
-              We design custom AI photo experiences that put your guests
-              in impossible adventures. White-glove service for memorable events.
+              Transform your guests into the heroes of impossible adventures.
+              Bespoke AI photo generation for memorable events.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
-              variants={animationProps}
+              variants={shouldReduceMotion ? {} : fadeIn}
             >
               <button
                 onClick={() => setShowContactForm(true)}
-                className="inline-flex items-center gap-2 bg-[#1d1d1f] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-black transition-colors focus-ring min-h-[56px]"
-                aria-label="Start a conversation about your event"
+                className="px-8 py-4 bg-white text-black rounded-sm text-lg font-medium hover:bg-white/90 transition-colors min-w-[200px]"
               >
-                Start a conversation
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                Get Started
               </button>
               <a
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 text-[#6366f1] px-8 py-4 text-lg font-medium hover:underline focus-ring rounded-lg min-h-[56px]"
+                href="#showcase"
+                className="px-8 py-4 border border-white/20 rounded-sm text-lg font-medium hover:border-white/40 transition-colors min-w-[200px]"
               >
-                Learn more
+                View Showcase
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Hero Visual */}
+          {/* Scroll indicator */}
           <motion.div
-            className="max-w-5xl mx-auto mt-16"
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] p-1">
-              <div className="bg-[#1d1d1f] rounded-xl overflow-hidden aspect-video flex items-center justify-center">
-                <div className="text-center text-white/60 p-12">
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="aspect-[3/4] bg-white/10 rounded-lg flex items-center justify-center">
-                      <span className="text-4xl" role="img" aria-label="Dinosaur">🦖</span>
-                    </div>
-                    <div className="aspect-[3/4] bg-white/10 rounded-lg flex items-center justify-center">
-                      <span className="text-4xl" role="img" aria-label="Space rocket">🚀</span>
-                    </div>
-                    <div className="aspect-[3/4] bg-white/10 rounded-lg flex items-center justify-center">
-                      <span className="text-4xl" role="img" aria-label="Castle">🏰</span>
-                    </div>
-                  </div>
-                  <p className="text-lg font-medium text-white/80">Custom themes for any event</p>
-                  <p className="text-sm mt-2 text-white/40">Birthdays • Weddings • Corporate • Product Launches</p>
-                </div>
-              </div>
+            <div className="w-6 h-10 border border-white/20 rounded-full flex items-start justify-center p-2">
+              <motion.div
+                className="w-1 h-2 bg-white/60 rounded-full"
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
             </div>
           </motion.div>
         </section>
 
-        {/* How It Works */}
-        <section id="how-it-works" className="py-24 px-6 bg-white" aria-labelledby="how-it-works-title">
-          <div className="max-w-6xl mx-auto">
+        {/* Showcase Grid - YouTube/Media style cards */}
+        <section id="showcase" className="py-32 px-6 bg-[#0a0a0a]">
+          <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-16"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 id="how-it-works-title" className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
-                How it works
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4">
+                Showcase
               </h2>
-              <p className="text-xl text-muted">
-                A human-in-the-loop service for bespoke experiences
+              <p className="text-white/50 text-lg">
+                Custom themes designed for any event
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-4 gap-8 lg:gap-12">
+            {/* Media Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {showcaseItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  className="group relative aspect-video bg-[#141414] rounded-sm overflow-hidden cursor-pointer"
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* Placeholder for video/image - replace with real media */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d]">
+                    <span className="text-6xl">{item.emoji}</span>
+                  </div>
+
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <div>
+                      <p className="text-xs text-white/50 uppercase tracking-wider mb-1">{item.category}</p>
+                      <h3 className="text-lg font-medium">{item.title}</h3>
+                    </div>
+                  </div>
+
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="text-center mt-12"
+              initial={shouldReduceMotion ? {} : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <button
+                onClick={() => setShowContactForm(true)}
+                className="px-8 py-3 border border-white/20 rounded-sm font-medium hover:border-white/40 transition-colors"
+              >
+                Request Custom Theme
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* How It Works - Clean, minimal steps */}
+        <section id="how-it-works" className="py-32 px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              className="text-center mb-20"
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4">
+                How It Works
+              </h2>
+              <p className="text-white/50 text-lg">
+                A premium, human-in-the-loop service
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-4 gap-8 lg:gap-16">
               {[
-                {
-                  step: '01',
-                  title: 'Consult',
-                  description: 'We learn about your event and design a custom theme together.',
-                  icon: '💬'
-                },
-                {
-                  step: '02',
-                  title: 'Create',
-                  description: 'Our team builds your branded AI experience with bespoke scenes.',
-                  icon: '🎨'
-                },
-                {
-                  step: '03',
-                  title: 'Deploy',
-                  description: 'You receive a private link or QR code for your guests.',
-                  icon: '🔗'
-                },
-                {
-                  step: '04',
-                  title: 'Delight',
-                  description: 'Guests upload photos and download AI-generated memories.',
-                  icon: '✨'
-                }
+                { step: '01', title: 'Consult', desc: 'We design your custom theme together based on your event vision.' },
+                { step: '02', title: 'Create', desc: 'Our team builds a bespoke AI experience with unique scenes.' },
+                { step: '03', title: 'Deploy', desc: 'You receive a private link or QR code for your guests.' },
+                { step: '04', title: 'Delight', desc: 'Guests upload photos and download AI-generated memories.' },
               ].map((item, index) => (
                 <motion.div
                   key={item.step}
-                  className="text-center"
+                  className="text-center md:text-left"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="text-5xl mb-6" role="img" aria-hidden="true">{item.icon}</div>
-                  <div className="text-sm font-medium text-[#6366f1] mb-2">{item.step}</div>
-                  <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
-                  <p className="text-muted leading-relaxed">{item.description}</p>
+                  <div className="text-white/20 text-6xl font-light mb-4">{item.step}</div>
+                  <h3 className="text-xl font-medium mb-3">{item.title}</h3>
+                  <p className="text-white/50 leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Stats/Social Proof */}
+        <section className="py-20 px-6 bg-[#0a0a0a]">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: '500+', label: 'Events Powered' },
+                { value: '10K+', label: 'Photos Generated' },
+                { value: '98%', label: 'Guest Satisfaction' },
+                { value: '24hr', label: 'Turnaround' },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="text-3xl md:text-4xl font-medium mb-2">{stat.value}</div>
+                  <div className="text-white/40 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -208,7 +261,7 @@ function App() {
         </section>
 
         {/* Use Cases */}
-        <section id="use-cases" className="py-24 px-6" aria-labelledby="use-cases-title">
+        <section className="py-32 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
               className="text-center mb-16"
@@ -216,32 +269,28 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 id="use-cases-title" className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
-                Perfect for every event
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4">
+                Perfect For
               </h2>
-              <p className="text-xl text-muted">
-                Custom themes designed for your celebration
-              </p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { name: 'Birthdays', icon: '🎂', desc: 'Themed adventures for milestone celebrations' },
-                { name: 'Weddings', icon: '💒', desc: 'Romantic fantasy destinations for couples' },
-                { name: 'Corporate', icon: '🏢', desc: 'Team building and brand activations' },
-                { name: 'Product Launches', icon: '🚀', desc: 'Immersive experiences for new products' }
+                { name: 'Birthdays', desc: 'Themed adventures for milestone celebrations' },
+                { name: 'Weddings', desc: 'Romantic fantasy destinations for couples' },
+                { name: 'Corporate', desc: 'Team building and brand activations' },
+                { name: 'Product Launches', desc: 'Immersive experiences for new products' },
               ].map((item, index) => (
                 <motion.div
                   key={item.name}
-                  className="bg-white rounded-2xl p-8 shadow-sm border border-black/5 hover-lift text-center"
+                  className="p-8 bg-[#0a0a0a] rounded-sm border border-white/5 hover:border-white/10 transition-colors"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="text-4xl mb-4" role="img" aria-hidden="true">{item.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{item.name}</h3>
-                  <p className="text-sm text-muted">{item.desc}</p>
+                  <h3 className="text-lg font-medium mb-2">{item.name}</h3>
+                  <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -249,43 +298,43 @@ function App() {
         </section>
 
         {/* CTA Section */}
-        <section id="contact" className="py-24 px-6 bg-gradient-to-br from-[#667eea] to-[#764ba2]" aria-labelledby="contact-title">
+        <section id="contact" className="py-32 px-6 bg-[#0a0a0a]">
           <motion.div
-            className="max-w-3xl mx-auto text-center text-white"
+            className="max-w-3xl mx-auto text-center"
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 id="contact-title" className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6">
               Ready to create magic?
             </h2>
-            <p className="text-xl text-white/80 mb-10">
+            <p className="text-white/50 text-lg mb-10">
               Let's design a custom experience for your next event.
             </p>
             <button
               onClick={() => setShowContactForm(true)}
-              className="inline-flex items-center gap-2 bg-white text-[#1d1d1f] px-8 py-4 rounded-full text-lg font-medium hover:bg-white/90 transition-colors focus-ring min-h-[56px]"
-              aria-label="Open contact form"
+              className="px-10 py-4 bg-white text-black rounded-sm text-lg font-medium hover:bg-white/90 transition-colors"
             >
-              Get in touch
+              Get Started
             </button>
           </motion.div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-[#1d1d1f] text-white/60" role="contentinfo">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-xl font-semibold text-white">SlopGPT</div>
-            <div className="flex items-center gap-8 text-sm">
-              <a href="#how-it-works" className="hover:text-white transition-colors focus-ring rounded-md">How it works</a>
-              <a href="#contact" className="hover:text-white transition-colors focus-ring rounded-md">Contact</a>
+      <footer className="py-16 px-6 border-t border-white/5" role="contentinfo">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-xl font-medium">SlopGPT</div>
+            <div className="flex items-center gap-8 text-sm text-white/40">
+              <a href="#showcase" className="hover:text-white transition-colors">Showcase</a>
+              <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
+              <a href="#contact" className="hover:text-white transition-colors">Contact</a>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-            <p>© 2026 SlopGPT. A <a href="https://softworkstrading.com" className="text-white/80 hover:text-white transition-colors focus-ring">Softworks Trading Company</a> service.</p>
-            <p className="text-white/40">agents@softworkstrading.com</p>
+          <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/30">
+            <p>A <a href="https://softworkstrading.com" className="text-white/50 hover:text-white transition-colors">Softworks Trading Company</a> service</p>
+            <p>agents@softworkstrading.com</p>
           </div>
         </div>
       </footer>
@@ -293,83 +342,80 @@ function App() {
       {/* Contact Form Modal */}
       {showContactForm && (
         <div
-          className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="contact-form-title"
           onClick={() => setShowContactForm(false)}
         >
           <motion.div
-            className="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl"
+            className="bg-[#0a0a0a] border border-white/10 rounded-sm w-full max-w-lg p-8"
             initial={shouldReduceMotion ? {} : { scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between mb-6">
-              <h3 id="contact-form-title" className="text-2xl font-semibold">Tell us about your event</h3>
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-2xl font-medium">Get Started</h3>
               <button
                 onClick={() => setShowContactForm(false)}
-                className="text-[#86868b] hover:text-[#1d1d1f] text-2xl p-2 focus-ring rounded-lg"
-                aria-label="Close dialog"
-                type="button"
+                className="text-white/40 hover:text-white text-2xl p-2"
+                aria-label="Close"
               >
-                ×
+                &times;
               </button>
             </div>
 
             {formSubmitted ? (
-              <div className="text-center py-8">
-                <div className="text-5xl mb-4" role="img" aria-label="Sparkles">✨</div>
-                <h4 className="text-xl font-semibold mb-2">Thanks for reaching out!</h4>
-                <p className="text-muted">We'll get back to you within 24 hours.</p>
+              <div className="text-center py-12">
+                <div className="text-5xl mb-4">✓</div>
+                <h4 className="text-xl font-medium mb-2">Thanks for reaching out</h4>
+                <p className="text-white/50">We'll get back to you within 24 hours.</p>
               </div>
             ) : (
               <form
                 onSubmit={(e) => {
                   e.preventDefault()
-                  // Form submission logic here - for now just show success
                   setFormSubmitted(true)
                 }}
-                className="space-y-4"
+                className="space-y-6"
               >
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[#1d1d1f] mb-1">
-                    Your name
+                  <label htmlFor="name" className="block text-sm text-white/60 mb-2">
+                    Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 border border-black/10 rounded-lg focus-ring text-[#1d1d1f]"
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-sm text-white placeholder-white/30 focus:border-white/30 focus:outline-none"
                     placeholder="Jane Smith"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#1d1d1f] mb-1">
-                    Email address
+                  <label htmlFor="email" className="block text-sm text-white/60 mb-2">
+                    Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 border border-black/10 rounded-lg focus-ring text-[#1d1d1f]"
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-sm text-white placeholder-white/30 focus:border-white/30 focus:outline-none"
                     placeholder="jane@company.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="event-type" className="block text-sm font-medium text-[#1d1d1f] mb-1">
-                    Event type
+                  <label htmlFor="event-type" className="block text-sm text-white/60 mb-2">
+                    Event Type
                   </label>
                   <select
                     id="event-type"
                     name="event-type"
                     required
-                    className="w-full px-4 py-3 border border-black/10 rounded-lg focus-ring text-[#1d1d1f] bg-white"
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-sm text-white focus:border-white/30 focus:outline-none"
                   >
-                    <option value="">Select event type</option>
-                    <option value="birthday">Birthday Party</option>
+                    <option value="">Select type</option>
+                    <option value="birthday">Birthday</option>
                     <option value="wedding">Wedding</option>
                     <option value="corporate">Corporate Event</option>
                     <option value="product-launch">Product Launch</option>
@@ -377,43 +423,26 @@ function App() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="guest-count" className="block text-sm font-medium text-[#1d1d1f] mb-1">
-                    Estimated guest count
-                  </label>
-                  <select
-                    id="guest-count"
-                    name="guest-count"
-                    required
-                    className="w-full px-4 py-3 border border-black/10 rounded-lg focus-ring text-[#1d1d1f] bg-white"
-                  >
-                    <option value="">Select range</option>
-                    <option value="1-25">1-25 guests</option>
-                    <option value="26-50">26-50 guests</option>
-                    <option value="51-100">51-100 guests</option>
-                    <option value="100+">100+ guests</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-[#1d1d1f] mb-1">
-                    Tell us about your vision
+                  <label htmlFor="message" className="block text-sm text-white/60 mb-2">
+                    Tell us about your event
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={3}
-                    className="w-full px-4 py-3 border border-black/10 rounded-lg focus-ring text-[#1d1d1f] resize-none"
-                    placeholder="Describe your event theme, date, or any special requests..."
+                    className="w-full px-4 py-3 bg-black border border-white/10 rounded-sm text-white placeholder-white/30 focus:border-white/30 focus:outline-none resize-none"
+                    placeholder="Date, theme ideas, guest count..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#1d1d1f] text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-black transition-colors focus-ring min-h-[56px]"
+                  className="w-full py-4 bg-white text-black rounded-sm font-medium hover:bg-white/90 transition-colors"
                 >
-                  Send inquiry
+                  Send Inquiry
                 </button>
-                <p className="text-center text-sm text-muted">
-                  Or email us directly at{' '}
-                  <a href="mailto:agents@softworkstrading.com" className="text-[#6366f1] hover:underline focus-ring">
+                <p className="text-center text-sm text-white/40">
+                  Or email directly at{' '}
+                  <a href="mailto:agents@softworkstrading.com" className="text-white/60 hover:text-white">
                     agents@softworkstrading.com
                   </a>
                 </p>
