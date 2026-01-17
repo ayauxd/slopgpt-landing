@@ -82,14 +82,31 @@ const showcaseItems: ShowcaseItem[] = [
   }
 ]
 
+// Hero images for animated showcase
+const heroImages = [
+  '/showcases/dinosaur-party.jpg',
+  '/showcases/chaos-goblin.jpg',
+  '/showcases/medieval-tech.jpg',
+]
+
 function App() {
   const shouldReduceMotion = useReducedMotion()
   const [visibleMessages, setVisibleMessages] = useState<number>(0)
   const [isTyping, setIsTyping] = useState(false)
+  const [heroIndex, setHeroIndex] = useState(0)
 
   // Carousel state
   const [currentSlide, setCurrentSlide] = useState(0)
   const [direction, setDirection] = useState(0) // -1 for left, 1 for right
+
+  // Animate hero images
+  useEffect(() => {
+    if (shouldReduceMotion) return
+    const timer = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [shouldReduceMotion])
 
   // Animate demo conversation
   useEffect(() => {
@@ -203,13 +220,69 @@ function App() {
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-[#666] max-w-xl mx-auto mb-10 leading-relaxed"
+              className="text-lg md:text-xl text-[#666] max-w-xl mx-auto mb-8 leading-relaxed"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
               Most AI apps are single-use tools with lock-in.
               We're just here to help you have fun, get stuff done, and maybe
               make something weird along the way.
             </motion.p>
+
+            {/* Animated Hero Showcase */}
+            <motion.div
+              className="relative w-full max-w-md mx-auto mb-10"
+              variants={shouldReduceMotion ? {} : fadeIn}
+            >
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border border-[#e5e5e5]">
+                {/* Animated background glow */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#cc2936]/20 via-purple-500/20 to-[#cc2936]/20 blur-2xl opacity-60 animate-pulse" />
+
+                {/* Image container with crossfade */}
+                <div className="relative w-full h-full bg-[#1a1a1a]">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={heroIndex}
+                      src={heroImages[heroIndex]}
+                      alt="AI-generated event photo"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      initial={shouldReduceMotion ? {} : { opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={shouldReduceMotion ? {} : { opacity: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeInOut' }}
+                    />
+                  </AnimatePresence>
+
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+                  {/* "AI Generated" badge */}
+                  <div className="absolute top-3 left-3 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-[#1a1a1a] shadow-lg">
+                    ✨ AI Generated
+                  </div>
+
+                  {/* Theme indicator dots */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                    {heroImages.map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          i === heroIndex ? 'bg-white w-4' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating label */}
+              <motion.div
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white rounded-full shadow-lg border border-[#e5e5e5] text-sm font-medium whitespace-nowrap"
+                animate={shouldReduceMotion ? {} : { y: [0, -4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                Transform any photo into magic
+              </motion.div>
+            </motion.div>
 
             <motion.div
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
