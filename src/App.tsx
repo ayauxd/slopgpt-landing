@@ -420,14 +420,14 @@ function App() {
 
               {/* Chat input preview */}
               <div className="px-6 pb-6">
-                <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-3">
+                <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-3 transition-all duration-200 focus-within:border-[#cc2936] focus-within:ring-2 focus-within:ring-[#cc2936]/20">
                   <input
                     type="text"
                     placeholder="Ask me anything..."
                     className="flex-1 bg-transparent outline-none text-sm placeholder-[#999]"
                     disabled
                   />
-                  <button className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] transition-colors">
+                  <button className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] active:scale-95 transition-all duration-200 hover:shadow-lg hover:shadow-[#1a1a1a]/30">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
@@ -476,9 +476,14 @@ function App() {
               ].map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  className="p-8 bg-white rounded-2xl border border-[#e5e5e5] hover:border-[#ccc] transition-colors"
+                  className="p-8 bg-white rounded-2xl border border-[#e5e5e5] hover:border-[#ccc] transition-colors shadow-sm"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={shouldReduceMotion ? {} : {
+                    y: -8,
+                    boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+                    transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
