@@ -377,8 +377,15 @@ function App() {
                 {demoConversation.slice(0, visibleMessages).map((msg, i) => (
                   <motion.div
                     key={i}
-                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={shouldReduceMotion ? {} : {
+                      opacity: 0,
+                      x: msg.role === 'user' ? 20 : -20
+                    }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
