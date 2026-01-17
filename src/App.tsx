@@ -147,11 +147,9 @@ function App() {
       {/* Navigation - Clean, Anthropic-style */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/80 backdrop-blur-md border-b border-[#e5e5e5]" role="navigation">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#cc2936] to-[#e94957] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
-            </div>
-            <span className="text-xl font-semibold tracking-tight">SlopGPT</span>
+          <a href="/" className="flex items-center">
+            <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+            <span className="text-xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
           </a>
           <div className="flex items-center gap-6">
             <a href="#features" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block">
@@ -172,7 +170,12 @@ function App() {
 
       <main id="main-content">
         {/* Hero - Anthropic style with humor */}
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-16">
+        <motion.section
+          className="min-h-screen flex flex-col items-center justify-center px-6 pt-16"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <motion.div
             className="max-w-3xl mx-auto text-center"
             initial="initial"
@@ -233,10 +236,16 @@ function App() {
               No sign-up required. Just start chatting.
             </motion.p>
           </motion.div>
-        </section>
+        </motion.section>
 
         {/* Showcase Carousel */}
-        <section className="py-20 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden">
+        <motion.section
+          className="py-20 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="max-w-5xl mx-auto">
             <motion.div
               className="text-center mb-12"
@@ -350,10 +359,16 @@ function App() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Demo Chat Preview */}
-        <section className="py-20 px-6 bg-white">
+        <motion.section
+          className="py-20 px-6 bg-white"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="max-w-3xl mx-auto">
             <motion.div
               className="bg-[#faf9f7] rounded-2xl border border-[#e5e5e5] overflow-hidden shadow-xl"
@@ -363,11 +378,12 @@ function App() {
             >
               {/* Chat header */}
               <div className="px-6 py-4 border-b border-[#e5e5e5] flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#cc2936] to-[#e94957] rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">S</span>
+                <div className="flex items-center">
+                  <span className="text-lg" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+                  <span className="text-base font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
                 </div>
                 <div>
-                  <p className="font-medium text-sm">SlopGPT Agent</p>
+                  <p className="font-medium text-sm">Agent</p>
                   <p className="text-xs text-[#999]">Usually responds instantly</p>
                 </div>
               </div>
@@ -436,10 +452,17 @@ function App() {
               </div>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Features - What makes us different */}
-        <section id="features" className="py-32 px-6">
+        <motion.section
+          id="features"
+          className="py-32 px-6"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="max-w-5xl mx-auto">
             <motion.div
               className="text-center mb-16"
@@ -494,10 +517,17 @@ function App() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Examples / Use Cases */}
-        <section id="examples" className="py-32 px-6 bg-white">
+        <motion.section
+          id="examples"
+          className="py-32 px-6 bg-white"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <div className="max-w-5xl mx-auto">
             <motion.div
               className="text-center mb-16"
@@ -536,10 +566,17 @@ function App() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA Section */}
-        <section id="chat" className="py-32 px-6">
+        <motion.section
+          id="chat"
+          className="py-32 px-6"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <motion.div
             className="max-w-2xl mx-auto text-center"
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
@@ -567,18 +604,23 @@ function App() {
               Or email us at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline">agents@softworkstrading.com</a>
             </p>
           </motion.div>
-        </section>
+        </motion.section>
       </main>
 
       {/* Footer */}
-      <footer className="py-16 px-6 border-t border-[#e5e5e5]" role="contentinfo">
+      <motion.footer
+        className="py-16 px-6 border-t border-[#e5e5e5]"
+        role="contentinfo"
+        initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-[#cc2936] to-[#e94957] rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-xs">S</span>
-              </div>
-              <span className="font-semibold">SlopGPT</span>
+            <div className="flex items-center">
+              <span className="text-xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+              <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-[#666]">
               <a href="#features" className="hover:text-[#1a1a1a] transition-colors">Features</a>
@@ -591,7 +633,7 @@ function App() {
             <p className="text-[#bbb]">"The Slop Will Be Televised" © 2026</p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   )
 }
