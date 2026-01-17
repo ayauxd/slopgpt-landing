@@ -186,21 +186,40 @@ function App() {
       </nav>
 
       <main id="main-content">
-        {/* Hero - Anthropic style with humor */}
+        {/* Hero - Full-bleed immersive */}
         <motion.section
-          className="min-h-screen flex flex-col items-center justify-center px-6 pt-16"
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+          initial={shouldReduceMotion ? {} : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
         >
+          {/* Full-bleed background image */}
+          <div className="absolute inset-0 z-0">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={heroIndex}
+                src={heroImages[heroIndex]}
+                alt="AI-generated event photo"
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={shouldReduceMotion ? {} : { opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={shouldReduceMotion ? {} : { opacity: 0 }}
+                transition={{ duration: 1.2, ease: 'easeInOut' }}
+              />
+            </AnimatePresence>
+            {/* Dark gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          </div>
+
+          {/* Content overlay */}
           <motion.div
-            className="max-w-3xl mx-auto text-center"
+            className="relative z-10 max-w-4xl mx-auto text-center px-6 pt-20"
             initial="initial"
             animate="animate"
             variants={shouldReduceMotion ? {} : stagger}
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#cc2936]/10 text-[#cc2936] rounded-full text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium mb-6 border border-white/20"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
               <span className="relative flex h-2 w-2">
@@ -211,77 +230,38 @@ function App() {
             </motion.div>
 
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-6"
+              className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6 text-white"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
               AI that doesn't take
               <br />
-              <span className="text-[#cc2936]">itself too seriously</span>
+              <span className="text-[#ff4d5a]">itself too seriously</span>
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-[#666] max-w-xl mx-auto mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              Most AI apps are single-use tools with lock-in.
-              We're just here to help you have fun, get stuff done, and maybe
-              make something weird along the way.
+              Most AI tools trap you in one boring box. We're here for the weird stuff—party chaos, creative tangents, and whatever that thing you can't quite explain is.
             </motion.p>
 
-            {/* Animated Hero Showcase */}
+            {/* Image indicator dots */}
             <motion.div
-              className="relative w-full max-w-md mx-auto mb-10"
+              className="flex justify-center gap-1 mb-8"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border border-[#e5e5e5]">
-                {/* Animated background glow */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#cc2936]/20 via-purple-500/20 to-[#cc2936]/20 blur-2xl opacity-60 animate-pulse" />
-
-                {/* Image container with crossfade */}
-                <div className="relative w-full h-full bg-[#1a1a1a]">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={heroIndex}
-                      src={heroImages[heroIndex]}
-                      alt="AI-generated event photo"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      initial={shouldReduceMotion ? {} : { opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={shouldReduceMotion ? {} : { opacity: 0 }}
-                      transition={{ duration: 0.8, ease: 'easeInOut' }}
-                    />
-                  </AnimatePresence>
-
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-                  {/* "AI Generated" badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-[#1a1a1a] shadow-lg">
-                    ✨ AI Generated
-                  </div>
-
-                  {/* Theme indicator dots */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                    {heroImages.map((_, i) => (
-                      <div
-                        key={i}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          i === heroIndex ? 'bg-white w-4' : 'bg-white/50'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating label */}
-              <motion.div
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white rounded-full shadow-lg border border-[#e5e5e5] text-sm font-medium whitespace-nowrap"
-                animate={shouldReduceMotion ? {} : { y: [0, -4, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                Transform any photo into magic
-              </motion.div>
+              {heroImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroIndex(i)}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  aria-label={`View image ${i + 1}`}
+                >
+                  <span className={`transition-all duration-300 rounded-full ${
+                    i === heroIndex ? 'w-8 h-2 bg-white' : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+                  }`} />
+                </button>
+              ))}
             </motion.div>
 
             <motion.div
@@ -290,23 +270,23 @@ function App() {
             >
               <a
                 href="#chat"
-                className="px-8 py-4 bg-[#1a1a1a] text-white rounded-xl text-lg font-medium hover:bg-[#333] transition-colors min-w-[200px] shadow-lg shadow-[#1a1a1a]/20"
+                className="px-8 py-4 bg-white text-[#1a1a1a] rounded-xl text-lg font-medium hover:bg-white/90 transition-colors min-w-[200px] shadow-lg"
               >
-                Talk to Our Agent
+                Let's Get Weird
               </a>
               <a
                 href="#examples"
-                className="px-8 py-4 border border-[#ddd] rounded-xl text-lg font-medium hover:border-[#bbb] transition-colors min-w-[200px]"
+                className="px-8 py-4 border border-white/40 text-white rounded-xl text-lg font-medium hover:bg-white/10 hover:border-white/60 transition-colors min-w-[200px]"
               >
-                See Examples
+                See What's Possible
               </a>
             </motion.div>
 
             <motion.p
-              className="mt-6 text-sm text-[#999]"
+              className="mt-6 text-sm text-white/60"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              No sign-up required. Just start chatting.
+              No sign-up. No credit card. Just vibes.
             </motion.p>
           </motion.div>
         </motion.section>
@@ -532,7 +512,7 @@ function App() {
         {/* Features - What makes us different */}
         <motion.section
           id="features"
-          className="py-32 px-6"
+          className="py-24 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -609,7 +589,7 @@ function App() {
         {/* Examples / Use Cases */}
         <motion.section
           id="examples"
-          className="py-32 px-6 bg-white"
+          className="py-24 px-6 bg-white"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -658,7 +638,7 @@ function App() {
         {/* CTA Section */}
         <motion.section
           id="chat"
-          className="py-32 px-6"
+          className="py-24 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -671,24 +651,24 @@ function App() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-6">
-              Ready to chat?
+              Ready to make some slop?
             </h2>
             <p className="text-[#666] text-lg mb-10">
-              No account needed. No credit card. No catch.
+              No account. No credit card. No judgment.
               <br />
-              Just a conversation waiting to happen.
+              Just bring your weird ideas.
             </p>
             <a
               href="mailto:agents@softworkstrading.com"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#1a1a1a] text-white rounded-xl text-lg font-medium hover:bg-[#333] transition-colors shadow-xl shadow-[#1a1a1a]/20"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[#cc2936] text-white rounded-xl text-lg font-medium hover:bg-[#b02430] transition-colors shadow-xl shadow-[#cc2936]/30"
             >
-              <span>Talk to Our Agent</span>
+              <span>Let's Get Started</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
             <p className="mt-8 text-sm text-[#999]">
-              Or email us at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline py-2 px-1 inline-flex items-center">agents@softworkstrading.com</a>
+              Questions? Hit us up at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">agents@softworkstrading.com</a>
             </p>
           </motion.div>
         </motion.section>
@@ -710,9 +690,9 @@ function App() {
               <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
             </div>
             <div className="flex items-center gap-4 text-sm text-[#666]">
-              <a href="#features" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Features</a>
-              <a href="#examples" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Examples</a>
-              <a href="#chat" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Chat</a>
+              <a href="#features" className="hover:text-[#1a1a1a] transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Features</a>
+              <a href="#examples" className="hover:text-[#1a1a1a] transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Examples</a>
+              <a href="#chat" className="hover:text-[#1a1a1a] transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Chat</a>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-[#e5e5e5] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#999]">
