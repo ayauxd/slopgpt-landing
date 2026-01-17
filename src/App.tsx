@@ -164,20 +164,20 @@ function App() {
       {/* Navigation - Clean, Anthropic-style */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/80 backdrop-blur-md border-b border-[#e5e5e5]" role="navigation">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center min-h-[44px] py-2">
             <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
             <span className="text-xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
           </a>
           <div className="flex items-center gap-6">
-            <a href="#features" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block">
+            <a href="#features" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
               Features
             </a>
-            <a href="#examples" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block">
+            <a href="#examples" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
               Examples
             </a>
             <a
               href="#chat"
-              className="text-sm px-4 py-2 bg-[#1a1a1a] text-white rounded-lg font-medium hover:bg-[#333] transition-colors"
+              className="text-sm px-4 py-3 min-h-[44px] inline-flex items-center bg-[#1a1a1a] text-white rounded-lg font-medium hover:bg-[#333] transition-colors"
             >
               Start Chatting
             </a>
@@ -415,19 +415,21 @@ function App() {
               </div>
 
               {/* Dots Navigation */}
-              <div className="flex items-center justify-center gap-2 mt-6">
+              <div className="flex items-center justify-center gap-3 mt-6">
                 {showcaseItems.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`transition-all ${
-                      index === currentSlide
-                        ? 'w-8 h-3 bg-[#cc2936] rounded-full'
-                        : 'w-3 h-3 bg-[#ddd] hover:bg-[#bbb] rounded-full'
-                    }`}
+                    className={`transition-all min-w-[44px] min-h-[44px] flex items-center justify-center`}
                     aria-label={`Go to slide ${index + 1}`}
                     aria-current={index === currentSlide}
-                  />
+                  >
+                    <span className={`transition-all rounded-full ${
+                      index === currentSlide
+                        ? 'w-8 h-3 bg-[#cc2936]'
+                        : 'w-3 h-3 bg-[#ddd] hover:bg-[#bbb]'
+                    }`} />
+                  </button>
                 ))}
               </div>
             </div>
@@ -509,15 +511,15 @@ function App() {
 
               {/* Chat input preview */}
               <div className="px-6 pb-6">
-                <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-3 transition-all duration-200 focus-within:border-[#cc2936] focus-within:ring-2 focus-within:ring-[#cc2936]/20">
+                <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-2 transition-all duration-200 focus-within:border-[#cc2936] focus-within:ring-2 focus-within:ring-[#cc2936]/20">
                   <input
                     type="text"
                     placeholder="Ask me anything..."
-                    className="flex-1 bg-transparent outline-none text-sm placeholder-[#999]"
+                    className="flex-1 bg-transparent outline-none text-sm placeholder-[#999] min-h-[44px]"
                     disabled
                   />
-                  <button className="w-8 h-8 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] active:scale-95 transition-all duration-200 hover:shadow-lg hover:shadow-[#1a1a1a]/30">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <button className="w-11 h-11 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] active:scale-95 transition-all duration-200 hover:shadow-lg hover:shadow-[#1a1a1a]/30" disabled>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                   </button>
@@ -686,7 +688,7 @@ function App() {
               </svg>
             </a>
             <p className="mt-8 text-sm text-[#999]">
-              Or email us at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline">agents@softworkstrading.com</a>
+              Or email us at <a href="mailto:agents@softworkstrading.com" className="text-[#cc2936] hover:underline py-2 px-1 inline-flex items-center">agents@softworkstrading.com</a>
             </p>
           </motion.div>
         </motion.section>
@@ -707,14 +709,14 @@ function App() {
               <span className="text-xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
               <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
             </div>
-            <div className="flex items-center gap-6 text-sm text-[#666]">
-              <a href="#features" className="hover:text-[#1a1a1a] transition-colors">Features</a>
-              <a href="#examples" className="hover:text-[#1a1a1a] transition-colors">Examples</a>
-              <a href="#chat" className="hover:text-[#1a1a1a] transition-colors">Chat</a>
+            <div className="flex items-center gap-4 text-sm text-[#666]">
+              <a href="#features" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Features</a>
+              <a href="#examples" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Examples</a>
+              <a href="#chat" className="hover:text-[#1a1a1a] transition-colors py-2 px-1 min-h-[44px] inline-flex items-center">Chat</a>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-[#e5e5e5] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#999]">
-            <p>A <a href="https://softworkstrading.com" className="text-[#666] hover:text-[#1a1a1a] transition-colors">Softworks Trading Company</a> project</p>
+            <p>A <a href="https://softworkstrading.com" className="text-[#666] hover:text-[#1a1a1a] transition-colors py-2 px-1 inline-flex items-center">Softworks Trading Company</a> project</p>
             <p className="text-[#bbb]">"The Slop Will Be Televised" © 2026</p>
           </div>
         </div>
