@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <!-- Background gradient -->
+  <rect width="1200" height="800" fill="url(#grad1)"/>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Decorative elements -->
+  <circle cx="200" cy="150" r="60" fill="#ffffff" opacity="0.1"/>
+  <circle cx="1000" cy="650" r="80" fill="#ffffff" opacity="0.1"/>
+  <circle cx="600" cy="200" r="40" fill="#ffffff" opacity="0.15"/>
+
+  <!-- Dinosaur silhouette (simplified T-Rex) -->
+  <g transform="translate(300, 300)">
+    <!-- Body -->
+    <ellipse cx="200" cy="180" rx="140" ry="120" fill="#065f46" opacity="0.8"/>
+    <!-- Head -->
+    <ellipse cx="350" cy="120" rx="80" ry="70" fill="#065f46" opacity="0.8"/>
+    <!-- Jaw -->
+    <path d="M 380 120 Q 420 120 430 140 Q 420 160 380 150 Z" fill="#064e3b" opacity="0.8"/>
+    <!-- Eye -->
+    <circle cx="370" cy="110" r="8" fill="#ffffff"/>
+    <!-- Arms -->
+    <ellipse cx="250" cy="150" rx="20" ry="40" fill="#065f46" opacity="0.7" transform="rotate(-30 250 150)"/>
+    <ellipse cx="280" cy="160" rx="20" ry="40" fill="#065f46" opacity="0.7" transform="rotate(-20 280 160)"/>
+    <!-- Tail -->
+    <path d="M 80 200 Q 20 180 10 220" stroke="#065f46" stroke-width="45" fill="none" opacity="0.7"/>
+    <!-- Legs -->
+    <ellipse cx="150" cy="280" rx="35" ry="80" fill="#065f46" opacity="0.8"/>
+    <ellipse cx="230" cy="290" rx="38" ry="85" fill="#065f46" opacity="0.8"/>
+  </g>
+
+  <!-- Party elements -->
+  <g opacity="0.9">
+    <!-- Balloons -->
+    <ellipse cx="800" cy="250" rx="35" ry="45" fill="#fbbf24"/>
+    <line x1="800" y1="295" x2="780" y2="370" stroke="#fbbf24" stroke-width="2"/>
+
+    <ellipse cx="900" cy="200" rx="38" ry="48" fill="#f87171"/>
+    <line x1="900" y1="248" x2="920" y2="330" stroke="#f87171" stroke-width="2"/>
+
+    <ellipse cx="850" cy="300" rx="32" ry="42" fill="#a78bfa"/>
+    <line x1="850" y1="342" x2="860" y2="410" stroke="#a78bfa" stroke-width="2"/>
+  </g>
+
+  <!-- Text overlay -->
+  <text x="600" y="700" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle" opacity="0.3">
+    PREHISTORIC PARTY
+  </text>
+</svg>

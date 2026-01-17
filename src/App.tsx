@@ -36,6 +36,7 @@ interface ShowcaseItem {
   description: string
   category: string
   bgGradient: string
+  image: string
 }
 
 const showcaseItems: ShowcaseItem[] = [
@@ -44,35 +45,40 @@ const showcaseItems: ShowcaseItem[] = [
     title: 'Dinosaur Birthday Bash',
     description: 'AI-generated prehistoric party scenes with T-Rex cake toppers and meteor piñatas',
     category: 'Events',
-    bgGradient: 'from-emerald-400 to-teal-600'
+    bgGradient: 'from-emerald-400 to-teal-600',
+    image: '/showcases/dinosaur-party.svg'
   },
   {
     id: '2',
     title: '90s Nostalgia Central',
     description: 'Tamagotchis, slap bracelets, and that carpet pattern from everywhere',
     category: 'Creative',
-    bgGradient: 'from-purple-400 to-pink-600'
+    bgGradient: 'from-purple-400 to-pink-600',
+    image: '/showcases/90s-nostalgia.svg'
   },
   {
     id: '3',
     title: 'Chaos Goblin Mode',
     description: 'Mystery box cooking challenges and competitive Mario Kart tournaments',
     category: 'Party Ideas',
-    bgGradient: 'from-orange-400 to-red-600'
+    bgGradient: 'from-orange-400 to-red-600',
+    image: '/showcases/chaos-goblin.svg'
   },
   {
     id: '4',
     title: 'Post-Apocalyptic IKEA',
     description: 'DnD campaigns in the furniture maze. Billy bookshelf fortresses included.',
     category: 'Gaming',
-    bgGradient: 'from-blue-400 to-indigo-600'
+    bgGradient: 'from-blue-400 to-indigo-600',
+    image: '/showcases/ikea-apocalypse.svg'
   },
   {
     id: '5',
     title: 'Medieval Tech Support',
     description: 'Explaining quantum computing to peasants, one ox-drawn analogy at a time',
     category: 'Learning',
-    bgGradient: 'from-amber-400 to-yellow-600'
+    bgGradient: 'from-amber-400 to-yellow-600',
+    image: '/showcases/medieval-tech.svg'
   }
 ]
 
@@ -272,23 +278,35 @@ function App() {
                     }}
                     className="absolute inset-0"
                   >
-                    <div className={`w-full h-full bg-gradient-to-br ${showcaseItems[currentSlide].bgGradient} flex flex-col items-center justify-center p-12 text-white`}>
-                      <motion.div
-                        className="max-w-2xl text-center"
-                        initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
-                          {showcaseItems[currentSlide].category}
-                        </span>
-                        <h3 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                          {showcaseItems[currentSlide].title}
-                        </h3>
-                        <p className="text-lg md:text-xl text-white/90 drop-shadow">
-                          {showcaseItems[currentSlide].description}
-                        </p>
-                      </motion.div>
+                    <div className="relative w-full h-full overflow-hidden">
+                      {/* Background image */}
+                      <img
+                        src={showcaseItems[currentSlide].image}
+                        alt={showcaseItems[currentSlide].title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      {/* Overlay gradient for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                      {/* Content overlay */}
+                      <div className="relative w-full h-full flex flex-col items-center justify-end p-12 text-white">
+                        <motion.div
+                          className="max-w-2xl text-center mb-8"
+                          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                            {showcaseItems[currentSlide].category}
+                          </span>
+                          <h3 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+                            {showcaseItems[currentSlide].title}
+                          </h3>
+                          <p className="text-lg md:text-xl text-white/90 drop-shadow">
+                            {showcaseItems[currentSlide].description}
+                          </p>
+                        </motion.div>
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
