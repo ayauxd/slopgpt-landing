@@ -64,7 +64,8 @@ This lead was captured via the SlopGPT chat assistant.
     `.trim();
 
     // Send via Formsubmit.co (free, no API key needed)
-    const formsubmitEmail = process.env.LEAD_EMAIL || 'hello@slopgpt.com';
+    // Leads go to fred@sftwrks.com, reply goes to the lead's email
+    const formsubmitEmail = process.env.LEAD_EMAIL || 'fred@sftwrks.com';
     try {
       const formsubmitResponse = await fetch(`https://formsubmit.co/ajax/${formsubmitEmail}`, {
         method: 'POST',
@@ -73,18 +74,19 @@ This lead was captured via the SlopGPT chat assistant.
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          _subject: `New Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
-          name: lead.name,
-          email: lead.email,
-          phone: lead.phone || 'Not provided',
+          _subject: `🎉 SlopGPT Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
+          _replyto: lead.email, // When you reply, it goes to the lead
+          _template: 'table',
+          'Lead Name': lead.name,
+          'Lead Email': lead.email,
+          'Lead Phone': lead.phone || 'Not provided',
           'Event Type': lead.eventType || 'Not specified',
           'Theme/Concept': lead.theme || 'Not specified',
-          'Date': lead.date || 'Not specified',
+          'Event Date': lead.date || 'Not specified',
           'Guest Count': lead.guestCount || 'Not specified',
           'Location': lead.location || 'Not specified',
-          'Budget': lead.budget || 'Not discussed',
-          'Conversation Summary': lead.conversationSummary || 'No summary',
-          _template: 'table',
+          'Budget Range': lead.budget || 'Not discussed',
+          'Conversation': lead.conversationSummary || 'No summary',
         }),
       });
 
