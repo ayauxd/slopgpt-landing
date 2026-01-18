@@ -152,7 +152,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf9f7] text-[#1a1a1a]">
+    <div className="min-h-screen bg-[#fafaf8] text-[#1a1a1a]">
       {/* Skip to content */}
       <a
         href="#main-content"
@@ -162,11 +162,11 @@ function App() {
       </a>
 
       {/* Navigation - Clean, Anthropic-style */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/80 backdrop-blur-md border-b border-[#e5e5e5]" role="navigation">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#fafaf8]/80 backdrop-blur-md border-b border-[#e5e5e5]" role="navigation">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center min-h-[44px] py-2">
-            <span className="text-3xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-            <span className="text-2xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+          <a href="/" className="flex items-center min-h-[44px] py-2 group">
+            <span className="text-4xl transition-transform duration-200 group-hover:scale-105" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+            <span className="text-3xl font-bold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
           </a>
           <div className="flex items-center gap-6">
             <a href="#features" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
@@ -175,12 +175,14 @@ function App() {
             <a href="#examples" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
               Examples
             </a>
-            <a
-              href="#chat"
-              className="text-sm px-4 py-3 min-h-[44px] inline-flex items-center bg-[#1a1a1a] text-white rounded-lg font-medium hover:bg-[#333] transition-colors"
+            <motion.a
+              href="https://chat.slopgpt.com"
+              className="text-sm px-5 py-3 min-h-[44px] inline-flex items-center bg-[#1a1a1a] text-white rounded-lg font-semibold transition-all duration-200"
+              whileHover={{ scale: 1.02, backgroundColor: '#333' }}
+              whileTap={{ scale: 0.98 }}
             >
               Start Chatting
-            </a>
+            </motion.a>
           </div>
         </div>
       </nav>
@@ -207,8 +209,8 @@ function App() {
                 transition={{ duration: 1.2, ease: 'easeInOut' }}
               />
             </AnimatePresence>
-            {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            {/* Dark gradient overlay for text readability - increased opacity for premium feel */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
           </div>
 
           {/* Content overlay */}
@@ -230,12 +232,12 @@ function App() {
             </motion.div>
 
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6 text-white"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-white"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              AI that doesn't take
+              AI that doesn't take itself
               <br />
-              <span className="text-[#ff4d5a]">itself too seriously</span>
+              <span className="text-[#ff4d5a]">too seriously</span>
             </motion.h1>
 
             <motion.p
@@ -245,20 +247,22 @@ function App() {
               Most AI tools trap you in one boring box. We're here for the weird stuff—party chaos, creative tangents, and whatever that thing you can't quite explain is.
             </motion.p>
 
-            {/* Image indicator dots */}
+            {/* Image indicator dots - larger, more confident */}
             <motion.div
-              className="flex justify-center gap-1 mb-8"
+              className="flex justify-center gap-2 mb-10"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
               {heroImages.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setHeroIndex(i)}
-                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center group"
                   aria-label={`View image ${i + 1}`}
                 >
                   <span className={`transition-all duration-300 rounded-full ${
-                    i === heroIndex ? 'w-8 h-2 bg-white' : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+                    i === heroIndex
+                      ? 'w-10 h-2.5 bg-white shadow-lg shadow-white/30'
+                      : 'w-2.5 h-2.5 bg-white/40 group-hover:bg-white/70'
                   }`} />
                 </button>
               ))}
@@ -268,18 +272,22 @@ function App() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              <a
-                href="#chat"
-                className="px-8 py-4 bg-white text-[#1a1a1a] rounded-xl text-lg font-medium hover:bg-white/90 transition-colors min-w-[200px] shadow-lg"
+              <motion.a
+                href="https://chat.slopgpt.com"
+                className="px-8 py-4 bg-white text-[#1a1a1a] rounded-lg text-lg font-semibold min-w-[200px] shadow-lg transition-all duration-200"
+                whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -2, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
                 Start Creating
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#examples"
-                className="px-8 py-4 border border-white/40 text-white rounded-xl text-lg font-medium hover:bg-white/10 hover:border-white/60 transition-colors min-w-[200px]"
+                className="px-8 py-4 border-2 border-white/50 text-white rounded-lg text-lg font-semibold min-w-[200px] transition-all duration-200"
+                whileHover={shouldReduceMotion ? {} : { scale: 1.02, backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.8)' }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
                 See What's Possible
-              </a>
+              </motion.a>
             </motion.div>
 
             <motion.p
@@ -293,7 +301,7 @@ function App() {
 
         {/* Showcase Carousel */}
         <motion.section
-          className="py-20 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden"
+          className="py-32 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -373,41 +381,45 @@ function App() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Arrows */}
-                <button
+                {/* Navigation Arrows - Premium styled */}
+                <motion.button
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all hover:scale-110 shadow-lg z-10"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-xl z-10 border border-[#e5e5e5]"
                   aria-label="Previous slide"
+                  whileHover={{ scale: 1.05, x: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <svg className="w-6 h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                   </svg>
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all hover:scale-110 shadow-lg z-10"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-xl z-10 border border-[#e5e5e5]"
                   aria-label="Next slide"
+                  whileHover={{ scale: 1.05, x: 2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <svg className="w-6 h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </motion.button>
               </div>
 
-              {/* Dots Navigation */}
-              <div className="flex items-center justify-center gap-3 mt-6">
+              {/* Dots Navigation - Premium styled */}
+              <div className="flex items-center justify-center gap-2 mt-8">
                 {showcaseItems.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`transition-all min-w-[44px] min-h-[44px] flex items-center justify-center`}
+                    className={`transition-all min-w-[44px] min-h-[44px] flex items-center justify-center group`}
                     aria-label={`Go to slide ${index + 1}`}
                     aria-current={index === currentSlide}
                   >
-                    <span className={`transition-all rounded-full ${
+                    <span className={`transition-all duration-300 rounded-full ${
                       index === currentSlide
-                        ? 'w-8 h-3 bg-[#cc2936]'
-                        : 'w-3 h-3 bg-[#ddd] hover:bg-[#bbb]'
+                        ? 'w-10 h-2.5 bg-[#cc2936] shadow-lg shadow-[#cc2936]/30'
+                        : 'w-2.5 h-2.5 bg-[#d5d5d5] group-hover:bg-[#999]'
                     }`} />
                   </button>
                 ))}
@@ -418,7 +430,7 @@ function App() {
 
         {/* Demo Chat Preview */}
         <motion.section
-          className="py-20 px-6 bg-white"
+          className="py-32 px-6 bg-white"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -426,7 +438,7 @@ function App() {
         >
           <div className="max-w-3xl mx-auto">
             <motion.div
-              className="bg-[#faf9f7] rounded-2xl border border-[#e5e5e5] overflow-hidden shadow-xl"
+              className="bg-[#fafaf8] rounded-2xl border border-[#e5e5e5] overflow-hidden shadow-xl"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -434,12 +446,12 @@ function App() {
               {/* Chat header */}
               <div className="px-6 py-4 border-b border-[#e5e5e5] flex items-center gap-3">
                 <div className="flex items-center">
-                  <span className="text-xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-                  <span className="text-lg font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+                  <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+                  <span className="text-xl font-bold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
                 </div>
                 <div>
-                  <p className="font-medium text-sm">Agent</p>
-                  <p className="text-xs text-[#999]">Usually responds instantly</p>
+                  <p className="font-semibold text-sm text-[#1a1a1a]">Agent</p>
+                  <p className="text-xs text-[#888]">Usually responds instantly</p>
                 </div>
               </div>
 
@@ -512,7 +524,7 @@ function App() {
         {/* Features - What makes us different */}
         <motion.section
           id="features"
-          className="py-24 px-6"
+          className="py-32 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -538,7 +550,7 @@ function App() {
               {[
                 {
                   icon: (
-                    <svg className="w-10 h-10 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-12 h-12 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                     </svg>
                   ),
@@ -547,7 +559,7 @@ function App() {
                 },
                 {
                   icon: (
-                    <svg className="w-10 h-10 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-12 h-12 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                     </svg>
                   ),
@@ -556,7 +568,7 @@ function App() {
                 },
                 {
                   icon: (
-                    <svg className="w-10 h-10 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <svg className="w-12 h-12 text-[#cc2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                     </svg>
                   ),
@@ -566,20 +578,20 @@ function App() {
               ].map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  className="p-8 bg-white rounded-2xl border border-[#e5e5e5] hover:border-[#ccc] transition-colors shadow-sm"
+                  className="p-10 bg-white rounded-xl border border-transparent shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-200"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={shouldReduceMotion ? {} : {
                     y: -8,
-                    boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+                    boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.12)',
                     transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-[#666] leading-relaxed">{feature.desc}</p>
+                  <div className="mb-5">{feature.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 text-[#1a1a1a]">{feature.title}</h3>
+                  <p className="text-[#555] leading-relaxed">{feature.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -589,7 +601,7 @@ function App() {
         {/* Examples / Use Cases */}
         <motion.section
           id="examples"
-          className="py-24 px-6 bg-white"
+          className="py-32 px-6 bg-white"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -610,7 +622,7 @@ function App() {
               </p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-6">
               {[
                 { q: '"Help me write a resignation letter that\'s professional but satisfying"', category: 'Work' },
                 { q: '"Plan a DnD campaign set in a post-apocalyptic IKEA"', category: 'Creative' },
@@ -621,14 +633,19 @@ function App() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-[#faf9f7] rounded-xl border border-[#e5e5e5] hover:border-[#cc2936]/30 transition-colors cursor-pointer group"
+                  className="p-8 bg-[#fafaf8] rounded-xl border border-transparent shadow-[0_2px_16px_rgba(0,0,0,0.04)] cursor-pointer group transition-all duration-200"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={shouldReduceMotion ? {} : {
+                    y: -4,
+                    boxShadow: '0 12px 32px -8px rgba(204, 41, 54, 0.15)',
+                    transition: { duration: 0.2 }
+                  }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <span className="text-xs font-medium text-[#cc2936] uppercase tracking-wider">{item.category}</span>
-                  <p className="mt-2 text-[#1a1a1a] leading-relaxed group-hover:text-[#cc2936] transition-colors">{item.q}</p>
+                  <span className="text-xs font-semibold text-[#cc2936] uppercase tracking-wider">{item.category}</span>
+                  <p className="mt-3 text-[#333] leading-relaxed text-lg group-hover:text-[#1a1a1a] transition-colors">{item.q}</p>
                 </motion.div>
               ))}
             </div>
@@ -638,7 +655,7 @@ function App() {
         {/* CTA Section */}
         <motion.section
           id="chat"
-          className="py-24 px-6"
+          className="py-32 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -658,15 +675,25 @@ function App() {
               <br />
               Just bring your weird ideas.
             </p>
-            <a
-              href="mailto:slop@slopgpt.com"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#cc2936] text-white rounded-xl text-lg font-medium hover:bg-[#b02430] transition-colors shadow-xl shadow-[#cc2936]/30"
+            <motion.a
+              href="https://chat.slopgpt.com"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[#cc2936] text-white rounded-lg text-lg font-semibold transition-all duration-200 shadow-xl shadow-[#cc2936]/30 hover:shadow-2xl hover:shadow-[#cc2936]/40"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
               <span>Let's Get Started</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <motion.svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                initial={{ x: 0 }}
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.2 }}
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+              </motion.svg>
+            </motion.a>
             <p className="mt-8 text-sm text-[#999]">
               Questions? Hit us up at <a href="mailto:slop@slopgpt.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">slop@slopgpt.com</a>
             </p>
@@ -676,7 +703,7 @@ function App() {
 
       {/* Footer */}
       <motion.footer
-        className="py-16 px-6 border-t border-[#e5e5e5]"
+        className="py-20 px-6 border-t border-[#e5e5e5]"
         role="contentinfo"
         initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -686,8 +713,8 @@ function App() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center">
-              <span className="text-2xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
-              <span className="text-xl font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
+              <span className="text-3xl" style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, transform: 'rotate(-2deg)', color: '#cc2936' }}>Slop</span>
+              <span className="text-2xl font-bold" style={{ fontFamily: 'Inter, sans-serif' }}>GPT</span>
             </div>
             <div className="flex items-center gap-4 text-sm text-[#666]">
               <a href="#features" className="hover:text-[#1a1a1a] transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Features</a>

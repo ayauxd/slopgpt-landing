@@ -8,18 +8,27 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Premium color tokens */
+  --color-brand: #cc2936;
+  --color-brand-light: #ff4d5a;
+  --color-surface: #fafaf8;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #555555;
+  --color-border: #e5e5e5;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #000;
-  color: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
-/* Selection color */
+/* Premium selection color */
 ::selection {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(204, 41, 54, 0.15);
+  color: var(--color-text-primary);
 }
 
 /* Reduced motion support */
@@ -39,26 +48,52 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring for accessibility */
+/* Focus ring for accessibility - brand colored */
 *:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }
 
-/* Custom scrollbar - Tesla style */
+/* Custom scrollbar - Premium style */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: #d5d5d5;
+  border-radius: 5px;
+  border: 2px solid var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: #bbb;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d5d5d5 var(--color-surface);
+}
+
+/* Button press animation utility */
+.btn-press {
+  transition: transform 0.1s ease-out;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Premium card shadow on hover utility */
+.card-hover {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.1);
 }
