@@ -269,12 +269,12 @@ function App() {
             </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
               <motion.a
                 href="https://chat.slopgpt.com"
-                className="px-8 py-4 bg-white text-[#1a1a1a] rounded-lg text-lg font-semibold min-w-[200px] shadow-lg transition-all duration-200"
+                className="px-8 py-4 bg-white text-[#1a1a1a] rounded-lg text-lg font-semibold w-full sm:w-auto sm:min-w-[200px] shadow-lg transition-all duration-200 text-center"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -2, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
@@ -282,7 +282,7 @@ function App() {
               </motion.a>
               <motion.a
                 href="#examples"
-                className="px-8 py-4 border-2 border-white/50 text-white rounded-lg text-lg font-semibold min-w-[200px] transition-all duration-200"
+                className="px-8 py-4 border-2 border-white/50 text-white rounded-lg text-lg font-semibold w-full sm:w-auto sm:min-w-[200px] transition-all duration-200 text-center"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02, backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.8)' }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
@@ -301,7 +301,7 @@ function App() {
 
         {/* Showcase Carousel */}
         <motion.section
-          className="py-32 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden"
+          className="py-20 md:py-32 px-6 bg-gradient-to-b from-[#faf9f7] to-white overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -381,26 +381,26 @@ function App() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Arrows - Premium styled */}
+                {/* Navigation Arrows - Premium styled, responsive */}
                 <motion.button
                   onClick={prevSlide}
-                  className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-xl z-10 border border-[#e5e5e5]"
+                  className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-white/90 md:bg-white rounded-lg flex items-center justify-center shadow-lg md:shadow-xl z-10 border border-[#e5e5e5]"
                   aria-label="Previous slide"
                   whileHover={{ scale: 1.05, x: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <svg className="w-6 h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                   </svg>
                 </motion.button>
                 <motion.button
                   onClick={nextSlide}
-                  className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-xl z-10 border border-[#e5e5e5]"
+                  className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-white/90 md:bg-white rounded-lg flex items-center justify-center shadow-lg md:shadow-xl z-10 border border-[#e5e5e5]"
                   aria-label="Next slide"
                   whileHover={{ scale: 1.05, x: 2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <svg className="w-6 h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                 </motion.button>
@@ -430,7 +430,7 @@ function App() {
 
         {/* Demo Chat Preview */}
         <motion.section
-          className="py-32 px-6 bg-white"
+          className="py-20 md:py-32 px-6 bg-white"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -524,7 +524,7 @@ function App() {
         {/* Features - What makes us different */}
         <motion.section
           id="features"
-          className="py-32 px-6"
+          className="py-20 md:py-32 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -601,7 +601,7 @@ function App() {
         {/* Examples / Use Cases */}
         <motion.section
           id="examples"
-          className="py-32 px-6 bg-white"
+          className="py-20 md:py-32 px-6 bg-white"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -655,29 +655,29 @@ function App() {
         {/* CTA Section */}
         <motion.section
           id="chat"
-          className="py-32 px-6"
+          className="py-20 md:py-32 px-6"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.div
-            className="max-w-2xl mx-auto text-center"
+            className="max-w-2xl mx-auto text-center px-4 sm:px-0"
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4 md:mb-6">
               Ready to make some slop?
             </h2>
-            <p className="text-[#666] text-lg mb-10">
+            <p className="text-[#666] text-base md:text-lg mb-8 md:mb-10">
               No account. No credit card. No judgment.
               <br />
               Just bring your weird ideas.
             </p>
             <motion.a
               href="https://chat.slopgpt.com"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#cc2936] text-white rounded-lg text-lg font-semibold transition-all duration-200 shadow-xl shadow-[#cc2936]/30 hover:shadow-2xl hover:shadow-[#cc2936]/40"
+              className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-[#cc2936] text-white rounded-lg text-base md:text-lg font-semibold transition-all duration-200 shadow-xl shadow-[#cc2936]/30 hover:shadow-2xl hover:shadow-[#cc2936]/40 w-full sm:w-auto"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -703,7 +703,7 @@ function App() {
 
       {/* Footer */}
       <motion.footer
-        className="py-20 px-6 border-t border-[#e5e5e5]"
+        className="py-12 md:py-20 px-6 border-t border-[#e5e5e5]"
         role="contentinfo"
         initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
