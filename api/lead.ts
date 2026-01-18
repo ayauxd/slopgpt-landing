@@ -65,7 +65,7 @@ This lead was captured via the SlopGPT chat assistant.
 
     // Send via Formsubmit.co (free, no API key needed)
     // Leads go to fred@sftwrks.com, reply goes to the lead's email
-    const formsubmitEmail = process.env.LEAD_EMAIL || 'fred@sftwrks.com';
+    const formsubmitEmail = process.env.LEAD_EMAIL || 'fred@softworkstrading.com';
     try {
       const formsubmitResponse = await fetch(`https://formsubmit.co/ajax/${formsubmitEmail}`, {
         method: 'POST',
