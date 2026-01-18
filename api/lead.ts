@@ -63,7 +63,41 @@ ${lead.conversationSummary || 'No summary available'}
 This lead was captured via the SlopGPT chat assistant.
     `.trim();
 
-    // If Resend API key is configured, send via Resend
+    // Send via Formsubmit.co (free, no API key needed)
+    const formsubmitEmail = process.env.LEAD_EMAIL || 'hello@slopgpt.com';
+    try {
+      const formsubmitResponse = await fetch(`https://formsubmit.co/ajax/${formsubmitEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `New Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
+          name: lead.name,
+          email: lead.email,
+          phone: lead.phone || 'Not provided',
+          'Event Type': lead.eventType || 'Not specified',
+          'Theme/Concept': lead.theme || 'Not specified',
+          'Date': lead.date || 'Not specified',
+          'Guest Count': lead.guestCount || 'Not specified',
+          'Location': lead.location || 'Not specified',
+          'Budget': lead.budget || 'Not discussed',
+          'Conversation Summary': lead.conversationSummary || 'No summary',
+          _template: 'table',
+        }),
+      });
+
+      if (!formsubmitResponse.ok) {
+        console.error('Formsubmit error:', await formsubmitResponse.text());
+      } else {
+        console.log('Lead email sent via Formsubmit');
+      }
+    } catch (emailError) {
+      console.error('Formsubmit error:', emailError);
+    }
+
+    // Fallback: If Resend API key is configured, also send via Resend
     if (process.env.RESEND_API_KEY) {
       const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -81,7 +115,6 @@ This lead was captured via the SlopGPT chat assistant.
 
       if (!resendResponse.ok) {
         console.error('Resend API error:', await resendResponse.text());
-        // Don't fail the request - we'll still return success to the user
       }
     }
 
