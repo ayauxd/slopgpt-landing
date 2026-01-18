@@ -36,35 +36,46 @@ export default async function handler(req: Request) {
       );
     }
 
-    // Format the lead data for email
-    const emailBody = `
-New Lead from SlopGPT Chat
+    // Primary: Send to n8n webhook (stores in Supabase + sends Slack notification)
+    const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL;
+    if (n8nWebhookUrl) {
+      try {
+        const n8nResponse = await fetch(`${n8nWebhookUrl}/slopgpt-lead-intake`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(lead),
+        });
 
-Contact Information:
---------------------
-Name: ${lead.name}
-Email: ${lead.email}
-Phone: ${lead.phone || 'Not provided'}
+        if (n8nResponse.ok) {
+          const result = await n8nResponse.json();
+          console.log('Lead sent to n8n:', {
+            name: lead.name,
+            email: lead.email,
+            id: result.id,
+            priority: result.priority,
+          });
 
-Event Details:
---------------
-Event Type: ${lead.eventType || 'Not specified'}
-Theme/Concept: ${lead.theme || 'Not specified'}
-Date: ${lead.date || 'Not specified'}
-Guest Count: ${lead.guestCount || 'Not specified'}
-Location: ${lead.location || 'Not specified'}
-Budget: ${lead.budget || 'Not discussed'}
+          return new Response(
+            JSON.stringify({
+              success: true,
+              message: result.message || 'Thank you! Our team will be in touch within 24 hours.',
+            }),
+            {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            }
+          );
+        } else {
+          console.error('n8n webhook error:', await n8nResponse.text());
+        }
+      } catch (n8nError) {
+        console.error('n8n webhook error:', n8nError);
+      }
+    }
 
-Conversation Summary:
---------------------
-${lead.conversationSummary || 'No summary available'}
-
----
-This lead was captured via the SlopGPT chat assistant.
-    `.trim();
-
-    // Send via Formsubmit.co (free, no API key needed)
-    // Leads go to fred@sftwrks.com, reply goes to the lead's email
+    // Fallback: Send via Formsubmit.co if n8n is not configured or fails
     const formsubmitEmail = process.env.LEAD_EMAIL || 'fred@softworkstrading.com';
     try {
       const formsubmitResponse = await fetch(`https://formsubmit.co/ajax/${formsubmitEmail}`, {
@@ -74,8 +85,8 @@ This lead was captured via the SlopGPT chat assistant.
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          _subject: `🎉 SlopGPT Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
-          _replyto: lead.email, // When you reply, it goes to the lead
+          _subject: `SlopGPT Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
+          _replyto: lead.email,
           _template: 'table',
           'Lead Name': lead.name,
           'Lead Email': lead.email,
@@ -93,48 +104,10 @@ This lead was captured via the SlopGPT chat assistant.
       if (!formsubmitResponse.ok) {
         console.error('Formsubmit error:', await formsubmitResponse.text());
       } else {
-        console.log('Lead email sent via Formsubmit');
+        console.log('Lead email sent via Formsubmit (fallback)');
       }
     } catch (emailError) {
       console.error('Formsubmit error:', emailError);
-    }
-
-    // Fallback: If Resend API key is configured, also send via Resend
-    if (process.env.RESEND_API_KEY) {
-      const resendResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: 'SlopGPT <noreply@slopgpt.com>',
-          to: process.env.LEAD_EMAIL || 'hello@slopgpt.com',
-          subject: `New Lead: ${lead.name} - ${lead.eventType || 'Event Inquiry'}`,
-          text: emailBody,
-        }),
-      });
-
-      if (!resendResponse.ok) {
-        console.error('Resend API error:', await resendResponse.text());
-      }
-    }
-
-    // If webhook URL is configured, also send there
-    if (process.env.LEAD_WEBHOOK_URL) {
-      try {
-        await fetch(process.env.LEAD_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...lead,
-            timestamp: new Date().toISOString(),
-            source: 'slopgpt-chat',
-          }),
-        });
-      } catch (webhookError) {
-        console.error('Webhook error:', webhookError);
-      }
     }
 
     // Log lead for debugging (visible in Vercel logs)
