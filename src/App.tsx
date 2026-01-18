@@ -1,6 +1,10 @@
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
+
+// Motion-enabled Link component for smooth animations
+const MotionLink = motion.create(Link)
 
 // Anthropic/Claude-inspired clean aesthetic with humor
 // "The Slop Will Be Televised"
@@ -175,14 +179,14 @@ function App() {
             <a href="#examples" className="text-sm text-[#666] hover:text-[#1a1a1a] transition-colors hidden md:block min-h-[44px] flex items-center">
               Examples
             </a>
-            <motion.a
-              href="https://chat.slopgpt.com"
+            <MotionLink
+              to="/chat"
               className="text-sm px-5 py-3 min-h-[44px] inline-flex items-center bg-[#1a1a1a] text-white rounded-lg font-semibold transition-all duration-200"
               whileHover={{ scale: 1.02, backgroundColor: '#333' }}
               whileTap={{ scale: 0.98 }}
             >
               Start Chatting
-            </motion.a>
+            </MotionLink>
           </div>
         </div>
       </nav>
@@ -274,14 +278,14 @@ function App() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
               variants={shouldReduceMotion ? {} : fadeIn}
             >
-              <motion.a
-                href="https://chat.slopgpt.com"
+              <MotionLink
+                to="/chat"
                 className="px-8 py-4 bg-white text-[#1a1a1a] rounded-lg text-lg font-semibold w-full sm:w-auto sm:min-w-[200px] shadow-lg transition-all duration-200 text-center"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -2, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
                 Start Creating
-              </motion.a>
+              </MotionLink>
               <motion.a
                 href="#examples"
                 className="px-8 py-4 border-2 border-white/50 text-white rounded-lg text-lg font-semibold w-full sm:w-auto sm:min-w-[200px] transition-all duration-200 text-center"
@@ -681,27 +685,24 @@ function App() {
               <br />
               Just bring your weird ideas.
             </p>
-            <motion.a
-              href="https://chat.slopgpt.com"
+            <MotionLink
+              to="/chat"
               className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-[#cc2936] text-white rounded-lg text-base md:text-lg font-semibold transition-all duration-200 shadow-xl shadow-[#cc2936]/30 hover:shadow-2xl hover:shadow-[#cc2936]/40 w-full sm:w-auto"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               <span>Let's Get Started</span>
-              <motion.svg
+              <svg
                 className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                initial={{ x: 0 }}
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </motion.svg>
-            </motion.a>
+              </svg>
+            </MotionLink>
             <p className="mt-8 text-sm text-[#999]">
-              Questions? Hit us up at <a href="mailto:slop@slopgpt.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">slop@slopgpt.com</a>
+              Questions? Hit us up at <a href="mailto:hello@slopgpt.com" className="text-[#cc2936] hover:underline py-3 px-1 min-h-[44px] inline-flex items-center">hello@slopgpt.com</a>
             </p>
           </motion.div>
         </motion.section>
