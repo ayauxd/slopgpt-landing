@@ -46,7 +46,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'AI-generated prehistoric party scenes with T-Rex cake toppers and meteor piñatas',
     category: 'Events',
     bgGradient: 'from-emerald-400 to-teal-600',
-    image: '/showcases/dinosaur-party.jpg'
+    image: '/showcases/dinosaur-party.webp'
   },
   {
     id: '2',
@@ -54,7 +54,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Tamagotchis, slap bracelets, and that carpet pattern from everywhere',
     category: 'Creative',
     bgGradient: 'from-purple-400 to-pink-600',
-    image: '/showcases/90s-nostalgia.jpg'
+    image: '/showcases/90s-nostalgia.webp'
   },
   {
     id: '3',
@@ -62,7 +62,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Mystery box cooking challenges and competitive Mario Kart tournaments',
     category: 'Party Ideas',
     bgGradient: 'from-orange-400 to-red-600',
-    image: '/showcases/chaos-goblin.jpg'
+    image: '/showcases/chaos-goblin.webp'
   },
   {
     id: '4',
@@ -70,7 +70,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'DnD campaigns in the furniture maze. Billy bookshelf fortresses included.',
     category: 'Gaming',
     bgGradient: 'from-blue-400 to-indigo-600',
-    image: '/showcases/ikea-apocalypse.jpg'
+    image: '/showcases/ikea-apocalypse.webp'
   },
   {
     id: '5',
@@ -78,15 +78,15 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Explaining quantum computing to peasants, one ox-drawn analogy at a time',
     category: 'Learning',
     bgGradient: 'from-amber-400 to-yellow-600',
-    image: '/showcases/medieval-tech.jpg'
+    image: '/showcases/medieval-tech.webp'
   }
 ]
 
 // Hero images for animated showcase
 const heroImages = [
-  '/showcases/dinosaur-party.jpg',
-  '/showcases/chaos-goblin.jpg',
-  '/showcases/medieval-tech.jpg',
+  '/showcases/dinosaur-party.webp',
+  '/showcases/chaos-goblin.webp',
+  '/showcases/medieval-tech.webp',
 ]
 
 function App() {
@@ -203,6 +203,8 @@ function App() {
                 src={heroImages[heroIndex]}
                 alt="AI-generated event photo"
                 className="absolute inset-0 w-full h-full object-cover"
+                fetchPriority="high"
+                loading="eager"
                 initial={shouldReduceMotion ? {} : { opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={shouldReduceMotion ? {} : { opacity: 0 }}
@@ -510,8 +512,12 @@ function App() {
                     className="flex-1 bg-transparent outline-none text-sm placeholder-[#999] min-h-[44px]"
                     disabled
                   />
-                  <button className="w-11 h-11 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] active:scale-95 transition-all duration-200 hover:shadow-lg hover:shadow-[#1a1a1a]/30" disabled>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <button
+                    className="w-11 h-11 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white hover:bg-[#333] active:scale-95 transition-all duration-200 hover:shadow-lg hover:shadow-[#1a1a1a]/30"
+                    disabled
+                    aria-label="Send message"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                   </button>
