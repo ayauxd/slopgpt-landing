@@ -197,10 +197,10 @@ export default function Chat() {
       </header>
 
       {/* Chat Container */}
-      <main className="flex-1 pt-16 pb-24 overflow-hidden">
-        <div className="max-w-3xl mx-auto px-4 h-full flex flex-col">
+      <main className="flex-1 pt-16 pb-32 sm:pb-28 overflow-y-auto">
+        <div className="max-w-3xl mx-auto px-4">
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto py-6 space-y-4">
+          <div className="py-6 space-y-4">
             <AnimatePresence initial={false}>
               {messages.map((message) => (
                 <motion.div
@@ -338,10 +338,10 @@ export default function Chat() {
         )}
       </AnimatePresence>
 
-      {/* Input Area */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#fafaf8]/80 backdrop-blur-md border-t border-[#e5e5e5]">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-3 bg-white border border-[#e5e5e5] rounded-xl px-4 py-2 shadow-sm focus-within:border-[#cc2936] focus-within:ring-2 focus-within:ring-[#cc2936]/20 transition-all">
+      {/* Input Area - with safe area padding for notch phones */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#fafaf8]/95 backdrop-blur-md border-t border-[#e5e5e5] pb-[env(safe-area-inset-bottom)]">
+        <div className="max-w-3xl mx-auto px-4 py-3 sm:py-4">
+          <div className="flex items-center gap-2 sm:gap-3 bg-white border border-[#e5e5e5] rounded-xl px-3 sm:px-4 py-2 shadow-sm focus-within:border-[#cc2936] focus-within:ring-2 focus-within:ring-[#cc2936]/20 transition-all">
             <input
               ref={inputRef}
               type="text"
@@ -355,7 +355,7 @@ export default function Chat() {
             <motion.button
               onClick={sendMessage}
               disabled={!input.trim() || isLoading || leadSubmitted}
-              className="w-11 h-11 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="w-11 h-11 flex-shrink-0 bg-[#1a1a1a] rounded-lg flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Send message"
@@ -376,7 +376,7 @@ export default function Chat() {
               </svg>
             </motion.button>
           </div>
-          <p className="text-center text-xs text-[#999] mt-2">
+          <p className="text-center text-xs text-[#999] mt-2 hidden sm:block">
             Powered by Claude AI • Your data is handled securely
           </p>
         </div>
