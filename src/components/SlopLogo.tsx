@@ -8,28 +8,28 @@ interface SlopLogoProps {
 
 const sizeConfig = {
   sm: {
-    slopHeight: 32,
-    gptSize: 'text-base',
-    gptOffset: '-ml-1',  // Slight overlap, not covering P
+    slopHeight: 36,  // Slightly larger for visibility
+    gptSize: 'text-lg',
+    gptOffset: '-ml-1',
   },
   md: {
-    slopHeight: 44,
-    gptSize: 'text-xl',
+    slopHeight: 48,
+    gptSize: 'text-2xl',
     gptOffset: '-ml-1',
   },
   lg: {
-    slopHeight: 60,
-    gptSize: 'text-2xl',
-    gptOffset: '-ml-2',
-  },
-  xl: {
-    slopHeight: 80,
+    slopHeight: 64,
     gptSize: 'text-3xl',
     gptOffset: '-ml-2',
   },
+  xl: {
+    slopHeight: 88,
+    gptSize: 'text-4xl',
+    gptOffset: '-ml-2',
+  },
   hero: {
-    slopHeight: 110,
-    gptSize: 'text-4xl md:text-5xl',
+    slopHeight: 120,
+    gptSize: 'text-5xl md:text-6xl',
     gptOffset: '-ml-3',
   },
 }
@@ -87,8 +87,9 @@ export function SlopLogo({ size = 'md', animate = true, className = '' }: SlopLo
         style={{
           fontFamily: "'DM Sans', 'Inter', system-ui, sans-serif",
           letterSpacing: '-0.02em',
-          color: '#FF6B35', // Brand orange
-          textShadow: '1.5px 1.5px 0 #1a1a1a',
+          color: '#FF8A5B', // Brighter orange for better contrast
+          textShadow: '2px 2px 0 #0D0D0D, -1px -1px 0 #0D0D0D, 1px -1px 0 #0D0D0D, -1px 1px 0 #0D0D0D',
+          WebkitTextStroke: '1px #0D0D0D',
         }}
         animate={animate ? {
           y: [0, -1, 0],

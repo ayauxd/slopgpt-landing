@@ -253,10 +253,10 @@ function App() {
             <SlopLogo size="sm" animate={true} />
           </a>
           <div className="flex items-center gap-6">
-            <a href="#features" className="text-sm text-cream-muted hover:text-cream transition-colors hidden md:block min-h-[44px] flex items-center">
+            <a href="#features" className="text-sm text-cream-muted hover:text-cream transition-colors hidden md:block min-h-[44px] flex items-center link-underline">
               Features
             </a>
-            <a href="#examples" className="text-sm text-cream-muted hover:text-cream transition-colors hidden md:block min-h-[44px] flex items-center">
+            <a href="#examples" className="text-sm text-cream-muted hover:text-cream transition-colors hidden md:block min-h-[44px] flex items-center link-underline">
               Examples
             </a>
             <MotionLink
@@ -280,10 +280,10 @@ function App() {
       </nav>
 
       <main id="main-content">
-        {/* Hero - Asymmetric with blob */}
+        {/* Hero - Asymmetric with blob - compact, content-driven height */}
         <motion.section
           ref={heroRef}
-          className="relative min-h-screen flex items-center overflow-hidden bg-void"
+          className="relative flex items-center overflow-hidden bg-void pt-20 pb-8 md:pt-24 md:pb-12 bg-warm-accent"
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -297,11 +297,11 @@ function App() {
             }}
           />
 
-          {/* Grid container for asymmetric layout */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-[60%_40%] gap-12 items-center pt-24 pb-16">
+          {/* Grid container for asymmetric layout - tighter spacing */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-[60%_40%] gap-8 items-center">
             {/* Left side - Content (60%) */}
             <motion.div
-              className="space-y-8"
+              className="space-y-6"
               initial="initial"
               animate="animate"
               variants={shouldReduceMotion ? {} : stagger}
@@ -345,7 +345,7 @@ function App() {
               >
                 <MotionLink
                   to="/chat"
-                  className={`px-8 py-4 bg-slop text-void rounded-lg text-lg font-semibold shadow-lg transition-all duration-200 inline-flex items-center gap-2 ${chaosMode ? 'animate-pulse' : ''}`}
+                  className={`px-8 py-4 bg-slop text-void rounded-lg text-lg font-semibold shadow-lg transition-all duration-200 inline-flex items-center gap-2 glow-slop ${chaosMode ? 'animate-pulse' : 'animate-subtle-pulse'}`}
                   whileHover={shouldReduceMotion ? {} : {
                     scale: 1.05,
                     y: -4,
@@ -455,7 +455,7 @@ function App() {
 
         {/* Marquee - Scrolling example prompts */}
         <motion.section
-          className="py-12 bg-void border-y border-void-lighter overflow-hidden"
+          className="py-6 bg-void border-y border-slop/30 overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -470,7 +470,7 @@ function App() {
 
         {/* Meme Explanation - Drake Format */}
         <motion.section
-          className="py-12 md:py-16 px-6 bg-void overflow-hidden"
+          className="py-6 md:py-10 px-6 bg-void overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -590,7 +590,7 @@ function App() {
         {/* Gallery - Masonry Grid */}
         <motion.section
           id="gallery"
-          className="py-10 md:py-16 px-6 bg-gradient-to-b from-void-light to-void overflow-hidden"
+          className="py-8 md:py-10 px-6 bg-gradient-to-b from-void-light to-void overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -733,7 +733,7 @@ function App() {
 
         {/* Demo Chat Preview */}
         <motion.section
-          className="py-10 md:py-16 px-6 bg-void-light"
+          className="py-8 md:py-10 px-6 bg-void-light"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -807,6 +807,7 @@ function App() {
                   <input
                     type="text"
                     placeholder="Ask me anything..."
+                    aria-label="Chat message input"
                     className="flex-1 bg-transparent outline-none text-sm text-cream placeholder-cream/50 min-h-[44px]"
                     disabled
                   />
@@ -828,7 +829,7 @@ function App() {
         {/* Features - What makes us different */}
         <motion.section
           id="features"
-          className="py-10 md:py-16 px-6 bg-void"
+          className="py-8 md:py-10 px-6 bg-void"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -930,7 +931,7 @@ function App() {
         {/* Examples / Use Cases */}
         <motion.section
           id="examples"
-          className="py-10 md:py-16 px-6 bg-void-light"
+          className="py-8 md:py-10 px-6 bg-void-light"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -951,23 +952,24 @@ function App() {
               </p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-5">
               {[
-                { q: '"Help me write a resignation letter that\'s professional but satisfying"', category: 'Work' },
-                { q: '"Plan a DnD campaign set in a post-apocalyptic IKEA"', category: 'Creative' },
-                { q: '"Explain quantum computing like I\'m a medieval peasant"', category: 'Learning' },
-                { q: '"Generate AI photos for my kid\'s dinosaur birthday party"', category: 'Events' },
-                { q: '"What should I make for dinner with just eggs and shame"', category: 'Life' },
-                { q: '"Write a sincere apology to my houseplant I forgot to water"', category: 'Humor' },
+                { q: '"Help me write a resignation letter that\'s professional but satisfying"', category: 'Work', rotation: -1 },
+                { q: '"Plan a DnD campaign set in a post-apocalyptic IKEA"', category: 'Creative', rotation: 1.5 },
+                { q: '"Explain quantum computing like I\'m a medieval peasant"', category: 'Learning', rotation: -0.5 },
+                { q: '"Generate AI photos for my kid\'s dinosaur birthday party"', category: 'Events', rotation: 1 },
+                { q: '"What should I make for dinner with just eggs and shame"', category: 'Life', rotation: -1.5 },
+                { q: '"Write a sincere apology to my houseplant I forgot to water"', category: 'Humor', rotation: 0.5 },
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="p-8 bg-void-lighter rounded-xl border border-void-lighter shadow-[0_2px_16px_rgba(255,107,53,0.08)] cursor-pointer group transition-all duration-200"
-                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  className="p-6 bg-void-lighter rounded-xl border border-slop/20 shadow-[0_2px_16px_rgba(255,107,53,0.08)] cursor-pointer group transition-all duration-200 hover-tilt"
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20, rotate: item.rotation }}
+                  whileInView={{ opacity: 1, y: 0, rotate: item.rotation }}
                   whileHover={shouldReduceMotion ? {} : {
                     y: -6,
                     scale: 1.02,
+                    rotate: 0,
                     boxShadow: '0 12px 32px -8px rgba(255, 107, 53, 0.3)',
                     transition: bouncy
                   }}
@@ -985,14 +987,14 @@ function App() {
         {/* CTA Section - Rebuilt with blob and chaos */}
         <motion.section
           id="chat"
-          className="relative py-10 md:py-16 px-6 overflow-hidden"
+          className="relative py-8 md:py-10 px-6 overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          {/* Simple gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-void via-void-light to-void" />
+          {/* Warm gradient background with orange accents */}
+          <div className="absolute inset-0 bg-gradient-to-br from-void via-slop/5 to-void" />
 
           <motion.div
             className="relative z-10 max-w-3xl mx-auto text-center px-4 sm:px-0"
@@ -1056,7 +1058,7 @@ function App() {
 
       {/* Footer */}
       <motion.footer
-        className="py-10 md:py-16 px-6 border-t border-void-lighter"
+        className="py-8 md:py-10 px-6 border-t border-void-lighter"
         role="contentinfo"
         initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
