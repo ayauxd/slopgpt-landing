@@ -208,8 +208,8 @@ function App() {
     }
   }, [visibleMessages])
 
-  // Random rotations for masonry cards
-  const cardRotations = [-3, -2, -1, 1, 2, 3]
+  // Random rotations for masonry cards - more visible chaos
+  const cardRotations = [-4, -2.5, -1, 1, 2.5, 4]
   const getCardRotation = (index: number) => cardRotations[index % cardRotations.length]
 
   return (
@@ -604,7 +604,7 @@ function App() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 font-display text-cream">
-                Creative Chaos, Visualized
+                Creative Chaos, <span className="text-slop">Visualized</span>
               </h2>
               <p className="text-cream/70 text-lg">
                 From dinosaur parties to medieval tech support. We make it happen.
@@ -648,7 +648,7 @@ function App() {
                       transform: shouldReduceMotion ? 'none' : `rotate(${rotation}deg)`,
                     }}
                   >
-                    <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-void-lighter bg-void-lighter">
+                    <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-void-lighter hover:border-slop/50 bg-void-lighter transition-colors">
                       {/* Image or Video */}
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {item.isVideo ? (
@@ -843,7 +843,7 @@ function App() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 font-display text-cream">
-                Why talk to us?
+                Why talk to <span className="text-slop">us</span>?
               </h2>
               <p className="text-cream/70 text-lg max-w-xl mx-auto">
                 We're not trying to replace your job or become your therapist.
@@ -945,7 +945,7 @@ function App() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 font-display text-cream">
-                Things people ask us
+                Things people <span className="text-slop">ask us</span>
               </h2>
               <p className="text-cream/70 text-lg">
                 From the practical to the peculiar. We don't judge.
