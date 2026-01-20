@@ -368,50 +368,104 @@ function App() {
               </motion.div>
             </div>
 
-            {/* Bento grid features */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {/* Bento grid features - with illustrated icons */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 {
                   icon: (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" className="fill-[var(--color-accent)]/20"/>
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                    </svg>
+                    <div className="relative w-12 h-12">
+                      {/* Rocket with motion trails */}
+                      <svg viewBox="0 0 48 48" className="w-full h-full">
+                        {/* Motion trails */}
+                        <path d="M8 32 Q12 30, 10 26" stroke="#FF6B35" strokeWidth="2" fill="none" opacity="0.4" strokeLinecap="round"/>
+                        <path d="M6 36 Q10 33, 8 28" stroke="#FF6B35" strokeWidth="2" fill="none" opacity="0.25" strokeLinecap="round"/>
+                        {/* Rocket body */}
+                        <path d="M18 38 L24 10 L30 38 Z" fill="#FF6B35" opacity="0.15"/>
+                        <path d="M18 38 L24 10 L30 38" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        {/* Rocket window */}
+                        <circle cx="24" cy="24" r="3" fill="#FF6B35" opacity="0.3"/>
+                        <circle cx="24" cy="24" r="3" stroke="#FF6B35" strokeWidth="2" fill="none"/>
+                        {/* Fins */}
+                        <path d="M18 35 L12 40 L18 38" fill="#FF6B35" opacity="0.4"/>
+                        <path d="M30 35 L36 40 L30 38" fill="#FF6B35" opacity="0.4"/>
+                        {/* Flame */}
+                        <path d="M21 38 Q24 46, 27 38" stroke="#FF8A5B" strokeWidth="2" fill="#FF6B35" opacity="0.6" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                   ),
                   label: 'Instant',
-                  desc: 'No sign-up'
+                  desc: 'No sign-up needed'
                 },
                 {
                   icon: (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" className="fill-[var(--color-accent)]/20"/>
-                      <circle cx="9" cy="10" r="1" fill="currentColor"/>
-                      <circle cx="15" cy="10" r="1" fill="currentColor"/>
-                      <path d="M9 14s1.5 2 3 2 3-2 3-2"/>
-                    </svg>
+                    <div className="relative w-12 h-12">
+                      {/* Winking chat bubble face */}
+                      <svg viewBox="0 0 48 48" className="w-full h-full">
+                        {/* Bubble */}
+                        <path d="M6 12 Q6 6, 14 6 L34 6 Q42 6, 42 12 L42 28 Q42 34, 34 34 L18 34 L10 42 L12 34 L14 34 Q6 34, 6 28 Z" fill="#FF6B35" opacity="0.15"/>
+                        <path d="M6 12 Q6 6, 14 6 L34 6 Q42 6, 42 12 L42 28 Q42 34, 34 34 L18 34 L10 42 L12 34 L14 34 Q6 34, 6 28 Z" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        {/* Winking eye */}
+                        <path d="M15 18 Q18 16, 21 18" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                        {/* Open eye */}
+                        <circle cx="33" cy="17" r="2.5" fill="#FF6B35"/>
+                        {/* Smile */}
+                        <path d="M18 24 Q24 30, 30 24" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                   ),
                   label: 'Personality',
-                  desc: 'Not a robot'
+                  desc: 'Actually fun to talk to'
                 },
                 {
                   icon: (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 19l7-7 3 3-7 7-3-3z" className="fill-[var(--color-accent)]/20"/>
-                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-                      <path d="M2 2l7.586 7.586"/>
-                      <circle cx="11" cy="11" r="2"/>
-                    </svg>
+                    <div className="relative w-12 h-12">
+                      {/* Paint splatter with brush */}
+                      <svg viewBox="0 0 48 48" className="w-full h-full">
+                        {/* Splatters */}
+                        <circle cx="12" cy="32" r="4" fill="#FF6B35" opacity="0.3"/>
+                        <circle cx="20" cy="38" r="3" fill="#FF6B35" opacity="0.4"/>
+                        <circle cx="8" cy="24" r="2.5" fill="#FF6B35" opacity="0.25"/>
+                        <circle cx="28" cy="36" r="5" fill="#FF6B35" opacity="0.35"/>
+                        {/* Main splat */}
+                        <ellipse cx="18" cy="28" rx="8" ry="6" fill="#FF6B35" opacity="0.2" transform="rotate(-15 18 28)"/>
+                        {/* Brush handle */}
+                        <rect x="30" y="6" width="4" height="20" rx="2" fill="#FF6B35" opacity="0.3" transform="rotate(35 32 16)"/>
+                        <rect x="30" y="6" width="4" height="20" rx="2" stroke="#FF6B35" strokeWidth="2" fill="none" transform="rotate(35 32 16)"/>
+                        {/* Brush tip */}
+                        <path d="M22 26 L28 20 L32 24 L26 30 Z" fill="#FF6B35" opacity="0.5"/>
+                        <path d="M22 26 L28 20 L32 24 L26 30 Z" stroke="#FF6B35" strokeWidth="2" fill="none" strokeLinejoin="round"/>
+                        {/* Bristles */}
+                        <path d="M25 23 L23 28" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round"/>
+                        <path d="M28 21 L26 26" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                   ),
                   label: 'Creative',
                   desc: 'Weird is welcome'
                 },
                 {
                   icon: (
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" className="fill-[var(--color-accent)]/20"/>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                      <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                    </svg>
+                    <div className="relative w-12 h-12">
+                      {/* Cute vault/safe */}
+                      <svg viewBox="0 0 48 48" className="w-full h-full">
+                        {/* Safe body */}
+                        <rect x="8" y="12" width="32" height="28" rx="4" fill="#FF6B35" opacity="0.15"/>
+                        <rect x="8" y="12" width="32" height="28" rx="4" stroke="#FF6B35" strokeWidth="2.5" fill="none"/>
+                        {/* Handle/dial */}
+                        <circle cx="24" cy="26" r="8" fill="#FF6B35" opacity="0.2"/>
+                        <circle cx="24" cy="26" r="8" stroke="#FF6B35" strokeWidth="2" fill="none"/>
+                        <circle cx="24" cy="26" r="3" fill="#FF6B35" opacity="0.4"/>
+                        {/* Dial marks */}
+                        <path d="M24 20 L24 22" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M30 26 L28 26" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M24 32 L24 30" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M18 26 L20 26" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
+                        {/* Lock indicator */}
+                        <circle cx="36" cy="18" r="2" fill="#FF6B35"/>
+                        {/* Shine */}
+                        <path d="M12 16 L14 18" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+                      </svg>
+                    </div>
                   ),
                   label: 'Private',
                   desc: 'Your data stays yours'
@@ -424,12 +478,12 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * i }}
-                  whileHover={{ y: -2 }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 >
-                  <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-4 h-full transition-colors group-hover:border-[#FF6B35]/40">
-                    <div className="text-[var(--color-accent)] mb-2">{item.icon}</div>
-                    <p className="text-sm font-medium text-[var(--color-text)]">{item.label}</p>
-                    <p className="text-xs text-[var(--color-text-muted)]">{item.desc}</p>
+                  <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-5 h-full transition-all duration-300 group-hover:border-[#FF6B35]/50 group-hover:shadow-lg group-hover:shadow-[#FF6B35]/10">
+                    <div className="mb-3">{item.icon}</div>
+                    <p className="text-base font-semibold text-[var(--color-text)] mb-1">{item.label}</p>
+                    <p className="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
