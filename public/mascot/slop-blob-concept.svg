@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Gooey filter for blob effect -->
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+    </filter>
+
+    <!-- Gradient for blob body -->
+    <linearGradient id="blobGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35"/>
+      <stop offset="50%" style="stop-color:#FF00FF"/>
+      <stop offset="100%" style="stop-color:#00FF9F"/>
+    </linearGradient>
+
+    <!-- Drip gradient -->
+    <linearGradient id="dripGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35"/>
+      <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main blob body - amorphous shape -->
+  <g filter="url(#goo)">
+    <!-- Core blob -->
+    <ellipse cx="100" cy="95" rx="65" ry="55" fill="url(#blobGradient)"/>
+
+    <!-- Blob bumps for organic shape -->
+    <circle cx="55" cy="85" r="25" fill="url(#blobGradient)"/>
+    <circle cx="145" cy="80" r="22" fill="url(#blobGradient)"/>
+    <circle cx="100" cy="130" r="30" fill="url(#blobGradient)"/>
+    <circle cx="70" cy="120" r="18" fill="url(#blobGradient)"/>
+    <circle cx="135" cy="115" r="20" fill="url(#blobGradient)"/>
+
+    <!-- Drips hanging off -->
+    <ellipse cx="60" cy="145" rx="8" ry="15" fill="url(#dripGradient)"/>
+    <ellipse cx="130" cy="150" rx="6" ry="20" fill="url(#dripGradient)"/>
+    <ellipse cx="95" cy="155" rx="10" ry="18" fill="url(#dripGradient)"/>
+  </g>
+
+  <!-- Left googly eye -->
+  <g>
+    <!-- Eye white -->
+    <ellipse cx="75" cy="85" rx="18" ry="20" fill="#FFFEF0"/>
+    <!-- Pupil - slightly off-center for unhinged look -->
+    <circle cx="80" cy="88" r="10" fill="#0D0D0D"/>
+    <!-- Eye shine -->
+    <circle cx="83" cy="84" r="4" fill="#FFFEF0"/>
+  </g>
+
+  <!-- Right googly eye - different size for chaos -->
+  <g>
+    <!-- Eye white -->
+    <ellipse cx="125" cy="80" rx="15" ry="18" fill="#FFFEF0"/>
+    <!-- Pupil - looking different direction -->
+    <circle cx="122" cy="83" r="9" fill="#0D0D0D"/>
+    <!-- Eye shine -->
+    <circle cx="119" cy="79" r="3" fill="#FFFEF0"/>
+  </g>
+
+  <!-- Unhinged smile -->
+  <path d="M 70 110 Q 100 135, 130 108" stroke="#0D0D0D" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Tiny chaotic sparkles around -->
+  <g fill="#00FF9F">
+    <polygon points="45,55 47,60 52,60 48,64 50,70 45,66 40,70 42,64 38,60 43,60" transform="scale(0.6)"/>
+    <polygon points="280,90 282,95 287,95 283,99 285,105 280,101 275,105 277,99 273,95 278,95" transform="scale(0.6)"/>
+  </g>
+
+  <!-- "SLOP" text incorporated subtly -->
+  <text x="100" y="175" font-family="Impact, sans-serif" font-size="14" fill="#FF6B35" text-anchor="middle" opacity="0.8">SLOP BLOB</text>
+</svg>

@@ -1,4 +1,5 @@
 export { SlopBlob, type BlobExpression, type BlobSize } from './SlopBlob'
+export { SlopLogo } from './SlopLogo'
 export { GlitchText } from './GlitchText'
 export { Marquee } from './Marquee'
 export { PageTransition } from './PageTransition'

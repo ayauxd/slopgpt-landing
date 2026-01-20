@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import confetti from 'canvas-confetti'
 import './index.css'
-import { SlopBlob, GlitchText, Marquee } from './components'
+import { SlopBlob, SlopLogo, GlitchText, Marquee } from './components'
 import { MICROCOPY, getRandomRotation, MARQUEE_PROMPTS } from './constants/microcopy'
 
 // Motion-enabled Link component for smooth animations
@@ -250,9 +250,7 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-void-lighter" role="navigation">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 min-h-[44px] py-2 group">
-            <SlopBlob expression="default" size="sm" animate={true} />
-            <span className="text-4xl font-accent transition-transform duration-200 group-hover:scale-105" style={{ fontWeight: 700, transform: 'rotate(-2deg)', color: '#FF6B35' }}>Slop</span>
-            <span className="text-3xl font-bold tracking-tight">GPT</span>
+            <SlopLogo size="sm" animate={true} />
           </a>
           <div className="flex items-center gap-6">
             <a href="#features" className="text-sm text-cream-muted hover:text-cream transition-colors hidden md:block min-h-[44px] flex items-center">
@@ -453,51 +451,6 @@ function App() {
             </motion.div>
           </div>
 
-          {/* Floating sparkles/emoji (subtle chaos) */}
-          <motion.div
-            className="absolute top-1/4 left-10 text-4xl opacity-30"
-            animate={shouldReduceMotion ? {} : {
-              y: [0, -20, 0],
-              rotate: [0, 10, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            ✨
-          </motion.div>
-          <motion.div
-            className="absolute top-1/3 right-20 text-3xl opacity-20"
-            animate={shouldReduceMotion ? {} : {
-              y: [0, 15, 0],
-              rotate: [0, -10, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          >
-            🎨
-          </motion.div>
-          <motion.div
-            className="absolute bottom-1/4 left-1/4 text-3xl opacity-25"
-            animate={shouldReduceMotion ? {} : {
-              y: [0, -10, 0],
-              rotate: [0, 15, 0],
-            }}
-            transition={{
-              duration: 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          >
-            🎉
-          </motion.div>
         </motion.section>
 
         {/* Marquee - Scrolling example prompts */}
@@ -517,14 +470,14 @@ function App() {
 
         {/* Meme Explanation - Drake Format */}
         <motion.section
-          className="py-20 md:py-28 px-6 bg-void overflow-hidden"
+          className="py-12 md:py-16 px-6 bg-void overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-center mb-16 text-cream">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-center mb-10 text-cream">
               What is <GlitchText intensity="medium">Slop</GlitchText>?
             </h2>
 
@@ -637,7 +590,7 @@ function App() {
         {/* Gallery - Masonry Grid */}
         <motion.section
           id="gallery"
-          className="py-20 md:py-32 px-6 bg-gradient-to-b from-void-light to-void overflow-hidden"
+          className="py-10 md:py-16 px-6 bg-gradient-to-b from-void-light to-void overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -645,7 +598,7 @@ function App() {
         >
           <div className="max-w-6xl mx-auto">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-10"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -780,7 +733,7 @@ function App() {
 
         {/* Demo Chat Preview */}
         <motion.section
-          className="py-20 md:py-32 px-6 bg-void-light"
+          className="py-10 md:py-16 px-6 bg-void-light"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -795,10 +748,7 @@ function App() {
             >
               {/* Chat header */}
               <div className="px-6 py-4 border-b border-void-lighter flex items-center gap-3">
-                <div className="flex items-center">
-                  <span className="text-2xl font-accent" style={{ fontWeight: 700, transform: 'rotate(-2deg)', color: '#FF6B35' }}>Slop</span>
-                  <span className="text-xl font-bold text-cream">GPT</span>
-                </div>
+                <SlopLogo size="sm" animate={false} />
                 <div>
                   <p className="font-semibold text-sm text-cream">Agent</p>
                   <p className="text-xs text-cream/60">Usually responds instantly</p>
@@ -878,7 +828,7 @@ function App() {
         {/* Features - What makes us different */}
         <motion.section
           id="features"
-          className="py-20 md:py-32 px-6 bg-void"
+          className="py-10 md:py-16 px-6 bg-void"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -886,7 +836,7 @@ function App() {
         >
           <div className="max-w-5xl mx-auto">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-10"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -904,22 +854,14 @@ function App() {
             <div className="relative min-h-[600px] md:min-h-[500px]">
               {[
                 {
-                  icon: (
-                    <svg className="w-12 h-12 text-slop" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                    </svg>
-                  ),
+                  icon: <span className="text-5xl" style={{ transform: 'rotate(-10deg)', display: 'inline-block' }}>🚪</span>,
                   title: 'No Lock-In',
                   desc: 'We don\'t trap your data. Chat, get help, leave. Come back whenever. It\'s casual.',
                   position: 'top-0 left-0 md:left-[5%]',
                   rotation: -2
                 },
                 {
-                  icon: (
-                    <svg className="w-12 h-12 text-slop" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-                    </svg>
-                  ),
+                  icon: <span className="text-5xl" style={{ transform: 'rotate(8deg)', display: 'inline-block' }}>🧠</span>,
                   title: 'Actually Creative',
                   desc: 'We\'ll help you brainstorm the weird stuff. Party themes, story ideas, that thing you can\'t quite describe.',
                   position: 'top-[60px] md:top-[80px] left-0 md:left-[35%]',
@@ -927,11 +869,7 @@ function App() {
                   hasBlobPeek: true
                 },
                 {
-                  icon: (
-                    <svg className="w-12 h-12 text-slop" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                    </svg>
-                  ),
+                  icon: <span className="text-5xl" style={{ transform: 'rotate(-5deg)', display: 'inline-block' }}>🏃</span>,
                   title: 'Fast & Direct',
                   desc: 'No 47-step onboarding. No premium tier to unlock "good" answers. Just start talking.',
                   position: 'top-[120px] md:top-[40px] left-0 md:left-[68%]',
@@ -992,7 +930,7 @@ function App() {
         {/* Examples / Use Cases */}
         <motion.section
           id="examples"
-          className="py-20 md:py-32 px-6 bg-void-light"
+          className="py-10 md:py-16 px-6 bg-void-light"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -1000,7 +938,7 @@ function App() {
         >
           <div className="max-w-5xl mx-auto">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-10"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1047,39 +985,14 @@ function App() {
         {/* CTA Section - Rebuilt with blob and chaos */}
         <motion.section
           id="chat"
-          className="relative py-20 md:py-32 px-6 overflow-hidden"
+          className="relative py-10 md:py-16 px-6 overflow-hidden"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          {/* Gradient void background */}
+          {/* Simple gradient background */}
           <div className="absolute inset-0 bg-gradient-to-br from-void via-void-light to-void" />
-
-          {/* Floating particles */}
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                backgroundColor: i % 3 === 0 ? '#FF6B35' : i % 3 === 1 ? '#00FF9F' : '#FF00FF',
-                opacity: 0.15,
-              }}
-              animate={shouldReduceMotion ? {} : {
-                y: [0, -30, 0],
-                x: [0, Math.random() * 20 - 10, 0],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
 
           <motion.div
             className="relative z-10 max-w-3xl mx-auto text-center px-4 sm:px-0"
@@ -1143,7 +1056,7 @@ function App() {
 
       {/* Footer */}
       <motion.footer
-        className="py-12 md:py-20 px-6 border-t border-void-lighter"
+        className="py-10 md:py-16 px-6 border-t border-void-lighter"
         role="contentinfo"
         initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1153,9 +1066,7 @@ function App() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-2">
-              <SlopBlob expression="sneaky" size="sm" animate={true} />
-              <span className="text-3xl font-accent" style={{ fontWeight: 700, transform: 'rotate(-2deg)', color: '#FF6B35' }}>Slop</span>
-              <span className="text-2xl font-bold text-cream">GPT</span>
+              <SlopLogo size="md" animate={true} />
             </div>
             <div className="flex items-center gap-4 text-sm text-cream/60">
               <a href="#features" className="hover:text-cream transition-colors py-2 px-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center">Features</a>

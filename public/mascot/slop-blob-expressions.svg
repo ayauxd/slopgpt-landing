@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="800" height="250">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+    </filter>
+    <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35"/>
+      <stop offset="50%" style="stop-color:#FF00FF"/>
+      <stop offset="100%" style="stop-color:#00FF9F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Expression 1: Default/Happy -->
+  <g transform="translate(20, 20)">
+    <text x="60" y="15" font-family="Arial" font-size="12" fill="#666">DEFAULT</text>
+    <g filter="url(#goo)">
+      <ellipse cx="60" cy="100" rx="45" ry="40" fill="url(#blobGrad)"/>
+      <circle cx="35" cy="95" r="18" fill="url(#blobGrad)"/>
+      <circle cx="85" cy="90" r="15" fill="url(#blobGrad)"/>
+      <ellipse cx="45" cy="135" rx="6" ry="12" fill="#FF6B35"/>
+      <ellipse cx="75" cy="140" rx="5" ry="15" fill="#FF6B35"/>
+    </g>
+    <ellipse cx="45" cy="90" rx="12" ry="14" fill="#FFFEF0"/>
+    <circle cx="48" cy="93" r="7" fill="#0D0D0D"/>
+    <circle cx="50" cy="90" r="2" fill="#FFFEF0"/>
+    <ellipse cx="75" cy="88" rx="10" ry="12" fill="#FFFEF0"/>
+    <circle cx="73" cy="90" r="6" fill="#0D0D0D"/>
+    <circle cx="71" cy="87" r="2" fill="#FFFEF0"/>
+    <path d="M 40 110 Q 60 125, 80 108" stroke="#0D0D0D" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Expression 2: Thinking/Processing -->
+  <g transform="translate(170, 20)">
+    <text x="60" y="15" font-family="Arial" font-size="12" fill="#666">THINKING</text>
+    <g filter="url(#goo)">
+      <ellipse cx="60" cy="100" rx="45" ry="40" fill="url(#blobGrad)"/>
+      <circle cx="35" cy="95" r="18" fill="url(#blobGrad)"/>
+      <circle cx="85" cy="90" r="15" fill="url(#blobGrad)"/>
+      <ellipse cx="50" cy="138" rx="7" ry="10" fill="#FF6B35"/>
+    </g>
+    <!-- Squinting eyes -->
+    <path d="M 35 90 Q 45 85, 55 90" stroke="#0D0D0D" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M 65 88 Q 75 83, 85 88" stroke="#0D0D0D" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Wavy thinking mouth -->
+    <path d="M 42 112 Q 50 108, 58 112 Q 66 116, 74 112" stroke="#0D0D0D" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Thought bubbles -->
+    <circle cx="100" cy="60" r="4" fill="#666" opacity="0.5"/>
+    <circle cx="110" cy="50" r="6" fill="#666" opacity="0.5"/>
+    <circle cx="125" cy="40" r="8" fill="#666" opacity="0.5"/>
+  </g>
+
+  <!-- Expression 3: Excited/Chaos -->
+  <g transform="translate(320, 20)">
+    <text x="60" y="15" font-family="Arial" font-size="12" fill="#666">EXCITED</text>
+    <g filter="url(#goo)">
+      <ellipse cx="60" cy="95" rx="48" ry="45" fill="url(#blobGrad)"/>
+      <circle cx="30" cy="90" r="20" fill="url(#blobGrad)"/>
+      <circle cx="90" cy="85" r="18" fill="url(#blobGrad)"/>
+      <circle cx="60" cy="130" r="15" fill="url(#blobGrad)"/>
+      <ellipse cx="35" cy="145" rx="8" ry="18" fill="#FF6B35"/>
+      <ellipse cx="85" cy="148" rx="6" ry="20" fill="#FF6B35"/>
+      <ellipse cx="60" cy="150" rx="7" ry="15" fill="#FF6B35"/>
+    </g>
+    <!-- Big excited eyes -->
+    <ellipse cx="42" cy="85" rx="14" ry="16" fill="#FFFEF0"/>
+    <circle cx="45" cy="85" r="10" fill="#0D0D0D"/>
+    <circle cx="48" cy="82" r="4" fill="#FFFEF0"/>
+    <ellipse cx="78" cy="82" rx="12" ry="14" fill="#FFFEF0"/>
+    <circle cx="76" cy="82" r="9" fill="#0D0D0D"/>
+    <circle cx="73" cy="79" r="3" fill="#FFFEF0"/>
+    <!-- Big open smile -->
+    <path d="M 38 108 Q 60 130, 82 108" stroke="#0D0D0D" stroke-width="3" fill="#0D0D0D"/>
+    <!-- Sparkles -->
+    <text x="10" y="60" font-size="16">✨</text>
+    <text x="100" y="55" font-size="14">⚡</text>
+    <text x="5" y="120" font-size="12">💫</text>
+  </g>
+
+  <!-- Expression 4: Error/Oops -->
+  <g transform="translate(470, 20)">
+    <text x="60" y="15" font-family="Arial" font-size="12" fill="#666">ERROR</text>
+    <g filter="url(#goo)">
+      <ellipse cx="60" cy="100" rx="45" ry="40" fill="url(#blobGrad)"/>
+      <circle cx="35" cy="95" r="18" fill="url(#blobGrad)"/>
+      <circle cx="85" cy="90" r="15" fill="url(#blobGrad)"/>
+      <ellipse cx="70" cy="140" rx="8" ry="12" fill="#FF6B35"/>
+    </g>
+    <!-- X eyes -->
+    <g stroke="#0D0D0D" stroke-width="4" stroke-linecap="round">
+      <line x1="38" y1="82" x2="52" y2="96"/>
+      <line x1="52" y1="82" x2="38" y2="96"/>
+      <line x1="68" y1="80" x2="82" y2="94"/>
+      <line x1="82" y1="80" x2="68" y2="94"/>
+    </g>
+    <!-- Wobbly distressed mouth -->
+    <path d="M 40 115 Q 45 110, 50 115 Q 55 120, 60 115 Q 65 110, 70 115 Q 75 120, 80 115" stroke="#0D0D0D" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Error symbols -->
+    <text x="95" y="70" font-size="20" fill="#FF0000">!</text>
+    <text x="15" y="75" font-size="14" fill="#FF0000">⚠️</text>
+  </g>
+
+  <!-- Expression 5: Sneaky/Mischievous -->
+  <g transform="translate(620, 20)">
+    <text x="60" y="15" font-family="Arial" font-size="12" fill="#666">SNEAKY</text>
+    <g filter="url(#goo)">
+      <ellipse cx="60" cy="100" rx="45" ry="40" fill="url(#blobGrad)"/>
+      <circle cx="35" cy="95" r="18" fill="url(#blobGrad)"/>
+      <circle cx="85" cy="90" r="15" fill="url(#blobGrad)"/>
+      <ellipse cx="40" cy="138" rx="6" ry="10" fill="#FF6B35"/>
+      <ellipse cx="80" cy="142" rx="5" ry="12" fill="#FF6B35"/>
+    </g>
+    <!-- Sly half-closed eyes -->
+    <ellipse cx="45" cy="90" rx="12" ry="8" fill="#FFFEF0"/>
+    <ellipse cx="48" cy="91" rx="8" ry="5" fill="#0D0D0D"/>
+    <ellipse cx="75" cy="88" rx="10" ry="7" fill="#FFFEF0"/>
+    <ellipse cx="73" cy="89" rx="7" ry="4" fill="#0D0D0D"/>
+    <!-- Smirk -->
+    <path d="M 45 110 Q 65 115, 80 105" stroke="#0D0D0D" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Raised eyebrow effect -->
+    <path d="M 65 75 Q 75 70, 85 75" stroke="#0D0D0D" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Label -->
+  <text x="400" y="240" font-family="Impact, sans-serif" font-size="18" fill="#FF6B35" text-anchor="middle">SLOP BLOB - EXPRESSION SHEET</text>
+</svg>

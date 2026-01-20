@@ -7,49 +7,42 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['Outfit', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'Outfit', '-apple-system', 'sans-serif'],
+        accent: ['Shantell Sans', 'cursive'],
       },
       colors: {
-        // Premium neutral palette (warmer tones)
-        'surface': {
-          DEFAULT: '#fafaf8',  // Warm off-white background
-          secondary: '#f5f5f3',
-          tertiary: '#ffffff',
+        // Primary - Hot orange (not tech blue)
+        'slop': {
+          DEFAULT: '#FF6B35',
+          light: '#FF8A5B',
+          dark: '#E55A2B',
         },
-        'text': {
-          primary: '#1a1a1a',
-          secondary: '#555555',
-          tertiary: '#666666',
-          muted: '#999999',
+        // Secondary - Radioactive green
+        'chaos': {
+          DEFAULT: '#00FF9F',
+          light: '#5AFFBE',
+          dark: '#00CC7F',
         },
-        'border': {
-          DEFAULT: '#e5e5e5',
-          subtle: '#f0f0f0',
-          strong: '#d5d5d5',
+        // Accent - Magenta (chaos incarnate)
+        'unhinged': {
+          DEFAULT: '#FF00FF',
+          light: '#FF66FF',
+          dark: '#CC00CC',
         },
-        // Brand colors
-        'brand': {
-          DEFAULT: '#cc2936',
-          light: '#ff4d5a',
-          dark: '#b02430',
-          muted: 'rgba(204, 41, 54, 0.1)',
+        // Background - True black
+        'void': {
+          DEFAULT: '#0D0D0D',
+          light: '#1A1A1A',
+          lighter: '#2D2D2D',
         },
-        // Legacy support
-        'gray-apple': {
-          50: '#fafafa',
-          100: '#f5f5f7',
-          200: '#e8e8ed',
-          300: '#d2d2d7',
-          400: '#86868b',
-          500: '#6e6e73',
-          600: '#1d1d1f',
+        // Text - Warm white
+        'cream': {
+          DEFAULT: '#FFFEF0',
+          muted: '#FFFEF0CC',
         },
-        'accent': {
-          DEFAULT: '#cc2936',
-          light: '#ff4d5a',
-          dark: '#b02430',
-        },
+        // Danger - Actual red
+        'error': '#FF0000',
       },
       boxShadow: {
         // Premium shadow scale
