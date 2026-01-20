@@ -1,187 +1,167 @@
-# SlopGPT Premium Rebrand PRD
+# PRD: SlopGPT Brand Polish
 
 ## Mission
-**Convert users, not entertain them.** Clean, professional, gets out of the way.
+Professional playful brand. 3D drippy SLOP blob with GPT - polished execution.
 
 ## Current Problems
-- Logo: Amateur bubble letters, inconsistent colors
-- Theme: Noisy muddy gradients, visual chaos
-- UX: Distracts from value proposition
+- Logo has white background (not transparent)
+- "gpt" is lowercase and too far from SLOP
+- Website uses rose theme instead of orange (brand mismatch)
+- Inconsistent visual identity
 
 ## Target Aesthetic
-Stripe/Linear/Notion level polish - light OR refined dark, spacious, conversion-focused
+Dark theme + coral orange accents. Playful but professional. Like Duolingo meets Linear.
 
 ---
 
-## Phase 1: Logo Overhaul (P0 - DO FIRST)
+## Phase 1: Logo Fix (CRITICAL)
 
-### Generate New Logo
-- [ ] Open pfs-logoworks (localhost:3001)
-- [ ] Mode: Create New → LOGO
-- [ ] Style: Minimalist Modern
-- [ ] Prompt: `Minimalist wordmark logo "slopgpt" in lowercase, modern geometric sans-serif typeface, clean tech startup aesthetic, single color black on white background, no icons or graphics, professional typography only`
-- [ ] Generate 3-4 variations
-- [ ] Select best, process through Extract workflow
+### Make Logo Transparent
+- [ ] Install rembg: `pip install rembg`
+- [ ] Remove background: `rembg i public/logo/slop-blob-v2.webp public/logo/slop-transparent.png`
+- [ ] Verify transparency in Finder/Preview
+- [ ] Optimize PNG size with ImageMagick if needed
 
-### Export Logo Assets
-- [ ] Export SVG (primary vector)
-- [ ] Export PNG (fallback, 2x resolution)
-- [ ] Create favicon variant (single "s" lettermark)
-- [ ] Create white variant for dark sections
+### Fix Typography
+- [ ] Update SlopLogo.tsx:
+  - Change "gpt" → "GPT" (uppercase)
+  - Tighten spacing (reduce negative margin)
+  - Align baseline properly
+- [ ] Increase logo sizes:
+  - sm: 32px → 36px
+  - md: 36px → 48px
+  - lg: 44px → 60px
+  - xl: 52px → 72px
+  - hero: 72px → 100px
+- [ ] Update GPT text sizes proportionally
 
-### Replace Logo Files
-- [ ] Delete old logos: `public/logo/slop-*.{png,webp,svg}`
-- [ ] Save new: `public/logo/slopgpt-wordmark.svg`
-- [ ] Save new: `public/logo/slopgpt-wordmark-white.svg`
-- [ ] Save new: `public/favicon.svg` (s lettermark)
-- [ ] Update `src/components/SlopLogo.tsx` with new SVG
+### Logo Variants
+- [ ] Create dark variant (white GPT text for dark backgrounds)
+- [ ] Test logo at all sizes in browser
 
 ---
 
-## Phase 2: Color System (P0)
+## Phase 2: Color System (Orange Theme)
 
-### Update CSS Tokens in `src/index.css`
+### Update index.css Color Tokens
 ```css
 :root {
-  /* Light theme option - clean and spacious */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #FAFAFA;
-  --bg-elevated: #F5F5F5;
+  /* Dark theme base */
+  --color-bg: #0A0A0A;
+  --color-bg-elevated: #171717;
+  --color-bg-card: #1A1A1A;
+  --color-border: #262626;
+  --color-border-hover: #3D3D3D;
 
-  /* OR Dark theme done RIGHT (YouTube-grade) */
-  --bg-primary: #0F0F0F;
-  --bg-secondary: #1A1A1A;
-  --bg-elevated: #262626;
+  /* Text */
+  --color-text: #FAFAFA;
+  --color-text-secondary: #D4D4D4;
+  --color-text-muted: #A3A3A3;
 
-  /* Text - high contrast */
-  --text-primary: #0A0A0A;  /* or #FFFFFF for dark */
-  --text-secondary: #525252; /* or #A3A3A3 for dark */
-  --text-muted: #A3A3A3;    /* or #737373 for dark */
-
-  /* Accent - rose, premium (replaces cheap orange) */
-  --accent: #E11D48;
-  --accent-hover: #BE123C;
-  --accent-subtle: rgba(225, 29, 72, 0.08);
-
-  /* Borders */
-  --border: #E5E5E5;        /* or #262626 for dark */
-  --border-hover: #D4D4D4;  /* or #3D3D3D for dark */
+  /* Orange accent (coral) */
+  --color-accent: #FF6B35;
+  --color-accent-hover: #FF8A5B;
+  --color-accent-subtle: rgba(255, 107, 53, 0.15);
 }
 ```
 
-### Update Body Styles
-- [ ] Set background to chosen theme
-- [ ] Set text colors for readability
-- [ ] Update selection color to rose tint
-- [ ] Remove muddy brown/orange gradients
+### Remove Rose References
+- [ ] Replace all `rose-*` classes with orange equivalents
+- [ ] Update `#E11D48` → `#FF6B35` throughout
+- [ ] Remove any pink/rose color tokens
 
 ---
 
-## Phase 3: Hero Cleanup (P0)
+## Phase 3: App.tsx Theme Update
 
-### Simplify Hero Layout
-- [ ] Remove or minimize marquee ticker
-- [ ] Simplify hero to: Headline + Subhead + 2 CTAs
-- [ ] Add visual proof (screenshot/demo) below CTAs
-- [ ] Ensure value prop visible without scrolling
+### Navigation
+- [ ] `bg-white/80` → `bg-[#0A0A0A]/90`
+- [ ] `border-neutral-200` → `border-[#262626]`
+- [ ] `text-neutral-*` → `text-[#FAFAFA]` / `text-[#A3A3A3]`
+- [ ] Button: `bg-rose-600` → `bg-[#FF6B35]`
 
-### Update Hero Copy
-- [ ] Headline: Clear what SlopGPT does
-- [ ] Subhead: One line, why they want it
-- [ ] CTA 1: Primary action (rose button)
-- [ ] CTA 2: Secondary action (outline button)
+### Hero Section
+- [ ] `bg-white` → `bg-[#0A0A0A]`
+- [ ] `text-neutral-900` → `text-[#FAFAFA]`
+- [ ] Badge: `bg-rose-50 text-rose-600` → `bg-[#FF6B35]/10 text-[#FF6B35]`
+- [ ] Heading accent: `text-rose-600` → `text-[#FF6B35]`
+- [ ] CTA: `bg-rose-600` → `bg-[#FF6B35]`
+- [ ] Secondary CTA: dark border variant
 
-### Remove Visual Noise
-- [ ] Reduce or remove chaotic animations
-- [ ] Remove background gradients (or make very subtle)
-- [ ] Simplify/minimize SlopBlob mascot in hero
-- [ ] Add whitespace, let content breathe
+### Value Proposition Section
+- [ ] `bg-neutral-50` → `bg-[#171717]`
+- [ ] Cards: `bg-white border-neutral-200` → `bg-[#1A1A1A] border-[#262626]`
+- [ ] SlopGPT card: `border-rose-200` → `border-[#FF6B35]/50`
 
----
+### Gallery Section
+- [ ] `bg-white` → `bg-[#0A0A0A]`
+- [ ] Cards: dark theme
+- [ ] Category tags: orange
 
-## Phase 4: Component Updates (P1)
+### Chat Preview
+- [ ] Outer bg: `bg-neutral-50` → `bg-[#171717]`
+- [ ] Chat container: `bg-white` → `bg-[#1A1A1A]`
+- [ ] User messages: `bg-rose-600` → `bg-[#FF6B35]`
+- [ ] Bot messages: dark with border
 
-### Button Updates
-- [ ] Primary: Rose background (#E11D48), white text
-- [ ] Secondary: Transparent with rose border
-- [ ] Hover states: Darker rose, subtle shadow
+### Features Section
+- [ ] `bg-white` → `bg-[#0A0A0A]`
+- [ ] Cards: `bg-neutral-50` → `bg-[#1A1A1A]`
 
-### Card/Section Updates
-- [ ] Clean backgrounds
-- [ ] Subtle borders
-- [ ] Consistent spacing
+### Examples Section
+- [ ] `bg-neutral-50` → `bg-[#171717]`
+- [ ] Cards: `bg-white` → `bg-[#1A1A1A]`
+- [ ] Category: `text-rose-600` → `text-[#FF6B35]`
 
-### Typography
-- [ ] Simplify to 2 fonts max (display + body)
-- [ ] Remove unused: Boogaloo, Shantell Sans
-- [ ] Ensure proper hierarchy
+### CTA Section
+- [ ] Keep `bg-rose-600` → change to `bg-[#FF6B35]`
+- [ ] Button: white on orange
 
----
-
-## Phase 5: Polish (P2)
-
-### Favicon & OG Image
-- [ ] New favicon with "s" lettermark
-- [ ] New OG image matching rebrand
-
-### Remove Unused
-- [ ] Delete old logo files
-- [ ] Remove unused font imports
-- [ ] Clean up orphaned CSS
-
-### Test
-- [ ] Check mobile responsiveness
-- [ ] Verify contrast ratios
-- [ ] Test CTA visibility
+### Footer
+- [ ] `bg-white` → `bg-[#0A0A0A]`
+- [ ] `border-neutral-200` → `border-[#262626]`
+- [ ] Text: light colors
 
 ---
 
-## Success Criteria
+## Phase 4: Final Polish
 
-| Metric | Target |
-|--------|--------|
-| Value prop clarity | Understood in 3 seconds |
-| Visual noise | Minimal, content-focused |
-| Logo quality | Professional wordmark |
-| Theme | Clean, spacious, premium |
-| CTA visibility | Obvious primary action |
+- [ ] Build: `npm run build` - no errors
+- [ ] Visual check: all sections dark + orange
+- [ ] Logo check: transparent, GPT uppercase, tight
+- [ ] Deploy: `vercel --prod`
 
 ---
 
-## Files to Modify
+## Verification Checklist
 
-```
-src/index.css                    - Color tokens, typography
-src/App.tsx                      - Hero layout, animations
-src/components/SlopLogo.tsx      - New logo component
-src/components/index.ts          - Component exports
-public/logo/                     - Logo assets
-public/favicon.svg               - New favicon
-index.html                       - Meta tags if needed
-```
+| Item | Criteria |
+|------|----------|
+| Logo transparency | No white/gray box visible |
+| Logo text | "GPT" uppercase, close to SLOP |
+| Logo size | Larger, impactful in hero |
+| Background | Dark (#0A0A0A) throughout |
+| Accent color | Orange (#FF6B35) on all CTAs |
+| Consistency | Same colors across all sections |
+| Contrast | Text readable (WCAG AA) |
 
 ---
 
-## Verification Commands
+## Commands
 
 ```bash
-# Start dev server
-cd ~/slopgpt-landing && npm run dev
+# Remove logo background
+pip install rembg
+rembg i public/logo/slop-blob-v2.webp public/logo/slop-transparent.png
 
-# Build check
-npm run build
+# Build
+cd ~/slopgpt-landing && npm run build
 
-# Deploy preview
-npx vercel
-
-# Deploy production
-npx vercel --prod
+# Deploy
+cd ~/slopgpt-landing && vercel --prod
 ```
 
 ---
 
-## Sign-off
-
-**Designed by**: Ray Donovan diagnostic process
-**PRD Version**: 3.0 (Premium Rebrand)
-**Ready for execution**: Yes
+**PRD Version**: 4.0 (Brand Polish - Dark + Orange)
+**Created by**: Ray Donovan

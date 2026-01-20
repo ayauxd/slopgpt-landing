@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { MICROCOPY, getRandomRotation } from '../constants/microcopy'
+import { MICROCOPY } from '../constants/microcopy'
+import { SlopLogo, ThemeToggle } from '../components'
 
 interface Message {
   id: string
@@ -97,7 +98,6 @@ export default function Chat() {
         }
         setMessages((prev) => [...prev, assistantMessage])
 
-        // Check if the AI is asking for contact details (lead capture trigger)
         const lowerContent = data.message.toLowerCase()
         if (
           (lowerContent.includes('email') && lowerContent.includes('name')) ||
@@ -105,7 +105,6 @@ export default function Chat() {
           lowerContent.includes('get in touch') ||
           lowerContent.includes("i've got everything")
         ) {
-          // Extract any event details mentioned in the conversation
           extractLeadDataFromConversation([...messages, userMessage, assistantMessage])
           setTimeout(() => setShowLeadForm(true), 1000)
         }
@@ -168,56 +167,63 @@ export default function Chat() {
   }
 
   return (
-    <div className="min-h-screen bg-void text-cream flex flex-col">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-void-lighter">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center min-h-[44px] py-2 group">
-            <span
-              className="text-3xl font-accent transition-transform duration-200 group-hover:scale-105"
-              style={{
-                fontWeight: 700,
-                transform: 'rotate(-2deg)',
-                color: '#FF6B35',
-              }}
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] flex flex-col">
+      {/* Header - Minimal, logo-focused */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg)]/80 backdrop-blur-xl border-b border-[var(--color-border-subtle)]">
+        <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
+          <Link to="/" className="flex items-center min-h-[44px]">
+            <SlopLogo size="sm" />
+          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link
+              to="/"
+              className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors flex items-center gap-1.5 min-h-[44px]"
             >
-              Slop
-            </span>
-            <span className="text-2xl font-bold text-cream">
-              GPT
-            </span>
-          </Link>
-          <Link
-            to="/"
-            className="text-sm text-cream-muted hover:text-cream transition-colors min-h-[44px] flex items-center"
-          >
-            ← {MICROCOPY.nav.home}
-          </Link>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Home
+            </Link>
+          </div>
         </div>
       </header>
 
       {/* Chat Container */}
-      <main className="flex-1 pt-16 pb-32 sm:pb-28 overflow-y-auto">
+      <main className="flex-1 pt-14 pb-28 sm:pb-24">
         <div className="max-w-3xl mx-auto px-4">
           {/* Messages */}
-          <div className="py-6 space-y-4">
+          <div className="py-6 space-y-6">
             <AnimatePresence initial={false}>
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
+                  {/* Assistant avatar */}
+                  {message.role === 'assistant' && (
+                    <div className="flex-shrink-0 mr-3 mt-1">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center shadow-lg shadow-[#FF6B35]/20">
+                        <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+
                   <div
-                    className={`max-w-[85%] sm:max-w-[75%] px-4 py-3 rounded-2xl text-[15px] leading-relaxed ${
+                    className={`max-w-[80%] sm:max-w-[70%] ${
                       message.role === 'user'
-                        ? 'bg-slop text-void rounded-br-md'
-                        : 'bg-void-light border border-void-lighter text-cream rounded-bl-md shadow-sm'
+                        ? 'bg-[var(--color-accent)] text-white rounded-2xl rounded-br-md px-4 py-3'
+                        : 'text-[var(--color-text)] py-1'
                     }`}
                   >
-                    {message.content}
+                    <p className="text-[15px] leading-relaxed whitespace-pre-wrap">
+                      {message.content}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -226,25 +232,33 @@ export default function Chat() {
             {/* Typing Indicator */}
             {isLoading && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="bg-void-light border border-void-lighter px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
-                  <div className="flex gap-1.5">
-                    <span
-                      className="w-2 h-2 bg-slop rounded-full animate-bounce"
-                      style={{ animationDelay: '0ms' }}
-                    />
-                    <span
-                      className="w-2 h-2 bg-slop rounded-full animate-bounce"
-                      style={{ animationDelay: '150ms' }}
-                    />
-                    <span
-                      className="w-2 h-2 bg-slop rounded-full animate-bounce"
-                      style={{ animationDelay: '300ms' }}
-                    />
+                <div className="flex-shrink-0 mr-3 mt-1">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
                   </div>
+                </div>
+                <div className="flex items-center gap-1.5 py-3">
+                  <motion.span
+                    className="w-2 h-2 bg-[var(--color-accent)] rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                  />
+                  <motion.span
+                    className="w-2 h-2 bg-[var(--color-accent)] rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                  />
+                  <motion.span
+                    className="w-2 h-2 bg-[var(--color-accent)] rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                  />
                 </div>
               </motion.div>
             )}
@@ -261,57 +275,58 @@ export default function Chat() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setShowLeadForm(false)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-void-lighter border border-void-lighter rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="text-2xl font-bold mb-2 text-cream font-display inline-block" style={{ transform: getRandomRotation('subtle') }}>almost there!</h2>
-              <p className="text-cream/70 mb-6 inline-block" style={{ transform: getRandomRotation('subtle') }}>
-                share your deets and we'll hit you up within 24 hours.
+              <h2 className="text-2xl font-semibold mb-2 text-[var(--color-text)]">Almost there!</h2>
+              <p className="text-[var(--color-text-muted)] text-sm mb-6">
+                Share your details and we'll reach out within 24 hours.
               </p>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-cream mb-1">
-                    {MICROCOPY.forms.name} <span className="text-slop">*</span>
+                  <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+                    Name <span className="text-[var(--color-accent)]">*</span>
                   </label>
                   <input
                     type="text"
                     value={leadData.name}
                     onChange={(e) => setLeadData({ ...leadData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-void-light border border-void-lighter text-cream rounded-lg focus:outline-none focus:border-slop focus:ring-2 focus:ring-slop/20 transition-all placeholder-cream/50"
+                    className="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] rounded-xl focus:outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all placeholder-[var(--color-text-muted)]"
                     placeholder={MICROCOPY.placeholders.name}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-cream mb-1">
-                    {MICROCOPY.forms.email} <span className="text-slop">*</span>
+                  <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+                    Email <span className="text-[var(--color-accent)]">*</span>
                   </label>
                   <input
                     type="email"
                     value={leadData.email}
                     onChange={(e) => setLeadData({ ...leadData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-void-light border border-void-lighter text-cream rounded-lg focus:outline-none focus:border-slop focus:ring-2 focus:ring-slop/20 transition-all placeholder-cream/50"
+                    className="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] rounded-xl focus:outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all placeholder-[var(--color-text-muted)]"
                     placeholder={MICROCOPY.placeholders.email}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-cream mb-1">
-                    {MICROCOPY.forms.phone} <span className="text-cream/50">(optional)</span>
+                  <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+                    Phone <span className="text-[var(--color-text-muted)]">(optional)</span>
                   </label>
                   <input
                     type="tel"
                     value={leadData.phone}
                     onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-void-light border border-void-lighter text-cream rounded-lg focus:outline-none focus:border-slop focus:ring-2 focus:ring-slop/20 transition-all placeholder-cream/50"
+                    className="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] rounded-xl focus:outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[#FF6B35]/20 transition-all placeholder-[var(--color-text-muted)]"
                     placeholder={MICROCOPY.placeholders.phone}
                   />
                 </div>
@@ -319,19 +334,18 @@ export default function Chat() {
                 <motion.button
                   onClick={submitLead}
                   disabled={!leadData.name || !leadData.email}
-                  className="w-full py-4 bg-slop text-void rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="w-full py-3.5 bg-[var(--color-accent)] text-white rounded-xl font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:bg-[var(--color-accent-hover)]"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
                   {MICROCOPY.buttons.submit}
                 </motion.button>
 
                 <button
                   onClick={() => setShowLeadForm(false)}
-                  className="w-full py-2 text-cream/70 text-sm hover:text-cream transition-colors inline-block"
-                  style={{ transform: getRandomRotation('subtle') }}
+                  className="w-full py-2 text-[var(--color-text-muted)] text-sm hover:text-[var(--color-text-muted)] transition-colors"
                 >
-                  i'll keep chatting first
+                  I'll keep chatting first
                 </button>
               </div>
             </motion.div>
@@ -339,46 +353,37 @@ export default function Chat() {
         )}
       </AnimatePresence>
 
-      {/* Input Area - with safe area padding for notch phones */}
-      <div className="fixed bottom-0 left-0 right-0 bg-void/95 backdrop-blur-md border-t border-void-lighter pb-[env(safe-area-inset-bottom)]">
-        <div className="max-w-3xl mx-auto px-4 py-3 sm:py-4">
-          <div className="flex items-center gap-2 sm:gap-3 bg-void-light border border-void-lighter rounded-xl px-3 sm:px-4 py-2 shadow-sm focus-within:border-slop focus-within:ring-2 focus-within:ring-slop/20 transition-all">
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={leadSubmitted ? MICROCOPY.success.sent : MICROCOPY.chat.inputPlaceholder}
-              disabled={leadSubmitted}
-              className="flex-1 bg-transparent outline-none text-[15px] text-cream placeholder-cream/50 min-h-[44px] disabled:cursor-not-allowed"
-            />
-            <motion.button
-              onClick={sendMessage}
-              disabled={!input.trim() || isLoading || leadSubmitted}
-              className="w-11 h-11 flex-shrink-0 bg-slop rounded-lg flex items-center justify-center text-void disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Send message"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+      {/* Input Area - Clean, minimal */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)] to-transparent pt-6 pb-[env(safe-area-inset-bottom)]">
+        <div className="max-w-3xl mx-auto px-4 pb-4">
+          <div className="relative">
+            <div className="flex items-center gap-3 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-2xl px-4 py-2 shadow-lg shadow-black/20 focus-within:border-[#FF6B35]/50 focus-within:ring-2 focus-within:ring-[#FF6B35]/10 transition-all">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={leadSubmitted ? MICROCOPY.success.sent : "Type something..."}
+                disabled={leadSubmitted}
+                className="flex-1 bg-transparent outline-none text-[15px] text-[var(--color-text)] placeholder-[var(--color-text-muted)] min-h-[44px] disabled:cursor-not-allowed"
+              />
+              <motion.button
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading || leadSubmitted}
+                className="w-10 h-10 flex-shrink-0 bg-[var(--color-accent)] rounded-xl flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 hover:bg-[var(--color-accent-hover)]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Send message"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                />
-              </svg>
-            </motion.button>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </motion.button>
+            </div>
           </div>
-          <p className="text-center text-xs text-cream/60 mt-2 hidden sm:block inline-block" style={{ transform: getRandomRotation('subtle') }}>
-            Powered by Claude AI • Your data is handled securely
+          <p className="text-center text-[10px] text-[var(--color-text-muted)] mt-3 tracking-wide">
+            Powered by Claude AI
           </p>
         </div>
       </div>

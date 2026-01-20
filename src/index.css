@@ -9,32 +9,56 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Premium color tokens - clean and professional */
-  --color-bg: #FFFFFF;
-  --color-bg-secondary: #FAFAFA;
-  --color-bg-elevated: #F5F5F5;
+  /* Orange accent - shared between themes */
+  --color-accent: #FF6B35;
+  --color-accent-hover: #FF8A5B;
+  --color-accent-subtle: rgba(255, 107, 53, 0.15);
+  --color-error: #EF4444;
+}
 
-  --color-text: #0A0A0A;
-  --color-text-secondary: #525252;
+/* Dark theme (default) */
+:root, .dark {
+  --color-bg: #0A0A0A;
+  --color-bg-secondary: #171717;
+  --color-bg-elevated: #1A1A1A;
+  --color-bg-card: #1F1F1F;
+
+  --color-text: #FAFAFA;
+  --color-text-secondary: #D4D4D4;
   --color-text-muted: #A3A3A3;
+  --color-text-inverse: #0A0A0A;
 
-  /* Accent - rose (premium, not cheap orange) */
-  --color-accent: #E11D48;
-  --color-accent-hover: #BE123C;
-  --color-accent-subtle: rgba(225, 29, 72, 0.08);
+  --color-border: #262626;
+  --color-border-hover: #3D3D3D;
+  --color-border-subtle: #1A1A1A;
 
-  /* Borders */
+  --color-surface: #171717;
+  --color-surface-hover: #1F1F1F;
+}
+
+/* Light theme */
+.light {
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #F5F5F5;
+  --color-bg-elevated: #FAFAFA;
+  --color-bg-card: #FFFFFF;
+
+  --color-text: #171717;
+  --color-text-secondary: #525252;
+  --color-text-muted: #737373;
+  --color-text-inverse: #FAFAFA;
+
   --color-border: #E5E5E5;
   --color-border-hover: #D4D4D4;
+  --color-border-subtle: #F5F5F5;
 
-  /* Legacy compatibility (gradual migration) */
-  --color-slop: #E11D48;
-  --color-slop-light: #F43F5E;
-  --color-void: #0A0A0A;
-  --color-void-light: #171717;
-  --color-cream: #FFFFFF;
-  --color-cream-muted: rgba(255, 255, 255, 0.8);
-  --color-error: #DC2626;
+  --color-surface: #F5F5F5;
+  --color-surface-hover: #EBEBEB;
+
+  /* Slightly darker accent for light mode readability */
+  --color-accent: #E85A2A;
+  --color-accent-hover: #D14D1F;
+  --color-accent-subtle: rgba(232, 90, 42, 0.1);
 }
 
 /* Clean typography - Inter for everything */
@@ -94,13 +118,13 @@ html {
   outline-offset: 2px;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -109,13 +133,13 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+  background: var(--color-accent);
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) var(--color-bg-secondary);
+  scrollbar-color: var(--color-border) var(--color-bg);
 }
 
 /* Button press animation utility */

@@ -4,44 +4,38 @@ interface SlopLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'hero'
   animate?: boolean
   className?: string
-  variant?: 'dark' | 'light'
 }
 
+// Unified logo - single image contains "SLOPGPT" in drippy 3D style
+// Larger sizes for brand prominence per design best practices (40-60px header minimum)
 const sizeConfig = {
-  sm: { imgHeight: 28, gptSize: 'text-sm', gptOffset: '-ml-1' },
-  md: { imgHeight: 36, gptSize: 'text-base', gptOffset: '-ml-1' },
-  lg: { imgHeight: 44, gptSize: 'text-lg', gptOffset: '-ml-2' },
-  xl: { imgHeight: 52, gptSize: 'text-xl', gptOffset: '-ml-2' },
-  hero: { imgHeight: 72, gptSize: 'text-2xl md:text-3xl', gptOffset: '-ml-3' },
+  sm: { imgHeight: 32 },   // Footer, small contexts
+  md: { imgHeight: 44 },   // Header nav - prominent but balanced
+  lg: { imgHeight: 56 },   // Emphasized header
+  xl: { imgHeight: 72 },   // Large feature areas
+  hero: { imgHeight: 120 }, // Hero section - dominant brand presence
 }
 
 /**
- * SlopLogo - 3D drippy SLOP blob + gpt text
+ * SlopLogo - Unified 3D drippy "SLOPGPT" logo
+ * Single transparent PNG, no separate text elements
  */
-export function SlopLogo({ size = 'md', animate = false, className = '', variant = 'light' }: SlopLogoProps) {
+export function SlopLogo({ size = 'md', animate = false, className = '' }: SlopLogoProps) {
   const config = sizeConfig[size]
-  const gptColor = variant === 'dark' ? 'text-white' : 'text-neutral-700'
 
   return (
     <motion.div
-      className={`flex items-end select-none ${className}`}
+      className={`flex items-center select-none ${className}`}
       whileHover={animate ? { scale: 1.02 } : {}}
       transition={{ duration: 0.2 }}
     >
       <img
-        src="/logo/slop-blob-v2.webp"
-        alt="SLOP"
+        src="/logo/slopgpt-unified.png"
+        alt="SlopGPT"
         style={{ height: config.imgHeight }}
         className="object-contain"
+        draggable={false}
       />
-      <span
-        className={`${config.gptSize} ${gptColor} ${config.gptOffset} font-bold tracking-tight pb-[2px]`}
-        style={{
-          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-        }}
-      >
-        gpt
-      </span>
     </motion.div>
   )
 }

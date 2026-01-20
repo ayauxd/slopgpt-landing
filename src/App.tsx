@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
-import { SlopLogo } from './components'
+import { SlopLogo, ThemeToggle } from './components'
 
 // Motion-enabled Link component for smooth animations
 const MotionLink = motion.create(Link)
@@ -112,31 +112,35 @@ function App() {
   }, [visibleMessages])
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 transition-all duration-500">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] transition-all duration-500">
       {/* Skip to content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-void focus:text-cream focus:px-4 focus:py-2 focus:rounded-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-[var(--color-bg-secondary)] focus:text-[var(--color-text)] focus:px-4 focus:py-2 focus:rounded-lg"
       >
         Skip to main content
       </a>
 
-      {/* Navigation - Clean, minimal */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200" role="navigation">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 min-h-[44px] py-2 group">
-            <SlopLogo size="sm" animate={false} variant="light" />
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]" role="navigation">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 h-[72px] flex items-center justify-between">
+          {/* Logo */}
+          <a href="/" className="flex items-center min-h-[44px]">
+            <SlopLogo size="md" animate={false} />
           </a>
-          <div className="flex items-center gap-6">
-            <a href="#features" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors hidden md:block min-h-[44px] flex items-center">
+
+          {/* Nav links */}
+          <div className="flex items-center gap-3 md:gap-6">
+            <a href="#features" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors hidden md:flex items-center min-h-[44px]">
               Features
             </a>
-            <a href="#examples" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors hidden md:block min-h-[44px] flex items-center">
+            <a href="#examples" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors hidden md:flex items-center min-h-[44px]">
               Examples
             </a>
+            <ThemeToggle />
             <MotionLink
               to="/chat"
-              className="text-sm px-5 py-3 min-h-[44px] inline-flex items-center bg-rose-600 text-white rounded-lg font-semibold transition-all duration-200 hover:bg-rose-700"
+              className="text-sm px-5 py-2.5 min-h-[44px] inline-flex items-center bg-[var(--color-accent)] text-white rounded-lg font-semibold transition-all duration-200 hover:bg-[var(--color-accent-hover)]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -147,10 +151,10 @@ function App() {
       </nav>
 
       <main id="main-content">
-        {/* Hero - Clean, conversion-focused */}
+        {/* Hero - Dark with orange accents */}
         <motion.section
           ref={heroRef}
-          className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-white"
+          className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[var(--color-bg)]"
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -163,26 +167,26 @@ function App() {
               variants={shouldReduceMotion ? {} : stagger}
             >
               <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-full text-sm font-medium"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-accent)]/15 text-[var(--color-accent)] rounded-full text-sm font-medium border border-[#FF6B35]/30"
                 variants={shouldReduceMotion ? {} : fadeIn}
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-accent)]"></span>
                 </span>
                 Now in beta
               </motion.div>
 
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-neutral-900"
+                className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-[var(--color-text)]"
                 variants={shouldReduceMotion ? {} : fadeIn}
               >
                 AI that doesn't take itself{' '}
-                <span className="text-rose-600">too seriously</span>
+                <span className="text-[var(--color-accent)]">too seriously</span>
               </motion.h1>
 
               <motion.p
-                className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed"
+                className="text-lg md:text-xl text-[var(--color-text-muted)] max-w-2xl mx-auto leading-relaxed"
                 variants={shouldReduceMotion ? {} : fadeIn}
               >
                 Creative brainstorming, party planning, weird questions — all the fun stuff other AI won't touch.
@@ -194,7 +198,7 @@ function App() {
               >
                 <MotionLink
                   to="/chat"
-                  className="px-8 py-4 bg-rose-600 text-white rounded-lg text-lg font-semibold shadow-lg shadow-rose-600/25 transition-all duration-200 inline-flex items-center gap-2 hover:bg-rose-700 hover:shadow-xl hover:shadow-rose-600/30"
+                  className="px-8 py-4 bg-[var(--color-accent)] text-white rounded-lg text-lg font-semibold shadow-lg shadow-[#FF6B35]/25 transition-all duration-200 inline-flex items-center gap-2 hover:bg-[var(--color-accent-hover)] hover:shadow-xl hover:shadow-[#FF6B35]/30"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -205,7 +209,7 @@ function App() {
                 </MotionLink>
                 <motion.a
                   href="#examples"
-                  className="px-8 py-4 border border-neutral-300 text-neutral-700 rounded-lg text-lg font-medium transition-all duration-200 inline-flex items-center hover:border-neutral-400 hover:bg-neutral-50"
+                  className="px-8 py-4 border border-[var(--color-border-hover)] text-[var(--color-text-secondary)] rounded-lg text-lg font-medium transition-all duration-200 inline-flex items-center hover:border-[#FF6B35]/50 hover:text-[var(--color-text)]"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -214,7 +218,7 @@ function App() {
               </motion.div>
 
               <motion.p
-                className="text-sm text-neutral-500"
+                className="text-sm text-[var(--color-text-muted)]"
                 variants={shouldReduceMotion ? {} : fadeIn}
               >
                 No sign-up required. Free to use.
@@ -223,91 +227,135 @@ function App() {
           </div>
         </motion.section>
 
-        {/* Value Proposition - Clean comparison */}
+        {/* Value Proposition - Visual Comparison */}
         <motion.section
-          className="py-16 md:py-24 px-6 bg-neutral-50"
+          className="py-16 md:py-24 px-6 bg-[var(--color-bg-secondary)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-neutral-900">
-              What makes us different
-            </h2>
+          <div className="max-w-5xl mx-auto">
+            {/* Section header */}
+            <div className="text-center mb-12">
+              <motion.p
+                className="text-[var(--color-accent)] text-sm font-medium tracking-wide uppercase mb-3"
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                Same prompt. Different vibe.
+              </motion.p>
+              <h2 className="text-3xl md:text-4xl font-semibold text-[var(--color-text)]">
+                See the difference
+              </h2>
+            </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Left side - Other AI */}
+            {/* Visual comparison - showing actual responses */}
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              {/* Generic AI Response */}
               <motion.div
-                className="relative"
+                className="relative group"
                 initial={shouldReduceMotion ? {} : { opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
               >
-                <div className="bg-white border border-neutral-200 rounded-2xl p-8 h-full">
-                  <h3 className="text-xl font-semibold mb-4 text-neutral-400">
-                    Other AI assistants
-                  </h3>
-                  <ul className="space-y-3 text-neutral-500">
-                    <li className="flex items-start gap-3">
-                      <span className="text-neutral-300">—</span>
-                      <span>Overly formal responses</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-neutral-300">—</span>
-                      <span>Won't help with "weird" requests</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-neutral-300">—</span>
-                      <span>No personality</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-neutral-300">—</span>
-                      <span>Requires sign-up</span>
-                    </li>
-                  </ul>
+                <div className="absolute -inset-px bg-gradient-to-b from-[var(--color-border)] to-transparent rounded-2xl opacity-50" />
+                <div className="relative bg-[var(--color-bg)] rounded-2xl p-5 h-full border border-[var(--color-border)]">
+                  {/* Mock chat header */}
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--color-border-subtle)]">
+                    <div className="w-6 h-6 rounded-full bg-[var(--color-border)]" />
+                    <span className="text-xs text-[var(--color-text-muted)] font-medium">GenericAI</span>
+                  </div>
+                  {/* User message */}
+                  <div className="flex justify-end mb-3">
+                    <div className="bg-[var(--color-border)] text-[var(--color-text-muted)] text-sm px-3 py-2 rounded-xl rounded-br-sm max-w-[85%]">
+                      Help me plan a chaotic birthday party
+                    </div>
+                  </div>
+                  {/* AI Response */}
+                  <div className="flex justify-start">
+                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[85%]">
+                      I'd be happy to help you plan a birthday party. Here are some organized suggestions: 1) Choose a venue 2) Create a guest list 3) Plan activities 4) Arrange catering...
+                    </div>
+                  </div>
+                  {/* Muted label */}
+                  <div className="mt-4 pt-3 border-t border-[var(--color-border-subtle)]">
+                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Formal. Predictable.</span>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Right side - SlopGPT */}
+              {/* SlopGPT Response */}
               <motion.div
-                className="relative"
+                className="relative group"
                 initial={shouldReduceMotion ? {} : { opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
               >
-                <div className="bg-white border-2 border-rose-200 rounded-2xl p-8 h-full shadow-lg shadow-rose-100">
-                  <h3 className="text-xl font-semibold mb-4 text-rose-600">
-                    SlopGPT
-                  </h3>
-                  <ul className="space-y-3 text-neutral-700">
-                    <li className="flex items-start gap-3">
-                      <span className="text-rose-500">✓</span>
-                      <span>Helpful and actually fun</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-rose-500">✓</span>
-                      <span>Embraces creative requests</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-rose-500">✓</span>
-                      <span>Has a personality</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-rose-500">✓</span>
-                      <span>No sign-up needed</span>
-                    </li>
-                  </ul>
+                <div className="absolute -inset-px bg-gradient-to-b from-[#FF6B35]/30 to-transparent rounded-2xl" />
+                <div className="relative bg-[var(--color-bg)] rounded-2xl p-5 h-full border border-[#FF6B35]/40">
+                  {/* Mock chat header */}
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#FF6B35]/20">
+                    <div className="w-6 h-6 rounded-full bg-[var(--color-accent)]/20 flex items-center justify-center">
+                      <span className="text-[10px]">🧡</span>
+                    </div>
+                    <span className="text-xs text-[var(--color-accent)] font-medium">SlopGPT</span>
+                  </div>
+                  {/* User message */}
+                  <div className="flex justify-end mb-3">
+                    <div className="bg-[var(--color-accent)] text-white text-sm px-3 py-2 rounded-xl rounded-br-sm max-w-[85%]">
+                      Help me plan a chaotic birthday party
+                    </div>
+                  </div>
+                  {/* AI Response */}
+                  <div className="flex justify-start">
+                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text)] text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[85%]">
+                      Chaos? Say less. We're doing a mystery box cooking challenge, competitive Mario Kart on a projector, and a "worst outfit" contest. Loser has to give a toast.
+                    </div>
+                  </div>
+                  {/* Highlighted label */}
+                  <div className="mt-4 pt-3 border-t border-[#FF6B35]/20">
+                    <span className="text-[10px] text-[var(--color-accent)] uppercase tracking-wider">Fun. Creative. Gets it.</span>
+                  </div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Bento grid features */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { icon: '⚡', label: 'Instant', desc: 'No sign-up' },
+                { icon: '🎭', label: 'Personality', desc: 'Not a robot' },
+                { icon: '🎨', label: 'Creative', desc: 'Weird is welcome' },
+                { icon: '🔒', label: 'Private', desc: 'Your data stays yours' },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  className="group relative"
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
+                  whileHover={{ y: -2 }}
+                >
+                  <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-4 h-full transition-colors group-hover:border-[#FF6B35]/40">
+                    <span className="text-2xl mb-2 block">{item.icon}</span>
+                    <p className="text-sm font-medium text-[var(--color-text)]">{item.label}</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.section>
 
-        {/* Gallery - Clean grid */}
+        {/* Gallery */}
         <motion.section
           id="gallery"
-          className="py-16 md:py-24 px-6 bg-white"
+          className="py-16 md:py-24 px-6 bg-[var(--color-bg)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -320,15 +368,14 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-neutral-900">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-[var(--color-text)]">
                 What people create
               </h2>
-              <p className="text-neutral-600 text-lg">
+              <p className="text-[var(--color-text-muted)] text-lg">
                 From party planning to creative writing. Real examples from real users.
               </p>
             </motion.div>
 
-            {/* Clean grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {showcaseItems.slice(0, 6).map((item, index) => (
                 <motion.div
@@ -339,7 +386,7 @@ function App() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="relative rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200 hover:border-rose-200 transition-colors">
+                  <div className="relative rounded-xl overflow-hidden bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[#FF6B35]/50 transition-colors">
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <img
                         src={item.image}
@@ -348,11 +395,11 @@ function App() {
                         decoding="async"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                      <span className="inline-block px-2 py-1 bg-rose-600/90 rounded text-xs font-medium mb-2">
+                      <span className="inline-block px-2 py-1 bg-[var(--color-accent)] rounded text-xs font-medium mb-2">
                         {item.category}
                       </span>
                       <h3 className="text-lg font-semibold mb-1">
@@ -369,48 +416,74 @@ function App() {
           </div>
         </motion.section>
 
-        {/* Demo Chat Preview */}
+        {/* Demo Chat Preview - Minimalist */}
         <motion.section
-          className="py-16 md:py-24 px-6 bg-neutral-50"
+          className="py-16 md:py-24 px-6 bg-[var(--color-bg-secondary)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-2xl mx-auto">
+            {/* Section header */}
             <motion.div
-              className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-xl"
+              className="text-center mb-8"
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl md:text-3xl font-semibold text-[var(--color-text)] mb-2">
+                Try it yourself
+              </h2>
+              <p className="text-sm text-[var(--color-text-muted)]">
+                A real conversation, not a demo script
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="bg-[var(--color-bg)] rounded-2xl border border-[var(--color-border)] overflow-hidden"
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {/* Chat header */}
-              <div className="px-6 py-4 border-b border-neutral-200 flex items-center gap-3">
-                <SlopLogo size="sm" animate={false} variant="light" />
-                <div>
-                  <p className="font-semibold text-sm text-neutral-900">SlopGPT</p>
-                  <p className="text-xs text-neutral-500">Usually responds instantly</p>
+              {/* Minimal header bar */}
+              <div className="px-4 py-3 border-b border-[var(--color-border-subtle)] flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
+                  <span className="text-xs text-[var(--color-text-muted)] font-medium">SlopGPT</span>
+                </div>
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
                 </div>
               </div>
 
               {/* Chat messages */}
-              <div className="p-6 space-y-4 min-h-[320px] bg-neutral-50">
+              <div className="p-5 space-y-5 min-h-[280px]">
                 {demoConversation.slice(0, visibleMessages).map((msg, i) => (
                   <motion.div
                     key={i}
-                    initial={shouldReduceMotion ? {} : {
-                      opacity: 0,
-                      x: msg.role === 'user' ? 20 : -20
-                    }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
+                    {/* Assistant avatar */}
+                    {msg.role === 'assistant' && (
+                      <div className="flex-shrink-0 mr-2.5 mt-0.5">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    )}
                     <div
-                      className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                      className={`max-w-[75%] text-[13px] leading-relaxed ${
                         msg.role === 'user'
-                          ? 'bg-rose-600 text-white rounded-br-md'
-                          : 'bg-white border border-neutral-200 text-neutral-700 rounded-bl-md'
+                          ? 'bg-[var(--color-accent)] text-white px-3.5 py-2.5 rounded-2xl rounded-br-sm'
+                          : 'text-[var(--color-text-secondary)]'
                       }`}
                     >
                       {msg.content}
@@ -425,46 +498,45 @@ function App() {
                     animate={{ opacity: 1 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-white border border-neutral-200 px-4 py-3 rounded-2xl rounded-bl-md">
-                      <div className="flex gap-1">
-                        <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                        <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                        <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <div className="flex-shrink-0 mr-2.5">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
                       </div>
+                    </div>
+                    <div className="flex items-center gap-1 py-2">
+                      <span className="w-1.5 h-1.5 bg-[var(--color-accent)] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                      <span className="w-1.5 h-1.5 bg-[var(--color-accent)] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                      <span className="w-1.5 h-1.5 bg-[var(--color-accent)] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                     </div>
                   </motion.div>
                 )}
               </div>
 
-              {/* Chat input preview */}
-              <div className="px-6 pb-6 bg-neutral-50">
-                <div className="flex items-center gap-3 bg-white border border-neutral-200 rounded-xl px-4 py-2 transition-all duration-200 focus-within:border-rose-500 focus-within:ring-2 focus-within:ring-rose-500/20">
-                  <input
-                    type="text"
-                    placeholder="Ask me anything..."
-                    aria-label="Chat message input"
-                    className="flex-1 bg-transparent outline-none text-sm text-neutral-900 placeholder-neutral-400 min-h-[44px]"
-                    disabled
-                  />
-                  <button
-                    className="w-11 h-11 bg-rose-600 rounded-lg flex items-center justify-center text-white hover:bg-rose-700 active:scale-95 transition-all duration-200"
-                    disabled
-                    aria-label="Send message"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              {/* Minimal input preview */}
+              <div className="px-4 pb-4">
+                <MotionLink
+                  to="/chat"
+                  className="flex items-center justify-between bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-xl px-4 py-3 group hover:border-[#FF6B35]/40 transition-colors"
+                  whileHover={{ scale: 1.01 }}
+                >
+                  <span className="text-sm text-[var(--color-text-muted)]">Type something...</span>
+                  <div className="w-8 h-8 bg-[var(--color-accent)] rounded-lg flex items-center justify-center text-white group-hover:bg-[var(--color-accent-hover)] transition-colors">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
-                  </button>
-                </div>
+                  </div>
+                </MotionLink>
               </div>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Features - Clean grid */}
+        {/* Features */}
         <motion.section
           id="features"
-          className="py-16 md:py-24 px-6 bg-white"
+          className="py-16 md:py-24 px-6 bg-[var(--color-bg)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -477,10 +549,10 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-neutral-900">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-[var(--color-text)]">
                 Why people choose us
               </h2>
-              <p className="text-neutral-600 text-lg max-w-xl mx-auto">
+              <p className="text-[var(--color-text-muted)] text-lg max-w-xl mx-auto">
                 An AI assistant that's helpful and enjoyable to use.
               </p>
             </motion.div>
@@ -502,24 +574,24 @@ function App() {
               ].map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  className="p-8 bg-neutral-50 rounded-xl border border-neutral-200 hover:border-rose-200 transition-colors"
+                  className="p-8 bg-[var(--color-bg-elevated)] rounded-xl border border-[var(--color-border)] hover:border-[#FF6B35]/50 transition-colors"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <h3 className="text-xl font-semibold mb-3 text-neutral-900">{feature.title}</h3>
-                  <p className="text-neutral-600 leading-relaxed">{feature.desc}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-[var(--color-text)]">{feature.title}</h3>
+                  <p className="text-[var(--color-text-muted)] leading-relaxed">{feature.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </motion.section>
 
-        {/* Examples / Use Cases */}
+        {/* Examples */}
         <motion.section
           id="examples"
-          className="py-16 md:py-24 px-6 bg-neutral-50"
+          className="py-16 md:py-24 px-6 bg-[var(--color-bg-secondary)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -532,10 +604,10 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-neutral-900">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-[var(--color-text)]">
                 What people ask us
               </h2>
-              <p className="text-neutral-600 text-lg">
+              <p className="text-[var(--color-text-muted)] text-lg">
                 From the practical to the creative. No question is too weird.
               </p>
             </motion.div>
@@ -551,25 +623,25 @@ function App() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-white rounded-xl border border-neutral-200 hover:border-rose-200 cursor-pointer group transition-all duration-200"
+                  className="p-6 bg-[var(--color-bg-elevated)] rounded-xl border border-[var(--color-border)] hover:border-[#FF6B35]/50 cursor-pointer group transition-all duration-200"
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -4 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <span className="text-xs font-semibold text-rose-600 uppercase tracking-wider">{item.category}</span>
-                  <p className="mt-3 text-neutral-700 leading-relaxed text-lg group-hover:text-neutral-900 transition-colors">{item.q}</p>
+                  <span className="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wider">{item.category}</span>
+                  <p className="mt-3 text-[var(--color-text-secondary)] leading-relaxed text-lg group-hover:text-[var(--color-text)] transition-colors">{item.q}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </motion.section>
 
-        {/* CTA Section - Clean and focused */}
+        {/* CTA Section */}
         <motion.section
           id="chat"
-          className="py-20 md:py-28 px-6 bg-rose-600"
+          className="py-20 md:py-28 px-6 bg-[var(--color-accent)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -589,7 +661,7 @@ function App() {
             </p>
             <MotionLink
               to="/chat"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-rose-600 rounded-lg text-lg font-semibold transition-all duration-200 hover:bg-rose-50"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-bg)] text-[var(--color-accent)] rounded-lg text-lg font-semibold transition-all duration-200 hover:bg-[var(--color-bg-secondary)]"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -607,21 +679,21 @@ function App() {
         </motion.section>
       </main>
 
-      {/* Footer - Clean and minimal */}
-      <footer className="py-12 px-6 border-t border-neutral-200 bg-white" role="contentinfo">
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-[var(--color-border)] bg-[var(--color-bg)]" role="contentinfo">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-2">
-              <SlopLogo size="md" animate={false} variant="light" />
+              <SlopLogo size="lg" animate={false} />
             </div>
-            <div className="flex items-center gap-6 text-sm text-neutral-500">
-              <a href="#features" className="hover:text-neutral-900 transition-colors py-2">Features</a>
-              <a href="#examples" className="hover:text-neutral-900 transition-colors py-2">Examples</a>
-              <a href="mailto:hello@slopgpt.com" className="hover:text-neutral-900 transition-colors py-2">Contact</a>
+            <div className="flex items-center gap-6 text-sm text-[var(--color-text-muted)]">
+              <a href="#features" className="hover:text-[var(--color-text)] transition-colors py-2">Features</a>
+              <a href="#examples" className="hover:text-[var(--color-text)] transition-colors py-2">Examples</a>
+              <a href="mailto:hello@slopgpt.com" className="hover:text-[var(--color-text)] transition-colors py-2">Contact</a>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
-            <p>A <a href="https://softworkstrading.com" className="hover:text-neutral-600 transition-colors">Softworks Trading Company</a> project</p>
+          <div className="mt-8 pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-text-muted)]">
+            <p>A <a href="https://softworkstrading.com" className="hover:text-[var(--color-text-muted)] transition-colors">Softworks Trading Company</a> project</p>
             <p>© 2025 SlopGPT. All rights reserved.</p>
           </div>
         </div>

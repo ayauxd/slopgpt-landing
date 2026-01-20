@@ -5,16 +5,19 @@ import './index.css'
 import App from './App.tsx'
 import Chat from './pages/Chat.tsx'
 import { PageTransition } from './components'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <PageTransition>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/chat" element={<Chat />} />
-        </Routes>
-      </PageTransition>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/chat" element={<Chat />} />
+          </Routes>
+        </PageTransition>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )
