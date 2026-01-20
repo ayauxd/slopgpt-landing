@@ -1,30 +1,46 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Outfit:wght@400;500;600&family=Shantell+Sans:wght@500;700&family=Boogaloo&family=DM+Sans:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Meme-native color tokens */
-  --color-slop: #FF6B35;
-  --color-slop-light: #FF8A5B;
-  --color-chaos: #00FF9F;
-  --color-unhinged: #FF00FF;
-  --color-void: #0D0D0D;
-  --color-void-light: #1A1A1A;
-  --color-cream: #FFFEF0;
-  --color-cream-muted: #FFFEF0CC;
-  --color-error: #FF0000;
+  /* Premium color tokens - clean and professional */
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #FAFAFA;
+  --color-bg-elevated: #F5F5F5;
+
+  --color-text: #0A0A0A;
+  --color-text-secondary: #525252;
+  --color-text-muted: #A3A3A3;
+
+  /* Accent - rose (premium, not cheap orange) */
+  --color-accent: #E11D48;
+  --color-accent-hover: #BE123C;
+  --color-accent-subtle: rgba(225, 29, 72, 0.08);
+
+  /* Borders */
+  --color-border: #E5E5E5;
+  --color-border-hover: #D4D4D4;
+
+  /* Legacy compatibility (gradual migration) */
+  --color-slop: #E11D48;
+  --color-slop-light: #F43F5E;
+  --color-void: #0A0A0A;
+  --color-void-light: #171717;
+  --color-cream: #FFFFFF;
+  --color-cream-muted: rgba(255, 255, 255, 0.8);
+  --color-error: #DC2626;
 }
 
-/* Chunky display font for headings - meme-native vibes */
-/* Typography hierarchy: h1 > h2 > h3 (proper visual scaling) */
+/* Clean typography - Inter for everything */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Bricolage Grotesque', 'Outfit', -apple-system, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
 }
 
 h1 {
@@ -45,14 +61,14 @@ h3 {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-void);
-  color: var(--color-cream);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(255, 107, 53, 0.3);
-  color: var(--color-cream);
+  background: var(--color-accent-subtle);
+  color: var(--color-text);
 }
 
 /* Reduced motion support */
@@ -80,27 +96,26 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-void);
+  background: var(--color-bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-void-light);
-  border-radius: 5px;
-  border: 2px solid var(--color-void);
+  background: var(--color-border);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-slop);
+  background: var(--color-border-hover);
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-void-light) var(--color-void);
+  scrollbar-color: var(--color-border) var(--color-bg-secondary);
 }
 
 /* Button press animation utility */

@@ -1,31 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- SlopGPT Favicon: Bubble S on dark background -->
-
-  <!-- Dark background -->
-  <rect width="32" height="32" rx="6" fill="#0D0D0D"/>
-
-  <!-- Shadow layer -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- SlopGPT Favicon: Clean "s" on rose background -->
+  <rect width="32" height="32" rx="6" fill="#E11D48"/>
   <text
-    x="17"
-    y="25"
-    font-family="Boogaloo, Comic Sans MS, cursive"
-    font-size="26"
+    x="8"
+    y="24"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+    font-size="24"
     font-weight="700"
-    fill="#1a1a1a"
-  >S</text>
-
-  <!-- Main S in cream with outline effect -->
-  <text
-    x="15"
-    y="23"
-    font-family="Boogaloo, Comic Sans MS, cursive"
-    font-size="26"
-    font-weight="700"
-    fill="#FFFEF0"
-    stroke="#1a1a1a"
-    stroke-width="1.5"
-  >S</text>
-
-  <!-- Orange accent dot -->
-  <circle cx="26" cy="8" r="3" fill="#FF6B35"/>
+    fill="#FFFFFF"
+  >s</text>
 </svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;display=swap');
+    .wordmark { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; }
+  </style>
+  <text x="0" y="30" class="wordmark" fill="#0A0A0A">slopgpt</text>
+</svg>
