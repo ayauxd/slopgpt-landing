@@ -368,105 +368,26 @@ function App() {
               </motion.div>
             </div>
 
-            {/* Bento grid features - with illustrated icons */}
+            {/* Bento grid features - with rich 3D illustrations */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 {
-                  icon: (
-                    <div className="relative w-12 h-12">
-                      {/* Rocket with motion trails */}
-                      <svg viewBox="0 0 48 48" className="w-full h-full">
-                        {/* Motion trails */}
-                        <path d="M8 32 Q12 30, 10 26" stroke="#FF6B35" strokeWidth="2" fill="none" opacity="0.4" strokeLinecap="round"/>
-                        <path d="M6 36 Q10 33, 8 28" stroke="#FF6B35" strokeWidth="2" fill="none" opacity="0.25" strokeLinecap="round"/>
-                        {/* Rocket body */}
-                        <path d="M18 38 L24 10 L30 38 Z" fill="#FF6B35" opacity="0.15"/>
-                        <path d="M18 38 L24 10 L30 38" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                        {/* Rocket window */}
-                        <circle cx="24" cy="24" r="3" fill="#FF6B35" opacity="0.3"/>
-                        <circle cx="24" cy="24" r="3" stroke="#FF6B35" strokeWidth="2" fill="none"/>
-                        {/* Fins */}
-                        <path d="M18 35 L12 40 L18 38" fill="#FF6B35" opacity="0.4"/>
-                        <path d="M30 35 L36 40 L30 38" fill="#FF6B35" opacity="0.4"/>
-                        {/* Flame */}
-                        <path d="M21 38 Q24 46, 27 38" stroke="#FF8A5B" strokeWidth="2" fill="#FF6B35" opacity="0.6" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                  ),
+                  image: '/features/instant.webp',
                   label: 'Instant',
                   desc: 'No sign-up needed'
                 },
                 {
-                  icon: (
-                    <div className="relative w-12 h-12">
-                      {/* Winking chat bubble face */}
-                      <svg viewBox="0 0 48 48" className="w-full h-full">
-                        {/* Bubble */}
-                        <path d="M6 12 Q6 6, 14 6 L34 6 Q42 6, 42 12 L42 28 Q42 34, 34 34 L18 34 L10 42 L12 34 L14 34 Q6 34, 6 28 Z" fill="#FF6B35" opacity="0.15"/>
-                        <path d="M6 12 Q6 6, 14 6 L34 6 Q42 6, 42 12 L42 28 Q42 34, 34 34 L18 34 L10 42 L12 34 L14 34 Q6 34, 6 28 Z" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                        {/* Winking eye */}
-                        <path d="M15 18 Q18 16, 21 18" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-                        {/* Open eye */}
-                        <circle cx="33" cy="17" r="2.5" fill="#FF6B35"/>
-                        {/* Smile */}
-                        <path d="M18 24 Q24 30, 30 24" stroke="#FF6B35" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                  ),
+                  image: '/features/personality.webp',
                   label: 'Personality',
                   desc: 'Actually fun to talk to'
                 },
                 {
-                  icon: (
-                    <div className="relative w-12 h-12">
-                      {/* Paint splatter with brush */}
-                      <svg viewBox="0 0 48 48" className="w-full h-full">
-                        {/* Splatters */}
-                        <circle cx="12" cy="32" r="4" fill="#FF6B35" opacity="0.3"/>
-                        <circle cx="20" cy="38" r="3" fill="#FF6B35" opacity="0.4"/>
-                        <circle cx="8" cy="24" r="2.5" fill="#FF6B35" opacity="0.25"/>
-                        <circle cx="28" cy="36" r="5" fill="#FF6B35" opacity="0.35"/>
-                        {/* Main splat */}
-                        <ellipse cx="18" cy="28" rx="8" ry="6" fill="#FF6B35" opacity="0.2" transform="rotate(-15 18 28)"/>
-                        {/* Brush handle */}
-                        <rect x="30" y="6" width="4" height="20" rx="2" fill="#FF6B35" opacity="0.3" transform="rotate(35 32 16)"/>
-                        <rect x="30" y="6" width="4" height="20" rx="2" stroke="#FF6B35" strokeWidth="2" fill="none" transform="rotate(35 32 16)"/>
-                        {/* Brush tip */}
-                        <path d="M22 26 L28 20 L32 24 L26 30 Z" fill="#FF6B35" opacity="0.5"/>
-                        <path d="M22 26 L28 20 L32 24 L26 30 Z" stroke="#FF6B35" strokeWidth="2" fill="none" strokeLinejoin="round"/>
-                        {/* Bristles */}
-                        <path d="M25 23 L23 28" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round"/>
-                        <path d="M28 21 L26 26" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                  ),
+                  image: '/features/creative.webp',
                   label: 'Creative',
                   desc: 'Weird is welcome'
                 },
                 {
-                  icon: (
-                    <div className="relative w-12 h-12">
-                      {/* Cute vault/safe */}
-                      <svg viewBox="0 0 48 48" className="w-full h-full">
-                        {/* Safe body */}
-                        <rect x="8" y="12" width="32" height="28" rx="4" fill="#FF6B35" opacity="0.15"/>
-                        <rect x="8" y="12" width="32" height="28" rx="4" stroke="#FF6B35" strokeWidth="2.5" fill="none"/>
-                        {/* Handle/dial */}
-                        <circle cx="24" cy="26" r="8" fill="#FF6B35" opacity="0.2"/>
-                        <circle cx="24" cy="26" r="8" stroke="#FF6B35" strokeWidth="2" fill="none"/>
-                        <circle cx="24" cy="26" r="3" fill="#FF6B35" opacity="0.4"/>
-                        {/* Dial marks */}
-                        <path d="M24 20 L24 22" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M30 26 L28 26" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M24 32 L24 30" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M18 26 L20 26" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round"/>
-                        {/* Lock indicator */}
-                        <circle cx="36" cy="18" r="2" fill="#FF6B35"/>
-                        {/* Shine */}
-                        <path d="M12 16 L14 18" stroke="#FF6B35" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-                      </svg>
-                    </div>
-                  ),
+                  image: '/features/private.webp',
                   label: 'Private',
                   desc: 'Your data stays yours'
                 },
@@ -480,8 +401,15 @@ function App() {
                   transition={{ delay: 0.1 * i }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 >
-                  <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-5 h-full transition-all duration-300 group-hover:border-[#FF6B35]/50 group-hover:shadow-lg group-hover:shadow-[#FF6B35]/10">
-                    <div className="mb-3">{item.icon}</div>
+                  <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-2xl p-4 h-full transition-all duration-300 group-hover:border-[#FF6B35]/50 group-hover:shadow-lg group-hover:shadow-[#FF6B35]/10 overflow-hidden">
+                    <div className="relative w-full aspect-square mb-3 rounded-xl overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.label}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                     <p className="text-base font-semibold text-[var(--color-text)] mb-1">{item.label}</p>
                     <p className="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
                   </div>
