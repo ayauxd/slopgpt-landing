@@ -9,33 +9,28 @@ interface SlopLogoProps {
 const sizeConfig = {
   sm: {
     slopHeight: 32,
-    gptSize: 'text-lg',
-    gptOffset: '-ml-3',
-    gptBottom: 'bottom-0'
+    gptSize: 'text-base',
+    gptOffset: '-ml-1',  // Slight overlap, not covering P
   },
   md: {
     slopHeight: 44,
-    gptSize: 'text-2xl',
-    gptOffset: '-ml-4',
-    gptBottom: 'bottom-0'
+    gptSize: 'text-xl',
+    gptOffset: '-ml-1',
   },
   lg: {
     slopHeight: 60,
-    gptSize: 'text-3xl',
-    gptOffset: '-ml-5',
-    gptBottom: 'bottom-0'
+    gptSize: 'text-2xl',
+    gptOffset: '-ml-2',
   },
   xl: {
     slopHeight: 80,
-    gptSize: 'text-4xl',
-    gptOffset: '-ml-6',
-    gptBottom: 'bottom-1'
+    gptSize: 'text-3xl',
+    gptOffset: '-ml-2',
   },
   hero: {
     slopHeight: 110,
-    gptSize: 'text-5xl md:text-6xl',
-    gptOffset: '-ml-8',
-    gptBottom: 'bottom-1'
+    gptSize: 'text-4xl md:text-5xl',
+    gptOffset: '-ml-3',
   },
 }
 
@@ -78,21 +73,22 @@ export function SlopLogo({ size = 'md', animate = true, className = '' }: SlopLo
         draggable={false}
       />
 
-      {/* GPT - Overlapping the end of SLOP */}
+      {/* GPT - Slightly overlapping, not covering the P */}
       <motion.span
         className={`
           ${config.gptSize}
           ${config.gptOffset}
-          ${config.gptBottom}
           relative z-20
           font-bold
           tracking-tight
+          self-end
+          pb-1
         `}
         style={{
           fontFamily: "'DM Sans', 'Inter', system-ui, sans-serif",
-          letterSpacing: '-0.04em',
+          letterSpacing: '-0.02em',
           color: '#FF6B35', // Brand orange
-          textShadow: '2px 2px 0 #1a1a1a, -1px -1px 0 #1a1a1a, 1px -1px 0 #1a1a1a, -1px 1px 0 #1a1a1a',
+          textShadow: '1.5px 1.5px 0 #1a1a1a',
         }}
         animate={animate ? {
           y: [0, -1, 0],
