@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" fill="none">
+  <!--
+    SlopGPT Logo
+    "Slop" = Chunky bubble letters (cream + dark shadow)
+    "GPT" = Clean bold sans-serif
+  -->
+
+  <!-- Shadow layer for SLOP (offset down-right) -->
+  <g transform="translate(5, 5)">
+    <!-- S shadow -->
+    <path d="M8 65 C8 78 20 88 42 88 C65 88 80 76 80 58 C80 44 70 36 50 31 C35 27 30 23 30 16 C30 8 38 2 52 2 C68 2 78 10 78 22 L62 22 C62 14 56 10 50 10 C40 10 36 14 36 20 C36 27 42 30 56 34 C76 40 88 48 88 66 C88 86 70 98 44 98 C18 98 2 84 2 66 Z" fill="#1a1a1a"/>
+    <!-- L shadow -->
+    <path d="M95 8 L95 75 L145 75 L145 88 L80 88 L80 8 Z" fill="#1a1a1a"/>
+    <!-- O shadow -->
+    <path d="M200 48 C200 74 180 94 152 94 C124 94 104 74 104 48 C104 22 124 2 152 2 C180 2 200 22 200 48 Z M184 48 C184 30 170 14 152 14 C134 14 120 30 120 48 C120 66 134 82 152 82 C170 82 184 66 184 48 Z" fill="#1a1a1a"/>
+    <!-- P shadow -->
+    <path d="M210 8 L250 8 C276 8 292 22 292 42 C292 62 276 76 250 76 L226 76 L226 88 L210 88 Z M226 64 L248 64 C264 64 276 54 276 42 C276 30 264 20 248 20 L226 20 Z" fill="#1a1a1a"/>
+  </g>
+
+  <!-- Main SLOP letters (cream fill with dark stroke) -->
+  <g>
+    <!-- S -->
+    <path d="M8 65 C8 78 20 88 42 88 C65 88 80 76 80 58 C80 44 70 36 50 31 C35 27 30 23 30 16 C30 8 38 2 52 2 C68 2 78 10 78 22 L62 22 C62 14 56 10 50 10 C40 10 36 14 36 20 C36 27 42 30 56 34 C76 40 88 48 88 66 C88 86 70 98 44 98 C18 98 2 84 2 66 Z"
+          fill="#FFFEF0" stroke="#1a1a1a" stroke-width="2.5"/>
+    <!-- L -->
+    <path d="M95 8 L95 75 L145 75 L145 88 L80 88 L80 8 Z"
+          fill="#FFFEF0" stroke="#1a1a1a" stroke-width="2.5"/>
+    <!-- O -->
+    <path d="M200 48 C200 74 180 94 152 94 C124 94 104 74 104 48 C104 22 124 2 152 2 C180 2 200 22 200 48 Z M184 48 C184 30 170 14 152 14 C134 14 120 30 120 48 C120 66 134 82 152 82 C170 82 184 66 184 48 Z"
+          fill="#FFFEF0" stroke="#1a1a1a" stroke-width="2.5"/>
+    <!-- P -->
+    <path d="M210 8 L250 8 C276 8 292 22 292 42 C292 62 276 76 250 76 L226 76 L226 88 L210 88 Z M226 64 L248 64 C264 64 276 54 276 42 C276 30 264 20 248 20 L226 20 Z"
+          fill="#FFFEF0" stroke="#1a1a1a" stroke-width="2.5"/>
+  </g>
+
+  <!-- GPT - Clean bold text -->
+  <text x="310" y="72"
+        font-family="'DM Sans', 'Inter', system-ui, sans-serif"
+        font-size="64"
+        font-weight="700"
+        fill="#FFFEF0"
+        letter-spacing="-3">GPT</text>
+</svg>
