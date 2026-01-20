@@ -265,7 +265,15 @@ function App() {
                 <div className="relative bg-[var(--color-bg)] rounded-2xl p-5 h-full border border-[var(--color-border)]">
                   {/* Mock chat header */}
                   <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--color-border-subtle)]">
-                    <div className="w-6 h-6 rounded-full bg-[var(--color-border)]" />
+                    {/* Boring robot avatar */}
+                    <div className="w-7 h-7 rounded-full bg-[var(--color-border)] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[var(--color-text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                        <circle cx="9" cy="10" r="1.5" fill="currentColor"/>
+                        <circle cx="15" cy="10" r="1.5" fill="currentColor"/>
+                        <path d="M9 15h6"/>
+                      </svg>
+                    </div>
                     <span className="text-xs text-[var(--color-text-muted)] font-medium">GenericAI</span>
                   </div>
                   {/* User message */}
@@ -275,8 +283,13 @@ function App() {
                     </div>
                   </div>
                   {/* AI Response */}
-                  <div className="flex justify-start">
-                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[85%]">
+                  <div className="flex gap-2">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[var(--color-border)] flex items-center justify-center mt-0.5">
+                      <svg className="w-3 h-3 text-[var(--color-text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                      </svg>
+                    </div>
+                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm px-3 py-2 rounded-xl rounded-tl-sm max-w-[85%]">
                       I'd be happy to help you plan a birthday party. Here are some organized suggestions: 1) Choose a venue 2) Create a guest list 3) Plan activities 4) Arrange catering...
                     </div>
                   </div>
@@ -289,18 +302,29 @@ function App() {
 
               {/* SlopGPT Response */}
               <motion.div
-                className="relative group"
+                className="relative group overflow-hidden"
                 initial={shouldReduceMotion ? {} : { opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
+                {/* Subtle confetti/spark accents */}
+                <div className="absolute top-4 right-8 w-1.5 h-1.5 rounded-full bg-[#FF6B35]/40 animate-pulse" />
+                <div className="absolute top-12 right-4 w-1 h-1 rounded-full bg-[#FF8A5B]/50 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute bottom-16 right-6 w-1 h-1 rounded-full bg-[#FF6B35]/30 animate-pulse" style={{ animationDelay: '1s' }} />
+
                 <div className="absolute -inset-px bg-gradient-to-b from-[#FF6B35]/30 to-transparent rounded-2xl" />
                 <div className="relative bg-[var(--color-bg)] rounded-2xl p-5 h-full border border-[#FF6B35]/40">
                   {/* Mock chat header */}
                   <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#FF6B35]/20">
-                    <div className="w-6 h-6 rounded-full bg-[var(--color-accent)]/20 flex items-center justify-center">
-                      <span className="text-[10px]">🧡</span>
+                    {/* Expressive mascot avatar */}
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center shadow-lg shadow-[#FF6B35]/25">
+                      <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <circle cx="12" cy="12" r="10" className="fill-white/20"/>
+                        <path d="M8 9.5c0-.5.5-1 1-1s1 .5 1 1"/>
+                        <path d="M14 9.5c0-.5.5-1 1-1s1 .5 1 1"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                      </svg>
                     </div>
                     <span className="text-xs text-[var(--color-accent)] font-medium">SlopGPT</span>
                   </div>
@@ -310,15 +334,35 @@ function App() {
                       Help me plan a chaotic birthday party
                     </div>
                   </div>
-                  {/* AI Response */}
-                  <div className="flex justify-start">
-                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text)] text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[85%]">
-                      Chaos? Say less. We're doing a mystery box cooking challenge, competitive Mario Kart on a projector, and a "worst outfit" contest. Loser has to give a toast.
+                  {/* AI Response with inline visual cues */}
+                  <div className="flex gap-2">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-[#FF6B35] to-[#FF8A5B] flex items-center justify-center mt-0.5">
+                      <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
+                    </div>
+                    <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-[var(--color-text)] text-sm px-3 py-2 rounded-xl rounded-tl-sm max-w-[85%]">
+                      <span>Chaos? Say less. We're doing a </span>
+                      <span className="inline-flex items-center gap-1 text-[var(--color-accent)]">
+                        <svg className="w-3 h-3 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        mystery box cooking challenge
+                      </span>
+                      <span>, competitive </span>
+                      <span className="inline-flex items-center gap-1 text-[var(--color-accent)]">
+                        <svg className="w-3 h-3 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                        Mario Kart
+                      </span>
+                      <span> on a projector, and a </span>
+                      <span className="inline-flex items-center gap-1 text-[var(--color-accent)]">
+                        <svg className="w-3 h-3 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+                        "worst outfit" contest
+                      </span>
+                      <span>. Loser has to give a toast.</span>
                     </div>
                   </div>
                   {/* Highlighted label */}
                   <div className="mt-4 pt-3 border-t border-[#FF6B35]/20">
-                    <span className="text-[10px] text-[var(--color-accent)] uppercase tracking-wider">Fun. Creative. Gets it.</span>
+                    <span className="text-[10px] text-[var(--color-accent)] uppercase tracking-wider font-medium">Creative. Gets it.</span>
                   </div>
                 </div>
               </motion.div>
@@ -327,10 +371,51 @@ function App() {
             {/* Bento grid features */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { icon: '⚡', label: 'Instant', desc: 'No sign-up' },
-                { icon: '🎭', label: 'Personality', desc: 'Not a robot' },
-                { icon: '🎨', label: 'Creative', desc: 'Weird is welcome' },
-                { icon: '🔒', label: 'Private', desc: 'Your data stays yours' },
+                {
+                  icon: (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" className="fill-[var(--color-accent)]/20"/>
+                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                  ),
+                  label: 'Instant',
+                  desc: 'No sign-up'
+                },
+                {
+                  icon: (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" className="fill-[var(--color-accent)]/20"/>
+                      <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                      <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                      <path d="M9 14s1.5 2 3 2 3-2 3-2"/>
+                    </svg>
+                  ),
+                  label: 'Personality',
+                  desc: 'Not a robot'
+                },
+                {
+                  icon: (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z" className="fill-[var(--color-accent)]/20"/>
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                      <path d="M2 2l7.586 7.586"/>
+                      <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                  ),
+                  label: 'Creative',
+                  desc: 'Weird is welcome'
+                },
+                {
+                  icon: (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" className="fill-[var(--color-accent)]/20"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                    </svg>
+                  ),
+                  label: 'Private',
+                  desc: 'Your data stays yours'
+                },
               ].map((item, i) => (
                 <motion.div
                   key={item.label}
@@ -342,7 +427,7 @@ function App() {
                   whileHover={{ y: -2 }}
                 >
                   <div className="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-4 h-full transition-colors group-hover:border-[#FF6B35]/40">
-                    <span className="text-2xl mb-2 block">{item.icon}</span>
+                    <div className="text-[var(--color-accent)] mb-2">{item.icon}</div>
                     <p className="text-sm font-medium text-[var(--color-text)]">{item.label}</p>
                     <p className="text-xs text-[var(--color-text-muted)]">{item.desc}</p>
                   </div>
