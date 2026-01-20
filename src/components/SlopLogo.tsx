@@ -50,7 +50,7 @@ export function SlopLogo({ size = 'md', animate = true, className = '' }: SlopLo
     <div className={`relative flex items-end select-none ${className}`}>
       {/* SLOP - Bubble letter image */}
       <motion.img
-        src="/logo/slop-transparent.png"
+        src="/logo/slop-transparent.webp"
         alt="Slop"
         height={config.slopHeight}
         className="relative z-10"
