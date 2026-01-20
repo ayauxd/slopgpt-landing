@@ -1,0 +1,6 @@
+# SlopGPT Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://slopgpt.com/sitemap.xml
