@@ -1,34 +1,42 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Outfit:wght@400;500;600&family=Shantell+Sans:wght@500;700&display=swap');
 
 :root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Premium color tokens */
-  --color-brand: #cc2936;
-  --color-brand-light: #ff4d5a;
-  --color-surface: #fafaf8;
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #555555;
-  --color-border: #e5e5e5;
+  /* Meme-native color tokens */
+  --color-slop: #FF6B35;
+  --color-slop-light: #FF8A5B;
+  --color-chaos: #00FF9F;
+  --color-unhinged: #FF00FF;
+  --color-void: #0D0D0D;
+  --color-void-light: #1A1A1A;
+  --color-cream: #FFFEF0;
+  --color-cream-muted: #FFFEF0CC;
+  --color-error: #FF0000;
+}
+
+/* Chunky display font for headings - meme-native vibes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', 'Outfit', -apple-system, sans-serif;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-surface);
-  color: var(--color-text-primary);
+  background: var(--color-void);
+  color: var(--color-cream);
 }
 
-/* Premium selection color */
+/* Selection color */
 ::selection {
-  background: rgba(204, 41, 54, 0.15);
-  color: var(--color-text-primary);
+  background: rgba(255, 107, 53, 0.3);
+  color: var(--color-cream);
 }
 
 /* Reduced motion support */
@@ -48,35 +56,35 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring for accessibility - brand colored */
+/* Focus ring for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--color-brand);
+  outline: 2px solid var(--color-slop);
   outline-offset: 2px;
 }
 
-/* Custom scrollbar - Premium style */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: var(--color-void);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d5d5d5;
+  background: var(--color-void-light);
   border-radius: 5px;
-  border: 2px solid var(--color-surface);
+  border: 2px solid var(--color-void);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bbb;
+  background: var(--color-slop);
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d5d5d5 var(--color-surface);
+  scrollbar-color: var(--color-void-light) var(--color-void);
 }
 
 /* Button press animation utility */
@@ -96,4 +104,188 @@ html {
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   MEME-NATIVE ANIMATIONS
+   ======================================== */
+
+/* Blob wobble - constant subtle animation */
+@keyframes blob-wobble {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    transform: scale(1.03) rotate(1deg);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    transform: scale(0.98) rotate(-1deg);
+    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+  }
+  75% {
+    transform: scale(1.01) rotate(0.5deg);
+    border-radius: 70% 30% 50% 50% / 40% 70% 60% 30%;
+  }
+}
+
+/* Bounce in - for card entrances */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(100px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Shake - for hover interactions */
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  50% { transform: translateX(2px) rotate(1deg); }
+  75% { transform: translateX(-2px) rotate(-0.5deg); }
+}
+
+/* Glitch effect - for text */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Pulse glow - for emphasis */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.6), 0 0 60px rgba(255, 107, 53, 0.3);
+  }
+}
+
+/* Float up and down - for floating elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Utility classes for animations */
+.animate-blob-wobble {
+  animation: blob-wobble 8s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s linear;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================
+   CHAOS MODE - Activated via Konami Code
+   ======================================== */
+
+/* Chaos mode global effects */
+.chaos-mode {
+  /* Everything rotates slightly */
+  & > * {
+    animation: chaos-wobble 2s ease-in-out infinite;
+  }
+
+  /* More intense selection color */
+  &::selection {
+    background: rgba(255, 0, 255, 0.5);
+  }
+
+  /* Glitchy scrollbar */
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-unhinged);
+    animation: rainbow-cycle 2s linear infinite;
+  }
+}
+
+/* Subtle wobble for chaos mode */
+@keyframes chaos-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(0.3deg); }
+  75% { transform: rotate(-0.3deg); }
+}
+
+/* Rainbow color cycle */
+@keyframes rainbow-cycle {
+  0% { background-color: var(--color-slop); }
+  33% { background-color: var(--color-chaos); }
+  66% { background-color: var(--color-unhinged); }
+  100% { background-color: var(--color-slop); }
+}
+
+/* Intense glitch for chaos mode */
+@keyframes chaos-glitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate(-3px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(3px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate(-2px, -3px);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate(2px, 3px);
+    filter: hue-rotate(360deg);
+  }
+  50% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+.chaos-mode .animate-glitch {
+  animation: chaos-glitch 0.5s linear infinite;
 }
