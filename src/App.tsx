@@ -70,7 +70,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'AI-generated prehistoric party scenes with T-Rex cake toppers and meteor piñatas',
     category: 'Events',
     bgGradient: 'from-emerald-400 to-teal-600',
-    image: '/showcases/dinosaur-party.webp'
+    image: '/showcases/dinosaur-party-new.png'
   },
   {
     id: '2',
@@ -86,7 +86,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Mystery box cooking challenges and competitive Mario Kart tournaments',
     category: 'Party Ideas',
     bgGradient: 'from-orange-400 to-red-600',
-    image: '/showcases/chaos-goblin.webp',
+    image: '/showcases/chaos-goblin-new.png',
     isVideo: true,
     videoType: 'gif'
   },
@@ -114,7 +114,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Watch the Slop Blob transform through various moods and expressions',
     category: 'Behind the Scenes',
     bgGradient: 'from-slop to-chaos',
-    image: '/showcases/chaos-goblin.webp', // TODO: Replace with /showcases/videos/blob-evolution.gif when created
+    image: '/showcases/chaos-goblin-new.png', // TODO: Replace with /showcases/videos/blob-evolution.gif when created
     isVideo: true,
     videoType: 'gif'
   }
