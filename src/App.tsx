@@ -78,7 +78,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Tamagotchis, slap bracelets, and that carpet pattern from everywhere',
     category: 'Creative',
     bgGradient: 'from-purple-400 to-pink-600',
-    image: '/showcases/90s-nostalgia.webp'
+    image: '/showcases/90s-nostalgia-v2.webp'
   },
   {
     id: '3',
@@ -86,9 +86,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Mystery box cooking challenges and competitive Mario Kart tournaments',
     category: 'Party Ideas',
     bgGradient: 'from-orange-400 to-red-600',
-    image: '/showcases/chaos-goblin-new.webp',
-    isVideo: true,
-    videoType: 'gif'
+    image: '/showcases/chaos-goblin-v2.webp'
   },
   {
     id: '4',
@@ -96,7 +94,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'DnD campaigns in the furniture maze. Billy bookshelf fortresses included.',
     category: 'Gaming',
     bgGradient: 'from-blue-400 to-indigo-600',
-    image: '/showcases/ikea-apocalypse.webp'
+    image: '/showcases/ikea-apocalypse-v2.webp'
   },
   {
     id: '5',
@@ -104,9 +102,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Explaining quantum computing to peasants, one ox-drawn analogy at a time',
     category: 'Learning',
     bgGradient: 'from-amber-400 to-yellow-600',
-    image: '/showcases/medieval-tech.webp',
-    isVideo: true,
-    videoType: 'gif'
+    image: '/showcases/medieval-tech-v2.webp'
   },
   {
     id: '6',
@@ -114,9 +110,7 @@ const showcaseItems: ShowcaseItem[] = [
     description: 'Watch the Slop Blob transform through various moods and expressions',
     category: 'Behind the Scenes',
     bgGradient: 'from-slop to-chaos',
-    image: '/showcases/chaos-goblin-new.webp', // TODO: Replace with /showcases/videos/blob-evolution.gif when created
-    isVideo: true,
-    videoType: 'gif'
+    image: '/showcases/dinosaur-party-new.webp' // Placeholder until blob animation created
   }
 ]
 

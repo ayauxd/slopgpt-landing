@@ -433,9 +433,145 @@ After implementation, re-run AI Slop detection:
 
 ---
 
+---
+
+# PHASE 5: COMPREHENSIVE OVERHAUL (January 2026)
+
+## Audit Summary
+
+| Area | Grade | Critical Issue |
+|------|-------|----------------|
+| Brand/Logo | B+ | Asset inconsistency, "SLLOP" typo |
+| UX/Interactions | B+ | Missing mobile nav, modal focus trap |
+| Visual Design | B+ | Showcase images don't match descriptions |
+| Performance | C | LCP 4.4s (target <2.5s) |
+| Copy/Content | B- | Value proposition unclear |
+| SEO | B- | Missing robots.txt, sitemap |
+
+---
+
+## P0: Critical Fixes (This Week)
+
+### Value Proposition Clarity
+- [ ] Rewrite hero subtext: "AI photo booth for events. Chat to design your theme. We generate the photos."
+- [ ] Add 3-4 step "How It Works" section below hero
+- [ ] Move "What is Slop?" section above gallery (it's the value prop)
+- [ ] Update CTA button hover text to clarify action
+
+### LCP Performance (Target: <2.5s)
+- [ ] Remove unused fonts: Boogaloo, Shantell Sans (keep Bricolage + Outfit + DM Sans)
+- [ ] Self-host critical fonts instead of Google Fonts CDN
+- [ ] Add `font-display: optional` to non-critical fonts
+- [ ] Inline critical CSS for hero (extract ~5KB above-fold styles)
+- [ ] Implement code splitting: `React.lazy()` for below-fold sections
+- [ ] Remove 59KB unused JavaScript from bundle
+
+### Showcase Images (Match Content to Titles)
+- [ ] DELETE: `/public/logo/slop-generated.png` (has "SLLOP" typo)
+- [ ] REPLACE: medieval-tech.webp → knight explaining computer (not castle)
+- [ ] REPLACE: ikea-apocalypse.webp → furniture fortress (not coffee equipment)
+- [ ] REPLACE: 90s-nostalgia.webp → actual 90s items (not esports gamer)
+- [ ] ENSURE: Consistent illustration style across all 6 showcase images
+
+### SEO Infrastructure
+- [ ] CREATE: `/public/robots.txt`
+```
+User-agent: *
+Allow: /
+Sitemap: https://slopgpt.com/sitemap.xml
+```
+- [ ] CREATE: `/public/sitemap.xml` with routes (/, /chat)
+- [ ] REPLACE: og-image.svg → og-image.png (compressed <300KB)
+- [ ] ADD: `<link rel="canonical" href="https://slopgpt.com/" />`
+- [ ] ADD: JSON-LD WebApplication structured data
+
+---
+
+## P1: Trust Building (Next Sprint)
+
+### Social Proof
+- [ ] Design TestimonialCard component
+- [ ] Add section with 3-5 real testimonials (need to gather)
+- [ ] Add client logos grid (if applicable)
+- [ ] Add stats: "X events powered", "Y photos generated"
+
+### Mobile Navigation
+- [ ] Create MobileNav component with hamburger
+- [ ] Items: Features, Examples, Get Started
+- [ ] Focus trap + escape key handling
+- [ ] Smooth slide animation
+
+### Demo Enhancement
+- [ ] Show photo generation in demo (not just text chat)
+- [ ] Add disabled state styling to demo input
+- [ ] Consider interactive mini-demo
+
+---
+
+## P2: Code Quality
+
+### Component Extraction (App.tsx is 1095 lines)
+- [ ] Extract: HeroSection.tsx
+- [ ] Extract: WhatIsSlop.tsx
+- [ ] Extract: ShowcaseGallery.tsx
+- [ ] Extract: DemoChat.tsx
+- [ ] Extract: Features.tsx
+- [ ] Extract: Examples.tsx
+- [ ] Extract: FinalCTA.tsx
+
+### Asset Cleanup
+- [ ] Remove duplicate logo files
+- [ ] Update SlopLogo.tsx to use SVG (better scaling)
+- [ ] Remove unused PNG variants
+
+### Accessibility Polish
+- [ ] Add focus trap to lead capture modal
+- [ ] Add `aria-label` to interactive blob
+- [ ] Add keyboard handlers to marquee
+- [ ] Screen reader testing
+
+---
+
+## Verification Commands
+
+```bash
+# LCP Check
+npx lighthouse https://slopgpt.com --only-categories=performance --output=json
+
+# SEO Check
+curl -s https://slopgpt.com/robots.txt && curl -s https://slopgpt.com/sitemap.xml
+
+# Bundle Analysis
+cd ~/slopgpt-landing && npm run build && npx source-map-explorer dist/assets/*.js
+
+# Full Audit
+npx lighthouse https://slopgpt.com --output=html --output-path=./audit.html
+```
+
+## Success Metrics
+
+| Metric | Current | Target |
+|--------|---------|--------|
+| LCP | 4.4s | <2.5s |
+| Lighthouse Performance | 76 | 90+ |
+| Lighthouse SEO | 72 | 95+ |
+| Social Proof Items | 0 | 3+ |
+| Value Prop Clarity | Unclear | 5-second test pass |
+
+---
+
+## Sources
+
+- [web.dev LCP Optimization](https://web.dev/articles/optimize-lcp)
+- [Leadfeeder Landing Page Best Practices 2026](https://www.leadfeeder.com/blog/landing-pages-convert/)
+- [DebugBear Font Preloading](https://www.debugbear.com/blog/preload-web-fonts)
+- [Unbounce Landing Page Best Practices](https://unbounce.com/landing-page-articles/landing-page-best-practices/)
+
+---
+
 ## Sign-off
 
 **Designed by**: Ray Donovan diagnostic process
 **Mascot concept**: Slop Blob v1
-**PRD Version**: 1.0
+**PRD Version**: 2.0 (January 2026 Overhaul)
 **Ready for execution**: Yes
