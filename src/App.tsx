@@ -131,6 +131,9 @@ function App() {
 
           {/* Nav links */}
           <div className="flex items-center gap-3 md:gap-6">
+            <a href="#how-it-works" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors hidden md:flex items-center min-h-[44px]">
+              How It Works
+            </a>
             <a href="#features" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors hidden md:flex items-center min-h-[44px]">
               Features
             </a>
@@ -144,7 +147,7 @@ function App() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Try it free
+              Start chatting
             </MotionLink>
           </div>
         </div>
@@ -189,7 +192,7 @@ function App() {
                 className="text-lg md:text-xl text-[var(--color-text-muted)] max-w-2xl mx-auto leading-relaxed"
                 variants={shouldReduceMotion ? {} : fadeIn}
               >
-                Creative brainstorming, party planning, weird questions — all the fun stuff other AI won't touch.
+                Creative brainstorming, party planning, weird questions — we lean into the fun stuff.
               </motion.p>
 
               <motion.div
@@ -229,6 +232,7 @@ function App() {
 
         {/* Value Proposition - Visual Comparison */}
         <motion.section
+          id="how-it-works"
           className="py-16 md:py-24 px-6 bg-[var(--color-bg-secondary)]"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +278,7 @@ function App() {
                         <path d="M9 15h6"/>
                       </svg>
                     </div>
-                    <span className="text-xs text-[var(--color-text-muted)] font-medium">GenericAI</span>
+                    <span className="text-xs text-[var(--color-text-muted)] font-medium">Other AI</span>
                   </div>
                   {/* User message */}
                   <div className="flex justify-end mb-3">
@@ -374,7 +378,7 @@ function App() {
                 {
                   image: '/features/instant.webp',
                   label: 'Instant',
-                  desc: 'No sign-up needed'
+                  desc: 'Start chatting in seconds'
                 },
                 {
                   image: '/features/personality.webp',
@@ -389,7 +393,7 @@ function App() {
                 {
                   image: '/features/private.webp',
                   label: 'Private',
-                  desc: 'Your data stays yours'
+                  desc: 'No data sold, no model training'
                 },
               ].map((item, i) => (
                 <motion.div
@@ -503,7 +507,7 @@ function App() {
                 Try it yourself
               </h2>
               <p className="text-sm text-[var(--color-text-muted)]">
-                A real conversation, not a demo script
+                See how we handle creative requests
               </p>
             </motion.div>
 
@@ -620,15 +624,15 @@ function App() {
                 Why people choose us
               </h2>
               <p className="text-[var(--color-text-muted)] text-lg max-w-xl mx-auto">
-                An AI assistant that's helpful and enjoyable to use.
+                Built for the creative, the curious, and the slightly unhinged.
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: 'No Sign-up',
-                  desc: 'Start chatting immediately. No account, no email, no friction.',
+                  title: 'Zero Friction',
+                  desc: 'Start chatting immediately. No account, no email, no barriers.',
                 },
                 {
                   title: 'Actually Creative',
@@ -697,7 +701,7 @@ function App() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <span className="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wider">{item.category}</span>
+                  <span className="inline-block px-2 py-0.5 text-xs font-medium text-[var(--color-accent)] bg-[var(--color-accent)]/10 rounded-full">{item.category}</span>
                   <p className="mt-3 text-[var(--color-text-secondary)] leading-relaxed text-lg group-hover:text-[var(--color-text)] transition-colors">{item.q}</p>
                 </motion.div>
               ))}
@@ -724,7 +728,7 @@ function App() {
               Ready to try something different?
             </h2>
             <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-              No sign-up, no credit card. Just start a conversation and see what happens.
+              No credit card, no commitment. Just start a conversation and see what happens.
             </p>
             <MotionLink
               to="/chat"
@@ -732,7 +736,7 @@ function App() {
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              Start chatting now
+              Start chatting
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -753,15 +757,20 @@ function App() {
             <div className="flex items-center gap-2">
               <SlopLogo size="lg" animate={false} />
             </div>
-            <div className="flex items-center gap-6 text-sm text-[var(--color-text-muted)]">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--color-text-muted)]">
+              <a href="#how-it-works" className="hover:text-[var(--color-text)] transition-colors py-2">How It Works</a>
               <a href="#features" className="hover:text-[var(--color-text)] transition-colors py-2">Features</a>
               <a href="#examples" className="hover:text-[var(--color-text)] transition-colors py-2">Examples</a>
               <a href="mailto:hello@slopgpt.com" className="hover:text-[var(--color-text)] transition-colors py-2">Contact</a>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-text-muted)]">
-            <p>A <a href="https://softworkstrading.com" className="hover:text-[var(--color-text-muted)] transition-colors">Softworks Trading Company</a> project</p>
-            <p>© 2025 SlopGPT. All rights reserved.</p>
+            <p>A <a href="https://softworkstrading.com" className="hover:text-[var(--color-text)] transition-colors">Softworks Trading Company</a> project</p>
+            <div className="flex items-center gap-4">
+              <a href="/privacy" className="hover:text-[var(--color-text)] transition-colors">Privacy</a>
+              <a href="/terms" className="hover:text-[var(--color-text)] transition-colors">Terms</a>
+              <span>© 2025 SlopGPT</span>
+            </div>
           </div>
         </div>
       </footer>
